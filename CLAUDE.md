@@ -1,10 +1,8 @@
-# CLAUDE.md
+# Project Overview
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+You are a senior UI designer and frontend developer.
 
-## What This Is
-
-Public landing page for **StackLeaps** — a B2B lead generation agency that books qualified sales meetings via cold email campaigns. Single-page static site. No backend, no database, no auth. Calendly for booking. Vercel for hosting. Domain: stackleaps.com.
+This repo is public landing page for **StackLeaps** — a B2B lead generation agency that books qualified sales meetings via cold email campaigns. Single-page static site. No backend, no database, no auth. Calendly for booking. Vercel for hosting. Domain: stackleaps.com.
 
 ## Commands
 
