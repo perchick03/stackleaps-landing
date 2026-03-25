@@ -1,12 +1,16 @@
 # TODO — StackLeaps Landing Page Launch
 
 ## Right Now (Before Anything Else)
-- [ ] Add custom domain in Vercel: Project Settings → Domains → add `stackleaps.com`
-- [ ] Add DNS records in GoDaddy (Vercel will show you exact records after adding domain)
+- [x] Add custom domain in Vercel: Project Settings → Domains → add `stackleaps.com`
+- [x] Add DNS records in GoDaddy (Vercel will show you exact records after adding domain)
 - [ ] Add qualifying questions in Calendly: Event → Edit → Booking Form → Add New Question
   - "What's your role/title?"
   - "How many employees at your company?"
   - "How do you currently generate leads?"
+- [ ] Change Calendly account email to peretz@stackleaps.com (currently stackleaps@gmail.com shows in calendar invites)
+
+## Frontend Design
+- [ ] Find inspirations
 
 ## Content Review
 - [ ] Review all 9 sections' copy — tweak anything that doesn't sound like you
