@@ -1,10 +1,57 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-plus-jakarta);
+
+  /* Surface hierarchy — "The Digital Curator" depth system */
+  --color-surface: #f8f9ff;
+  --color-surface-dim: #cddbef;
+  --color-surface-bright: #f8f9ff;
+  --color-surface-lowest: #ffffff;
+  --color-surface-low: #eef4ff;
+  --color-surface-container: #e4efff;
+  --color-surface-high: #dbe9fd;
+  --color-surface-highest: #d5e4f8;
+
+  /* Core palette */
+  --color-primary: #16314a;
+  --color-primary-container: #2e4862;
+  --color-on-primary: #ffffff;
+  --color-on-surface: #0e1d2b;
+  --color-on-surface-variant: #43474d;
+
+  /* Accent — "Vibrant Apricot" for CTAs */
+  --color-secondary: #984800;
+  --color-secondary-container: #ff8e3b;
+  --color-secondary-fixed: #ffdbc8;
+
+  /* Borders & outlines */
+  --color-outline: #73777e;
+  --color-outline-variant: #c3c7ce;
+
+  /* Inverse for dark sections */
+  --color-inverse-surface: #243241;
+  --color-inverse-on-surface: #e9f1ff;
+  --color-inverse-primary: #aec9e8;
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+}
+
+/* Glass effect utility */
+.glass-effect {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Ambient shadow — per DESIGN.md, no heavy drop shadows */
+.shadow-ambient {
+  box-shadow: 0px 20px 40px rgba(14, 29, 43, 0.06);
 }
