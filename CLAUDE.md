@@ -24,11 +24,13 @@ No test framework is configured yet.
 - `src/app/globals.css` — Tailwind imports + CSS custom properties
 - Path alias: `@/*` maps to `./src/*`
 
-### Planned page structure (9 sections, single page)
+### Page structure (8 sections, single page)
 
-Hero → Problem → Solution → How It Works → Who It's For → Trust Stack → Pricing → FAQ → Final CTA
+Hero → Problem → Solution → How It Works → Who It's For → Pricing → FAQ → Final CTA
 
-Each section will be a component in `src/components/`. No navigation menu (intentional — reduces conversion leaks per landing page research).
+Each section is a component in `src/components/`. No navigation menu (intentional — reduces conversion leaks per landing page research).
+
+**IMPORTANT: This is a fresh redesign (v2). All components are empty shells. Do NOT reference, preserve, or recreate any prior styling. Build from the DESIGN.md and messaging doc provided.**
 
 ### Key integrations
 

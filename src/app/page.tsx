@@ -3,7 +3,6 @@ import Problem from "@/components/Problem";
 import Solution from "@/components/Solution";
 import HowItWorks from "@/components/HowItWorks";
 import WhoItsFor from "@/components/WhoItsFor";
-import TrustStack from "@/components/TrustStack";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -16,7 +15,6 @@ export default function Home() {
       <Solution />
       <HowItWorks />
       <WhoItsFor />
-      <TrustStack />
       <Pricing />
       <FAQ />
       <FinalCTA />
