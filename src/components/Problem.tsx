@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 const pains = [
   {
     title: "Waiting for inbound that never comes",
-    body: "You have an incredible destination — but the right clients don't know you exist. You're invisible to operators who'd love to work with you.",
+    body: "You have an incredible destination - but the right operators don't know you exist. You're invisible to partners who'd love to work with you.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -14,7 +14,7 @@ const pains = [
   },
   {
     title: "Relying on word-of-mouth and hope",
-    body: "Your best partnerships came from referrals or chance meetings. That's great — but it doesn't scale, and you can't control when the next one comes.",
+    body: "Your best partnerships came from referrals or chance meetings. That's great - but it doesn't scale, and you can't control when the next one comes.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8.625 12a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 01-2.555-.337A5.972 5.972 0 015.41 20.97a5.969 5.969 0 01-.474-.065 4.48 4.48 0 00.978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25z" />
@@ -23,7 +23,7 @@ const pains = [
   },
   {
     title: "You run operations AND chase new business",
-    body: "You're managing ground logistics, client experiences, and supplier relationships — and somehow you're also supposed to be doing sales and marketing on top of it.",
+    body: "You're managing ground logistics, client experiences, and supplier relationships - and somehow you're also supposed to be doing sales and marketing on top of it.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
