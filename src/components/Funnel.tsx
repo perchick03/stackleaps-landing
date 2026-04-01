@@ -2,49 +2,57 @@
 
 import { motion, useInView } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 const stages = [
   {
     label: "Prospects",
     leftStat: "100%",
-    leftDesc: "Everyone who might be interested based on your ideal client profile",
+    leftDesc: "Everyone matching your ideal client profile",
     rightStat: "100%",
-    rightDesc: "Full list of verified decision-makers in your target markets",
+    rightDesc: "Verified decision-makers in your target markets",
   },
   {
     label: "Open Rate",
     leftStat: "50–70%",
-    leftDesc: "Personalized subject lines that get noticed in crowded inboxes",
+    leftDesc: "Personalized subject lines that get noticed",
     rightStat: "50–70%",
-    rightDesc: "We test and optimize until open rates hit this benchmark",
+    rightDesc: "Tested and optimized until we hit this benchmark",
   },
   {
     label: "Replies",
     leftStat: "5–20%",
-    leftDesc: "Engaged prospects responding to personalized outreach content",
+    leftDesc: "Prospects responding to personalized outreach",
     rightStat: "5–20%",
     rightDesc: "Warm leads ready to discuss working with your destination",
   },
   {
     label: "Booked Calls",
     leftStat: "1–2%",
-    leftDesc: "Qualified meetings booked directly on your calendar",
+    leftDesc: "Qualified meetings on your calendar",
     rightStat: "1–2%",
     rightDesc: "Decision-makers who want to partner with you",
   },
 ];
 
-const funnelWidths = [100, 75, 50, 32];
+const funnelWidths = [100, 78, 55, 35];
 
-// Total funnel height in px (approximate: gap + 4 stages with connectors)
-const FUNNEL_TOP_GAP = 120; // space above first stage where bubbles fall
-const STAGE_HEIGHT = 100;   // each stage row height approx
+const FUNNEL_TOP_GAP = 120;
+const STAGE_HEIGHT = 100;
 const FUNNEL_TOTAL = FUNNEL_TOP_GAP + stages.length * STAGE_HEIGHT;
 
-// When each stage activates: first bubble takes ~2s to reach stage 0,
-// then each subsequent stage activates ~3.5s later
 const FIRST_HIT_DELAY = 2000;
 const STAGE_INTERVAL = 3500;
+
+const PROFILE_IMAGES = [
+  "/images/bubble-funnel/bubble-man1.jpg",
+  "/images/bubble-funnel/bubble-woman1.jpg",
+  "/images/bubble-funnel/bubble-man2.jpg",
+  "/images/bubble-funnel/bubble-woman2.jpg",
+  "/images/bubble-funnel/bubble-man3.jpg",
+  "/images/bubble-funnel/bubble-woman3.jpg",
+  "/images/bubble-funnel/bubble-man4.jpg",
+];
 
 export default function Funnel() {
   const ref = useRef<HTMLDivElement>(null);
@@ -97,10 +105,28 @@ export default function Funnel() {
         <div ref={ref} className="relative max-w-6xl mx-auto">
           {isInView && <ContinuousBubbles />}
 
-          {/* Gap above funnel — bubbles fall through this space first */}
           <div style={{ height: FUNNEL_TOP_GAP }} />
 
-          <div className="flex flex-col">
+          {/* SVG funnel outline */}
+          <div
+            className="absolute pointer-events-none z-0"
+            style={{
+              top: FUNNEL_TOP_GAP,
+              left: "50%",
+              transform: "translateX(-50%)",
+              width: "clamp(220px, 38vw, 480px)",
+              bottom: 0,
+            }}
+          >
+            <svg viewBox="0 0 100 100" preserveAspectRatio="none" className="w-full h-full" fill="none">
+              {/* From bottom-left of first stage to bottom-left of last stage */}
+              <line x1="0" y1="18" x2="32.5" y2="97" stroke="rgba(255,255,255,0.12)" strokeWidth="0.3" />
+              {/* From bottom-right of first stage to bottom-right of last stage */}
+              <line x1="100" y1="18" x2="67.5" y2="97" stroke="rgba(255,255,255,0.12)" strokeWidth="0.3" />
+            </svg>
+          </div>
+
+          <div className="flex flex-col relative z-[1]">
             {stages.map((stage, i) => {
               const isActive = activeStage >= i;
               const isCurrently = activeStage === i;
@@ -108,7 +134,7 @@ export default function Funnel() {
 
               return (
                 <div key={stage.label}>
-                  <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 md:gap-6">
+                  <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-3 md:gap-6">
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -117,7 +143,7 @@ export default function Funnel() {
                       className="flex justify-end"
                     >
                       <div
-                        className={`rounded-xl p-4 md:p-5 max-w-[240px] w-full border transition-all duration-1000 ${
+                        className={`rounded-xl p-4 md:p-5 w-[260px] h-full flex flex-col justify-center border transition-all duration-1000 ${
                           isActive
                             ? "bg-white/15 border-white/30"
                             : "bg-white/5 border-white/10"
@@ -136,9 +162,10 @@ export default function Funnel() {
                       </div>
                     </motion.div>
 
+                    {/* Center funnel — wider */}
                     <div
                       className="flex flex-col items-center"
-                      style={{ width: "clamp(180px, 35vw, 420px)" }}
+                      style={{ width: "clamp(220px, 38vw, 480px)" }}
                     >
                       {i > 0 && (
                         <div
@@ -148,7 +175,8 @@ export default function Funnel() {
                         />
                       )}
                       <div
-                        className={`relative py-5 md:py-6 text-center font-bold text-sm md:text-base tracking-wide uppercase transition-all duration-1000 ${
+                        data-funnel-stage={i}
+                        className={`relative py-5 md:py-6 text-center font-bold text-base md:text-lg tracking-wide uppercase transition-all duration-1000 ${
                           isCurrently
                             ? "bg-white text-[var(--color-primary)]"
                             : isActive
@@ -192,7 +220,7 @@ export default function Funnel() {
                       className="flex justify-start"
                     >
                       <div
-                        className={`rounded-xl p-4 md:p-5 max-w-[240px] w-full border transition-all duration-1000 ${
+                        className={`rounded-xl p-4 md:p-5 w-[260px] h-full flex flex-col justify-center border transition-all duration-1000 ${
                           isActive
                             ? "bg-white/15 border-white/30"
                             : "bg-white/5 border-white/10"
@@ -221,7 +249,7 @@ export default function Funnel() {
   );
 }
 
-/* ─── Continuous random bubbles ─── */
+/* ─── Continuous random profile bubbles ─── */
 
 interface Bubble {
   id: number;
@@ -231,6 +259,7 @@ interface Bubble {
   delay: number;
   opacity: number;
   drift: number;
+  profileIndex: number;
 }
 
 function ContinuousBubbles() {
@@ -241,32 +270,31 @@ function ContinuousBubbles() {
     idRef.current += 1;
     return {
       id: idRef.current,
-      x: (Math.random() - 0.5) * 120,
-      size: 14 + Math.random() * 10, // 14-24px diameter
-      duration: 3.5 + Math.random() * 2.5, // 3.5-6s to fall through
+      x: (Math.random() - 0.5) * 140,
+      size: 44 + Math.random() * 20, // 44-64px — big enough to see the face
+      duration: 5 + Math.random() * 3, // 5-8s — slower fall
       delay: initialDelay,
-      opacity: 0.5 + Math.random() * 0.4, // 0.5-0.9
+      opacity: 0.6 + Math.random() * 0.35,
       drift: (Math.random() - 0.5) * 50,
+      profileIndex: Math.floor(Math.random() * PROFILE_IMAGES.length),
     };
   }, []);
 
   useEffect(() => {
-    // Initial wave — stagger across first few seconds
     const initial: Bubble[] = [];
-    for (let i = 0; i < 8; i++) {
-      initial.push(spawnBubble(Math.random() * 3));
+    for (let i = 0; i < 5; i++) {
+      initial.push(spawnBubble(Math.random() * 4));
     }
     setBubbles(initial);
 
-    // Keep spawning at random intervals
     let mounted = true;
     function scheduleNext() {
       if (!mounted) return;
-      const wait = 400 + Math.random() * 1200;
+      const wait = 1000 + Math.random() * 2000; // slower spawning
       setTimeout(() => {
         if (!mounted) return;
         setBubbles((prev) => {
-          const cleaned = prev.length > 18 ? prev.slice(-12) : prev;
+          const cleaned = prev.length > 10 ? prev.slice(-7) : prev;
           return [...cleaned, spawnBubble()];
         });
         scheduleNext();
@@ -295,7 +323,7 @@ function ContinuousBubbles() {
           transition={{
             duration: b.duration,
             delay: b.delay,
-            ease: [0.25, 0.1, 0.25, 1], // smooth cubic
+            ease: [0.25, 0.1, 0.25, 1],
             times: [0, 0.15, 0.5, 0.8, 1],
           }}
           className="absolute"
@@ -306,24 +334,24 @@ function ContinuousBubbles() {
           }}
         >
           <div
-            className="rounded-full bg-[var(--color-secondary-container)] flex items-center justify-center"
+            className="rounded-full overflow-hidden border-2 border-white/40"
             style={{
               width: b.size,
               height: b.size,
-              boxShadow: `0 0 ${b.size * 0.8}px rgba(255,142,59,0.35)`,
+              boxShadow: `0 0 ${b.size * 0.5}px rgba(255,255,255,0.15)`,
             }}
           >
-            <svg
-              className="text-white"
-              style={{ width: b.size * 0.55, height: b.size * 0.55 }}
-              fill="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-            </svg>
+            <Image
+              src={PROFILE_IMAGES[b.profileIndex]}
+              alt=""
+              width={64}
+              height={64}
+              className="w-full h-full object-cover"
+            />
           </div>
         </motion.div>
       ))}
     </div>
   );
 }
+
