@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Problem from "@/components/Problem";
 import Funnel from "@/components/Funnel";
-import WhoItsFor from "@/components/WhoItsFor";
+import Origin from "@/components/Origin";
 import Pricing from "@/components/Pricing";
 import FAQ from "@/components/FAQ";
 import FinalCTA from "@/components/FinalCTA";
@@ -14,7 +14,7 @@ export default function Home() {
       <Hero />
       <Problem />
       <Funnel />
-      <WhoItsFor />
+      <Origin />
       <Pricing />
       <FAQ />
       <FinalCTA />
