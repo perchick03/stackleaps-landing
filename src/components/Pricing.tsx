@@ -63,15 +63,15 @@ export default function Pricing() {
           <div className="border-t border-[var(--color-outline-variant)]/20 pt-8 mb-10">
             <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
               <div>
-                <span className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">$750</span>
+                <span className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">$750<span className="text-lg font-bold">/mo</span></span>
                 <p className="text-sm text-[var(--color-on-surface-variant)] mt-1">
-                  Setup - ICP research + campaign infrastructure
+                  Infrastructure, domains, campaign management
                 </p>
               </div>
               <div>
                 <span className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">$150</span>
                 <p className="text-sm text-[var(--color-on-surface-variant)] mt-1">
-                  Per booked meeting after that
+                  Per booked meeting, on top of retainer
                 </p>
               </div>
             </div>

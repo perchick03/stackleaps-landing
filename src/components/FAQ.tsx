@@ -5,28 +5,24 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "How is this different from what marketing agencies offer?",
-    a: "Most agencies run ads or social media. We do direct, personalized outreach to specific operators and planners in your target markets. Every conversation is with someone who's already a potential fit for your destination.",
+    q: "Does cold outreach actually work in travel?",
+    a: "Yes - when it's relevant and personalized. Every message is tailored to the operator and your destination. Not a mass blast.",
   },
   {
-    q: "Does cold outreach actually work in the travel industry?",
-    a: "Yes - when it's relevant and personalized. We don't send mass emails. We reach the right person at the right company with a message about their business, not a generic pitch.",
+    q: "What if my destination is different from the Balkans?",
+    a: "The methodology is destination-agnostic. Tour operators are always looking for ground partners. Your destination is the offer - we put it in front of the right people.",
   },
   {
-    q: "What if my destination is too niche?",
-    a: "That's actually an advantage. The more specific your destination or specialization, the easier it is to find operators who are looking for exactly that. Your niche is the offer.",
+    q: "What if I'm not happy with the results?",
+    a: "Your first 3 introductions are your test drive. If the quality isn't there, keep the ICP report and walk away. No contract.",
   },
   {
-    q: "How much time do I need to invest?",
-    a: "30 minutes for the onboarding call. After that, we handle everything. You just show up to the meetings we book.",
+    q: "You run a DMC - don't you compete with me?",
+    a: "We're in the Balkans, and we only work with one DMC per destination. Your campaign data and strategy are completely confidential.",
   },
   {
-    q: "What if it doesn't work?",
-    a: "You only pay for qualified introductions that actually happen. No retainer, no setup fee, no long-term contract. If we don't deliver, you don't pay.",
-  },
-  {
-    q: "What does it cost?",
-    a: "Our pilot is pay-per-introduction - you only pay for qualified meetings that show up on your calendar. No retainer, no minimum commitment. We'll cover exact pricing on the strategy call based on your target markets and volume.",
+    q: "Are there any hidden fees or contracts?",
+    a: "$750/month covers your campaign infrastructure and management. $150 per meeting on top of that. No long-term contract - you can stop anytime after the pilot.",
   },
 ];
 
