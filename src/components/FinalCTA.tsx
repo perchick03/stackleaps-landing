@@ -21,7 +21,13 @@ export default function FinalCTA() {
           transition={{ delay: 0.1 }}
           className="mt-6 text-xl text-white/80 max-w-xl mx-auto"
         >
-          Book a free 30-minute strategy call. We&apos;ll discuss your destination, your ideal partners, and whether this is the right fit.
+          Book a free 30-minute strategy call. We&apos;ll discuss your destination, your ideal partners, and whether this is the right fit. Free 30-min call -{" "}
+          <span className="relative inline-block">
+            one DMC operator to another.
+            <svg className="absolute -bottom-1 left-0 w-full h-[8px]" viewBox="0 0 240 10" fill="none" preserveAspectRatio="none">
+              <path d="M3 7C20 3 45 8 80 4C115 0 150 7 180 3C200 1 225 6 237 4" stroke="var(--color-secondary-container)" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+          </span>
         </motion.p>
 
         {/* Calendly embed placeholder */}
