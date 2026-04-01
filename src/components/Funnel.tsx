@@ -126,7 +126,7 @@ export default function Funnel() {
             </svg>
           </div>
 
-          <div className="flex flex-col relative z-[1]">
+          <div className="flex flex-col gap-4 md:gap-6 relative z-[1]">
             {stages.map((stage, i) => {
               const isActive = activeStage >= i;
               const isCurrently = activeStage === i;
