@@ -6,32 +6,32 @@ import Image from "next/image";
 
 const stages = [
   {
-    label: "Prospects",
-    leftStat: "100%",
-    leftDesc: "Everyone matching your ideal client profile",
-    rightStat: "100%",
-    rightDesc: "Verified decision-makers in your target markets",
+    label: "Match",
+    leftStat: "Your Niche",
+    leftDesc: "Operators matched to your destination",
+    rightStat: "No Random Lists",
+    rightDesc: "Only partners who fit what you offer",
   },
   {
-    label: "Open Rate",
-    leftStat: "50–70%",
-    leftDesc: "Personalized subject lines that get noticed",
-    rightStat: "50–70%",
-    rightDesc: "Tested and optimized until we hit this benchmark",
+    label: "Outreach",
+    leftStat: "Personal",
+    leftDesc: "Every message tailored to the operator",
+    rightStat: "Not Spam",
+    rightDesc: "About their business, not a template",
   },
   {
-    label: "Replies",
-    leftStat: "5–20%",
-    leftDesc: "Prospects responding to personalized outreach",
-    rightStat: "5–20%",
-    rightDesc: "Warm leads ready to discuss working with your destination",
+    label: "Interest",
+    leftStat: "Vetted",
+    leftDesc: "Only genuinely interested operators",
+    rightStat: "No Tire-Kickers",
+    rightDesc: "Real partners ready to talk",
   },
   {
-    label: "Booked Calls",
-    leftStat: "1–2%",
-    leftDesc: "Qualified meetings on your calendar",
-    rightStat: "1–2%",
-    rightDesc: "Decision-makers who want to partner with you",
+    label: "Meeting",
+    leftStat: "Booked",
+    leftDesc: "Qualified intro on your calendar",
+    rightStat: "Ready",
+    rightDesc: "They already want what you offer",
   },
 ];
 
@@ -98,7 +98,7 @@ export default function Funnel() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-4 leading-tight"
           >
-            From Prospect List to Booked Meeting
+            From Your Destination to a Partner Meeting
           </motion.h2>
         </div>
 
@@ -133,7 +133,7 @@ export default function Funnel() {
 
               return (
                 <div key={stage.label}>
-                  <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-6">
+                  <div className="grid grid-cols-[1fr_auto_1fr] items-stretch gap-12">
                     {/* Left stat card */}
                     <motion.div
                       initial={{ opacity: 0, x: -20 }}
@@ -266,6 +266,24 @@ export default function Funnel() {
             })}
           </div>
         </div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mt-16 md:mt-24"
+        >
+          <p className="text-white/80 text-lg md:text-xl mb-6">
+            30 minutes to get started. One onboarding call - then we handle everything.
+          </p>
+          <a
+            href="#book"
+            className="inline-block bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
+          >
+            Book a Free Strategy Call
+          </a>
+        </motion.div>
       </div>
     </section>
   );
@@ -276,14 +294,14 @@ export default function Funnel() {
 function StatCard({ stat, desc, isActive }: { stat: string; desc: string; isActive: boolean }) {
   return (
     <div
-      className={`rounded-xl p-4 md:p-5 w-[260px] h-full flex flex-col justify-center border transition-all duration-1000 ${
+      className={`rounded-xl p-4 md:p-5 w-[290px] h-full flex flex-col justify-center border transition-all duration-1000 ${
         isActive
           ? "bg-white/15 border-white/30"
           : "bg-white/5 border-white/10"
       }`}
     >
       <span
-        className={`text-2xl md:text-3xl font-extrabold block transition-colors duration-1000 ${
+        className={`text-xl md:text-2xl font-extrabold block transition-colors duration-1000 ${
           isActive ? "text-[var(--color-secondary-container)]" : "text-white/30"
         }`}
       >
