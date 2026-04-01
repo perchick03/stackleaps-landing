@@ -2,6 +2,13 @@
 
 import { motion } from "framer-motion";
 
+const included = [
+  "Partner Match Report - 50 best-fit operators mapped for your destination",
+  "Done-for-you personalized outreach to operators in your target markets",
+  "3 introductions to get started",
+  "Destination exclusivity - we never work with a competing DMC in your area",
+];
+
 export default function Pricing() {
   return (
     <section id="pricing" className="py-24 md:py-32 bg-[var(--color-surface-low)]">
@@ -13,7 +20,7 @@ export default function Pricing() {
             viewport={{ once: true }}
             className="text-[var(--color-secondary)] font-bold tracking-widest uppercase text-sm"
           >
-            Pricing
+            The Offer
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
@@ -22,7 +29,7 @@ export default function Pricing() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
           >
-            You Only Pay for Meetings That Happen
+            The Partner Pipeline Pilot
           </motion.h2>
         </div>
 
@@ -32,26 +39,15 @@ export default function Pricing() {
           viewport={{ once: true }}
           className="max-w-2xl mx-auto bg-[var(--color-surface-lowest)] rounded-2xl p-10 md:p-14 shadow-ambient"
         >
-          <div className="text-center mb-10">
-            <span className="text-5xl md:text-6xl font-extrabold text-[var(--color-primary)]">
-              Pay-per-intro
-            </span>
-            <p className="mt-4 text-lg text-[var(--color-on-surface-variant)] max-w-md mx-auto">
-              No retainer. No setup fee. No long-term contract. You only pay for qualified introductions that show up on your calendar.
-            </p>
-          </div>
-
+          {/* What's included */}
+          <h3 className="text-sm font-bold uppercase tracking-widest text-[var(--color-on-surface-variant)]/60 mb-6">
+            What&apos;s included
+          </h3>
           <div className="space-y-4 mb-10">
-            {[
-              "Qualified meetings booked directly on your calendar",
-              "Personalized outreach - no templates, no mass blasts",
-              "Dedicated campaign built for your destination",
-              "Ongoing optimization and reporting",
-              "One DMC per destination - no conflicts",
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3">
+            {included.map((item, i) => (
+              <div key={i} className="flex items-start gap-3">
                 <svg
-                  className="w-5 h-5 text-[var(--color-secondary)] shrink-0"
+                  className="w-5 h-5 text-[var(--color-secondary)] shrink-0 mt-0.5"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -63,6 +59,35 @@ export default function Pricing() {
             ))}
           </div>
 
+          {/* Pricing */}
+          <div className="border-t border-[var(--color-outline-variant)]/20 pt-8 mb-10">
+            <div className="flex flex-col sm:flex-row gap-6 sm:gap-10">
+              <div>
+                <span className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">$750</span>
+                <p className="text-sm text-[var(--color-on-surface-variant)] mt-1">
+                  Setup - ICP research + campaign infrastructure
+                </p>
+              </div>
+              <div>
+                <span className="text-3xl md:text-4xl font-extrabold text-[var(--color-primary)]">$150</span>
+                <p className="text-sm text-[var(--color-on-surface-variant)] mt-1">
+                  Per booked meeting after that
+                </p>
+              </div>
+            </div>
+            <p className="mt-5 text-[var(--color-secondary)] font-semibold text-sm">
+              You only pay when a meeting happens
+            </p>
+          </div>
+
+          {/* Guarantee */}
+          <div className="bg-[var(--color-surface-low)] rounded-xl p-6 mb-10">
+            <p className="text-[var(--color-on-surface)] leading-relaxed">
+              Your first 3 introductions are your test drive. If you&apos;re not happy with the quality - keep the ICP report, walk away. No contract, no commitment.
+            </p>
+          </div>
+
+          {/* CTA */}
           <div className="text-center">
             <a
               href="#book"
@@ -70,8 +95,8 @@ export default function Pricing() {
             >
               Book a Free Strategy Call
             </a>
-            <p className="mt-3 text-sm text-[var(--color-on-surface-variant)]/70">
-              We&apos;ll cover exact pricing on the call based on your target markets
+            <p className="mt-6 text-sm text-[var(--color-on-surface-variant)]/50">
+              A single trade show booth costs $15,000-$40,000. This is less than 5%.
             </p>
           </div>
         </motion.div>
