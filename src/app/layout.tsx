@@ -10,13 +10,13 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "StackLeaps — We Book Qualified Sales Meetings",
+  title: "StackLeaps - Fill Your Calendar with Vetted Partner Meetings",
   description:
-    "Done-for-you cold email outreach that fills your calendar with decision-makers. Targeted campaigns, qualified meetings, zero guesswork.",
+    "We connect DMCs with tour operators, travel advisors, and event planners through personalized outreach. One DMC per destination.",
   openGraph: {
-    title: "StackLeaps — We Book Qualified Sales Meetings",
+    title: "StackLeaps - Fill Your Calendar with Vetted Partner Meetings",
     description:
-      "Done-for-you cold email outreach that fills your calendar with decision-makers.",
+      "We connect DMCs with tour operators, travel advisors, and event planners through personalized outreach. One DMC per destination.",
     url: "https://stackleaps.com",
     siteName: "StackLeaps",
     type: "website",
