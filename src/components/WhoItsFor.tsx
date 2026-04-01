@@ -6,7 +6,7 @@ const qualifiers = [
   "You're a DMC that wants to grow your partner network but doesn't have time for outbound",
   "You want qualified introductions to tour operators, travel advisors, or event planners in specific source markets",
   "You'd rather focus on running your destination than chasing new business",
-  "You want a done-for-you service — not another tool or platform to manage",
+  "You want a done-for-you service - not another tool or platform to manage",
 ];
 
 export default function WhoItsFor() {
@@ -40,11 +40,11 @@ export default function WhoItsFor() {
               transition={{ delay: 0.2 }}
               className="mt-6 text-lg text-[var(--color-on-surface-variant)] leading-relaxed max-w-lg"
             >
-              Whether you&apos;re a 5-person DMC in Montenegro or a 50-person MICE operator in Dubai — if this sounds like you, we should talk.
+              Whether you&apos;re a 5-person DMC in Montenegro or a 50-person MICE operator in Dubai - if this sounds like you, we should talk.
             </motion.p>
           </div>
 
-          {/* Right — qualifier checklist */}
+          {/* Right - qualifier checklist */}
           <div className="flex flex-col gap-5">
             {qualifiers.map((q, i) => (
               <motion.div

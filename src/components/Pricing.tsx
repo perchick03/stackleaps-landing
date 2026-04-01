@@ -44,10 +44,10 @@ export default function Pricing() {
           <div className="space-y-4 mb-10">
             {[
               "Qualified meetings booked directly on your calendar",
-              "Personalized outreach — no templates, no mass blasts",
+              "Personalized outreach - no templates, no mass blasts",
               "Dedicated campaign built for your destination",
               "Ongoing optimization and reporting",
-              "One DMC per destination — no conflicts",
+              "One DMC per destination - no conflicts",
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-3">
                 <svg

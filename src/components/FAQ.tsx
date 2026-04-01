@@ -10,7 +10,7 @@ const faqs = [
   },
   {
     q: "Does cold outreach actually work in the travel industry?",
-    a: "Yes — when it's relevant and personalized. We don't send mass emails. We reach the right person at the right company with a message about their business, not a generic pitch.",
+    a: "Yes - when it's relevant and personalized. We don't send mass emails. We reach the right person at the right company with a message about their business, not a generic pitch.",
   },
   {
     q: "What if my destination is too niche?",
@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     q: "What does it cost?",
-    a: "Our pilot is pay-per-introduction — you only pay for qualified meetings that show up on your calendar. No retainer, no minimum commitment. We'll cover exact pricing on the strategy call based on your target markets and volume.",
+    a: "Our pilot is pay-per-introduction - you only pay for qualified meetings that show up on your calendar. No retainer, no minimum commitment. We'll cover exact pricing on the strategy call based on your target markets and volume.",
   },
 ];
 
@@ -37,7 +37,7 @@ export default function FAQ() {
     <section id="faq" className="py-24 md:py-32 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
-          {/* Left — heading */}
+          {/* Left - heading */}
           <div className="lg:sticky lg:top-32 self-start">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -58,7 +58,7 @@ export default function FAQ() {
             </motion.h2>
           </div>
 
-          {/* Right — accordion */}
+          {/* Right - accordion */}
           <div className="flex flex-col">
             {faqs.map((faq, i) => {
               const isOpen = openIndex === i;

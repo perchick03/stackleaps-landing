@@ -222,7 +222,7 @@ export default function Funnel() {
                     <span className="relative z-10">{stage.label}</span>
                   </div>
 
-                  {/* Stat row — both cards side by side */}
+                  {/* Stat row - both cards side by side */}
                   <div className="flex gap-3 mt-3 w-full max-w-[360px]">
                     <div
                       className={`flex-1 rounded-lg p-3 border transition-all duration-1000 ${

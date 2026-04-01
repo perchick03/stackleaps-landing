@@ -6,11 +6,11 @@ const benefits = [
   {
     number: "01",
     title: "We find the right partners in your target markets",
-    body: "Vetted tour operators, travel advisors, and event planners — matched to your destination, your niche, and the type of groups you want.",
+    body: "Vetted tour operators, travel advisors, and event planners - matched to your destination, your niche, and the type of groups you want.",
   },
   {
     number: "02",
-    title: "We reach out on your behalf — personalized, not spam",
+    title: "We reach out on your behalf - personalized, not spam",
     body: "Every message is tailored to the operator and your destination. No templates. No mass blasts. The kind of outreach that gets replies.",
   },
   {
@@ -25,7 +25,7 @@ export default function Solution() {
     <section id="solution" className="py-24 md:py-32 bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-16 lg:gap-24 items-start">
-          {/* Left — sticky headline */}
+          {/* Left - sticky headline */}
           <div className="lg:sticky lg:top-32">
             <motion.span
               initial={{ opacity: 0, y: 10 }}
@@ -46,7 +46,7 @@ export default function Solution() {
             </motion.h2>
           </div>
 
-          {/* Right — benefit cards */}
+          {/* Right - benefit cards */}
           <div className="flex flex-col gap-8">
             {benefits.map((b, i) => (
               <motion.div

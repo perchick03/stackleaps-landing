@@ -47,7 +47,7 @@ export default function FinalCTA() {
           transition={{ delay: 0.3 }}
           className="mt-8 text-white/50 text-sm"
         >
-          One DMC per destination — no conflicts
+          One DMC per destination - no conflicts
         </motion.p>
       </div>
     </section>

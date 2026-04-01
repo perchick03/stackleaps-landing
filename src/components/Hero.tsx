@@ -7,7 +7,7 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
-        {/* Left — Copy */}
+        {/* Left - Copy */}
         <div className="flex flex-col gap-10 py-20 md:py-28 lg:py-36">
           <div className="space-y-7">
             <motion.h1
@@ -55,12 +55,12 @@ export default function Hero() {
             className="pt-6 border-t border-[var(--color-outline-variant)]/20"
           >
             <span className="text-sm font-semibold text-[var(--color-primary)]">
-              7 qualified introductions in 10 days — built for our own DMC
+              7 qualified introductions in 10 days - built for our own DMC
             </span>
           </motion.div>
         </div>
 
-        {/* Right — Founder photo */}
+        {/* Right - Founder photo */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
