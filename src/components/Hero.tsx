@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-white">
+    <section className="relative overflow-hidden md:overflow-visible bg-white">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10 w-full grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
         {/* Left - Copy */}
         <div className="flex flex-col gap-10 py-20 md:py-28 lg:py-36">
@@ -16,7 +16,7 @@ export default function Hero() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-extrabold text-[var(--color-primary)] leading-[1.08] tracking-tight"
             >
-              Fill Your Calendar with Vetted Partner Meetings
+              We book the calls. You close the sales.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -70,8 +70,8 @@ export default function Hero() {
           {/* Apricot arch behind image */}
           <div className="absolute -top-16 -right-8 w-[105%] h-[105%] bg-[var(--color-secondary-fixed)]/45 rounded-[2.5rem] -z-10" />
 
-          <div className="relative w-full max-w-[540px]">
-            <div className="relative overflow-hidden rounded-[2rem] aspect-square">
+          <div className="relative w-full max-w-[540px] mb-20 sm:mb-24 lg:mb-0">
+            <div className="relative overflow-hidden rounded-[2rem] aspect-[4/5] sm:aspect-square">
               <Image
                 src="/images/peretz-hero.avif"
                 alt="Peretz, founder of StackLeaps"
