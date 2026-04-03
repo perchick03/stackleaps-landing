@@ -396,7 +396,7 @@ export default function TopICPPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <a href="https://stackleaps.com">
             <Image
-              src="/images/logo.png"
+              src="/images/stackleaps-log-latest.png"
               alt="StackLeaps"
               width={120}
               height={32}
