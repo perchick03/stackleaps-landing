@@ -24,7 +24,7 @@ interface Lead {
 interface ProspectData {
   prospect_email: string;
   prospect_company: string;
-  icp: string;
+  matched_to: string;
   generated_at: string;
   leads: Lead[];
 }
@@ -301,7 +301,7 @@ export default function TopICPPage() {
       .then((json) => {
         const missing: string[] = [];
         if (!json.prospect_company) missing.push("prospect_company");
-        if (!json.icp) missing.push("icp");
+        if (!json.matched_to) missing.push("matched_to");
         if (!json.generated_at) missing.push("generated_at");
         if (!json.leads || !Array.isArray(json.leads) || json.leads.length === 0)
           missing.push("leads");
@@ -420,7 +420,7 @@ export default function TopICPPage() {
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-secondary-container" />
             <span className="text-on-surface-variant">
-              Matched to: <span className="font-semibold text-on-surface capitalize">{data.icp}</span>
+              Matched to: <span className="font-semibold text-on-surface capitalize">{data.matched_to}</span>
             </span>
           </div>
           <div className="flex items-center gap-2">
