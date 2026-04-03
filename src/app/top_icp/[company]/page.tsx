@@ -17,6 +17,7 @@ interface Lead {
   company_website: string;
   company_description: string;
   company_phone: string;
+  company_country: string;
   linkedin: string;
   company_logo: string;
 }
@@ -37,6 +38,7 @@ function seniorityLabel(level: string): string {
     manager: "Manager",
     senior: "Senior",
     founder: "Founder",
+    owner: "Owner",
   };
   return map[level] || level;
 }
@@ -97,6 +99,15 @@ function PersonIcon() {
   );
 }
 
+function LocationIcon() {
+  return (
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+      <circle cx="12" cy="10" r="3" />
+    </svg>
+  );
+}
+
 function LogoFallback({ company }: { company: string }) {
   return (
     <div className="w-12 h-12 rounded-xl bg-primary/8 flex items-center justify-center shrink-0">
@@ -136,14 +147,16 @@ function LeadCard({ lead, index }: { lead: Lead; index: number }) {
                 <h3 className="text-lg font-semibold text-on-surface leading-tight">
                   {lead.full_name}
                 </h3>
-                <p className="text-sm text-on-surface-variant leading-snug mt-0.5 line-clamp-2">
-                  {lead.title}
-                </p>
+                {lead.title && lead.title !== "--" && (
+                  <p className="text-sm text-on-surface-variant leading-snug mt-0.5 line-clamp-2">
+                    {lead.title}
+                  </p>
+                )}
               </div>
             </div>
             {/* Company with logo */}
             <div className="flex items-center gap-2 mt-2">
-              {logoError ? (
+              {logoError || !lead.company_logo ? (
                 <LogoFallback company={lead.company} />
               ) : (
                 <Image
@@ -157,31 +170,45 @@ function LeadCard({ lead, index }: { lead: Lead; index: number }) {
                 />
               )}
               <span className="text-sm font-medium text-primary">{lead.company}</span>
+              {lead.company_country && (
+                <span className="flex items-center gap-1 text-xs text-on-surface-variant">
+                  <LocationIcon />
+                  {lead.company_country}
+                </span>
+              )}
             </div>
           </div>
         </div>
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mt-4">
-          <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/10">
-            {seniorityLabel(lead.seniority_level)}
-          </span>
-          <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-secondary/8 text-secondary border border-secondary/10 capitalize">
-            {lead.functional_level.replace(/_/g, " ")}
-          </span>
-        </div>
+        {/* Tags - only render if we have data */}
+        {(lead.seniority_level || lead.functional_level) && (
+          <div className="flex flex-wrap gap-2 mt-4">
+            {lead.seniority_level && (
+              <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-primary/10 text-primary border border-primary/10">
+                {seniorityLabel(lead.seniority_level)}
+              </span>
+            )}
+            {lead.functional_level && (
+              <span className="px-2.5 py-1 text-xs font-medium rounded-full bg-secondary/8 text-secondary border border-secondary/10 capitalize">
+                {lead.functional_level.replace(/_/g, " ")}
+              </span>
+            )}
+          </div>
+        )}
       </div>
 
       {/* Contact links */}
       <div className="px-6 py-4 space-y-3">
-        <a
-          href={`mailto:${lead.email}`}
-          className="flex items-center gap-3 text-sm text-on-surface-variant hover:text-primary transition-colors group/link"
-        >
-          <span className="w-8 h-8 rounded-lg bg-primary/6 flex items-center justify-center text-primary group-hover/link:bg-primary/12 transition-colors">
-            <EnvelopeIcon />
-          </span>
-          <span className="truncate font-medium">{lead.email}</span>
-        </a>
+        {lead.email && (
+          <a
+            href={`mailto:${lead.email}`}
+            className="flex items-center gap-3 text-sm text-on-surface-variant hover:text-primary transition-colors group/link"
+          >
+            <span className="w-8 h-8 rounded-lg bg-primary/6 flex items-center justify-center text-primary group-hover/link:bg-primary/12 transition-colors">
+              <EnvelopeIcon />
+            </span>
+            <span className="truncate font-medium">{lead.email}</span>
+          </a>
+        )}
 
         {lead.linkedin && (
           <a
