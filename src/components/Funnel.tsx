@@ -41,8 +41,8 @@ const FUNNEL_TOP_GAP = 120;
 const STAGE_HEIGHT = 100;
 const FUNNEL_TOTAL = FUNNEL_TOP_GAP + stages.length * STAGE_HEIGHT;
 
-const FIRST_HIT_DELAY = 2000;
-const STAGE_INTERVAL = 3500;
+const FIRST_HIT_DELAY = 1000;
+const STAGE_INTERVAL = 2500;
 
 const PROFILE_IMAGES = [
   "/images/bubble-funnel/bubble-man1.jpg",
@@ -102,8 +102,10 @@ export default function Funnel() {
           </motion.h2>
         </div>
 
+        <div ref={ref} />
+
         {/* ─── Desktop layout (lg+) ─── */}
-        <div ref={ref} className="relative max-w-6xl mx-auto hidden lg:block">
+        <div className="relative max-w-6xl mx-auto hidden lg:block">
           {isInView && <ContinuousBubbles />}
 
           <div style={{ height: FUNNEL_TOP_GAP }} />
@@ -197,8 +199,8 @@ export default function Funnel() {
                       isCurrently
                         ? "bg-white text-[var(--color-primary)]"
                         : isActive
-                        ? "bg-white/20 text-white"
-                        : "bg-white/8 text-white/40"
+                        ? "bg-white/25 text-white"
+                        : "bg-white/12 text-white/55"
                     }`}
                     style={{
                       width: `${w}%`,
@@ -227,36 +229,36 @@ export default function Funnel() {
                     <div
                       className={`flex-1 rounded-lg p-3 border transition-all duration-1000 ${
                         isActive
-                          ? "bg-white/15 border-white/30"
-                          : "bg-white/5 border-white/10"
+                          ? "bg-white/20 border-white/35"
+                          : "bg-white/10 border-white/20"
                       }`}
                     >
                       <span
                         className={`text-xl font-extrabold block transition-colors duration-1000 ${
-                          isActive ? "text-[var(--color-secondary-container)]" : "text-white/30"
+                          isActive ? "text-[var(--color-secondary-container)]" : "text-white/50"
                         }`}
                       >
                         {stage.leftStat}
                       </span>
-                      <p className="text-white/60 text-xs mt-1 leading-snug">
+                      <p className="text-white/70 text-xs mt-1 leading-snug">
                         {stage.leftDesc}
                       </p>
                     </div>
                     <div
                       className={`flex-1 rounded-lg p-3 border transition-all duration-1000 ${
                         isActive
-                          ? "bg-white/15 border-white/30"
-                          : "bg-white/5 border-white/10"
+                          ? "bg-white/20 border-white/35"
+                          : "bg-white/10 border-white/20"
                       }`}
                     >
                       <span
                         className={`text-xl font-extrabold block transition-colors duration-1000 ${
-                          isActive ? "text-[var(--color-secondary-container)]" : "text-white/30"
+                          isActive ? "text-[var(--color-secondary-container)]" : "text-white/50"
                         }`}
                       >
                         {stage.rightStat}
                       </span>
-                      <p className="text-white/60 text-xs mt-1 leading-snug">
+                      <p className="text-white/70 text-xs mt-1 leading-snug">
                         {stage.rightDesc}
                       </p>
                     </div>
