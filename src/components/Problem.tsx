@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const pains = [
   {
-    title: "Waiting for inbound that never comes",
+    title: "Waiting for inbound calls that never come",
     body: "You have an incredible destination - but the right operators don't know you exist. You're invisible to partners who'd love to work with you.",
     icon: (
       <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">

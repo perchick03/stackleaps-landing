@@ -60,7 +60,7 @@ export default function Origin() {
                 find tour operator partners, I built an outreach system to fix it.
               </p>
               <p>
-                It worked. <strong className="text-[var(--color-primary)] font-semibold">7 qualified introductions in 10 days.</strong> We had to pause
+                It worked. <strong className="text-[var(--color-primary)] font-semibold">7 quality introductions in 10 days.</strong> We had to pause
                 the campaign because we couldn&apos;t handle the volume.
               </p>
               <p>
