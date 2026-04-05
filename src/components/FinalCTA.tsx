@@ -46,15 +46,20 @@ export default function FinalCTA() {
           />
         </motion.div>
 
-        <motion.p
+        <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="mt-8 text-white/50 text-sm"
+          className="mt-8 space-y-2 text-sm"
         >
-          One DMC per destination - no conflicts
-        </motion.p>
+          <p className="text-white/70 font-semibold">
+            7 quality introductions in 10 days - built for our own DMC
+          </p>
+          <p className="text-white/50">
+            One DMC per destination - no conflicts
+          </p>
+        </motion.div>
       </div>
     </section>
   );
