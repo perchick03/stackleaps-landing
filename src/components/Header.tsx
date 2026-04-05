@@ -8,7 +8,7 @@ export default function Header() {
       <div className="max-w-[1400px] mx-auto flex justify-between items-center px-6 md:px-10 py-5">
         <a href="/">
           <Image
-            src="/images/stackleaps-logo.webp"
+            src="/images/stackleaps-logo-v2.webp"
             alt="StackLeaps"
             width={180}
             height={40}

@@ -3,12 +3,12 @@
 @theme inline {
   --font-sans: var(--font-plus-jakarta);
 
-  /* Surface hierarchy — "The Digital Curator" depth system */
+  /* Surface hierarchy —  "The Digital Curator" depth system */
   --color-surface: #f8f9ff;
   --color-surface-dim: #cddbef;
   --color-surface-bright: #f8f9ff;
   --color-surface-lowest: #ffffff;
-  --color-surface-low: #eef4ff;
+  --color-surface-low: #F3F1E6;
   --color-surface-container: #e4efff;
   --color-surface-high: #dbe9fd;
   --color-surface-highest: #d5e4f8;
