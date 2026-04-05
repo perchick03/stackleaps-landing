@@ -10,6 +10,14 @@ export default function Hero() {
         {/* Left - Copy */}
         <div className="flex flex-col gap-10 py-20 md:py-28 lg:py-36">
           <div className="space-y-7">
+            <motion.span
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+              className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-on-surface-variant)]/60"
+            >
+              Built for DMC
+            </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -55,7 +63,7 @@ export default function Hero() {
             className="pt-6 border-t border-[var(--color-outline-variant)]/20"
           >
             <span className="text-sm font-semibold text-[var(--color-primary)]">
-              7 qualified introductions in 10 days - built for our own DMC
+              7 quality introductions in 10 days - built for our own DMC
             </span>
           </motion.div>
         </div>
