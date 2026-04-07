@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Header from "@/components/Header";
 
 interface Lead {
   full_name: string;
@@ -392,25 +393,7 @@ export default function TopICPPage() {
   return (
     <div className="min-h-[100dvh] bg-surface">
       {/* Header */}
-      <header className="border-b border-outline-variant/30 bg-surface-lowest/80 glass-effect sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-          <a href="https://stackleaps.com">
-            <Image
-              src="/images/stackleaps-log-latest.png"
-              alt="StackLeaps"
-              width={120}
-              height={32}
-              className="h-8 w-auto"
-            />
-          </a>
-          <a
-            href="https://stackleaps.com"
-            className="text-sm font-medium text-primary hover:text-secondary transition-colors"
-          >
-            stackleaps.com
-          </a>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero section */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
