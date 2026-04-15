@@ -1,7 +1,7 @@
 {
   "prospect_email": "benjamin.rci@byptravel.mx",
   "prospect_company": "Byp Travel",
-  "matched_to": "boutique travel advisors and tour operators specializing in active, custom travel",
+  "matched_to": "tour operators and travel advisors specializing in sports tourism, golf, and active travel",
   "generated_at": "April 15, 2026",
   "leads": [
     {
@@ -37,6 +37,22 @@
       "company_logo": "https://www.google.com/s2/favicons?domain=venatour.co.uk&sz=128"
     },
     {
+      "full_name": "Roger Berube",
+      "title": "Owner",
+      "headline": "",
+      "functional_level": "",
+      "seniority_level": "owner",
+      "email": "rberube@clubaventure.com",
+      "company": "Club Aventure",
+      "company_address": "",
+      "company_website": "http://www.clubaventure.com",
+      "company_description": "Club Aventure is a Canadian tour operator with 38 years in business, offering small-group adventure tours focused on cycling, hiking, and cultural experiences. Their destinations include the Camino de Santiago in Galicia, Patagonia, and destinations across Europe and South America.",
+      "company_phone": "",
+      "company_country": "Canada",
+      "linkedin": "https://www.linkedin.com/in/roger-b%c3%a9rub%c3%a9-74587741",
+      "company_logo": "https://www.google.com/s2/favicons?domain=clubaventure.com&sz=128"
+    },
+    {
       "full_name": "Chris Kite",
       "title": "Director",
       "headline": "Director At Burleigh Travel Limited",
@@ -53,52 +69,36 @@
       "company_logo": "https://www.google.com/s2/favicons?domain=burleightravel.co.uk&sz=128"
     },
     {
-      "full_name": "Tara Harrison",
-      "title": "Founder & CEO",
-      "headline": "Founder & CEO, Aweventurer | Wellness & Transformational Travel | Creative & Reading Retreats | Travel Trends Speaker | 5 Years Scaling a Creative Start-up | Former Editor, Travel Weekly",
-      "functional_level": "",
-      "seniority_level": "founder",
-      "email": "tara@aweventurer.com",
-      "company": "Aweventurer",
-      "company_address": "11 Hall Street Bondi Beach, Bondi Beach, NSW 2026, AU",
-      "company_website": "http://www.aweventurer.com",
-      "company_description": "Aweventurer is a UK-based experiential travel company that curates and operates guided expeditions to multiple global destinations. The firm focuses on providing life-changing travel experiences led by skilled experts for clients seeking specialized, curated itineraries.",
-      "company_phone": "",
-      "company_country": "United Kingdom",
-      "linkedin": "https://www.linkedin.com/in/tara-harrison-editor",
-      "company_logo": "https://www.google.com/s2/favicons?domain=aweventurer.com&sz=128"
-    },
-    {
-      "full_name": "Alex Cahill",
-      "title": "Sales Director",
-      "headline": "Sales Director",
-      "functional_level": "sales",
-      "seniority_level": "director",
-      "email": "alex@golfsouthwest.co.uk",
-      "company": "Golf South West Ltd",
-      "company_address": "",
-      "company_website": "https://www.golfsouthwest.co.uk",
-      "company_description": "Golf South West Ltd is a UK-based tour operator specializing in bespoke golf travel experiences and stay-and-play packages across England and Wales. The company serves small groups and golf societies by providing curated golf breaks and premium service through partnerships with regional golf venues.",
-      "company_phone": "+44 11 7256 5966",
-      "company_country": "United Kingdom",
-      "linkedin": "https://www.linkedin.com/in/alex-cahill-5a493b7b",
-      "company_logo": "https://www.google.com/s2/favicons?domain=golfsouthwest.co.uk&sz=128"
-    },
-    {
-      "full_name": "Vicki Luxmoore",
-      "title": "Owner, Destination Manager",
-      "headline": "Destination Manager at Fleewinter",
+      "full_name": "Graeme Pook",
+      "title": "Owner",
+      "headline": "",
       "functional_level": "",
       "seniority_level": "owner",
-      "email": "vicki@fleewinter.com",
-      "company": "Fleewinter",
-      "company_address": "49 stile hall gardens, london, greater london, united kingdom",
-      "company_website": "http://www.fleewinter.com",
-      "company_description": "Fleewinter is an independent tour operator and boutique travel advisor that provides tailor-made holiday itineraries across more than 60 global destinations. Utilizing a distributed team of specialists, they offer personalized services including the curation of boutique accommodation and private transfers.",
-      "company_phone": "+44 20 7112 0019",
+      "email": "graeme@execgolf-leisure.com",
+      "company": "Executive Golf & Leisure",
+      "company_address": "",
+      "company_website": "https://www.execgolf-leisure.com",
+      "company_description": "Executive Golf & Leisure is a UK-based operator with over 36 years of experience creating luxury golf tours and corporate events. They serve international clients with bespoke packages including accommodation, private ground or air transportation, and a dedicated tour coordinator.",
+      "company_phone": "",
       "company_country": "United Kingdom",
-      "linkedin": "https://www.linkedin.com/in/vicki-luxmoore-9016381b",
-      "company_logo": "https://www.google.com/s2/favicons?domain=fleewinter.com&sz=128"
+      "linkedin": "https://www.linkedin.com/in/graeme-pook-a376b0146",
+      "company_logo": "https://www.google.com/s2/favicons?domain=execgolf-leisure.com&sz=128"
+    },
+    {
+      "full_name": "Peter Foster",
+      "title": "Owner",
+      "headline": "",
+      "functional_level": "",
+      "seniority_level": "owner",
+      "email": "peter@thosetravelguys.com",
+      "company": "Those Travel Guys",
+      "company_address": "",
+      "company_website": "https://www.thosetravelguys.com",
+      "company_description": "Those Travel Guys is a UK-based independent tour operator specializing in golf and wellness holidays for both individual and group travelers. They arrange FIT packages, corporate incentive trips, meetings, and holistic retreats centered on golf, sports, and wellness themes.",
+      "company_phone": "",
+      "company_country": "United Kingdom",
+      "linkedin": "https://www.linkedin.com/in/peter-foster-8a574ba",
+      "company_logo": "https://www.google.com/s2/favicons?domain=thosetravelguys.com&sz=128"
     },
     {
       "full_name": "Lauren Conlay",
@@ -117,36 +117,20 @@
       "company_logo": "https://www.google.com/s2/favicons?domain=latinroutes.co.uk&sz=128"
     },
     {
-      "full_name": "Alfonso Caballero",
-      "title": "Managing Director",
-      "headline": "Managing Director",
+      "full_name": "Gregg Humble",
+      "title": "Owner",
+      "headline": "",
       "functional_level": "",
-      "seniority_level": "director",
-      "email": "alfonso@beyondtraveller.com",
-      "company": "Beyond Traveller Ltd",
-      "company_address": "48 Langham Street",
-      "company_website": "https://www.beyondtraveller.com",
-      "company_description": "Beyond Traveller Ltd is a luxury travel concierge service that provides bespoke holiday planning for professionals and their families. The company arranges tailor-made travel across diverse global destinations, including city breaks, safaris, beach resorts, and ski trips, while sourcing luxury accommodation and travel logistics.",
-      "company_phone": "+44 20 3621 7732",
-      "company_country": "United Kingdom",
-      "linkedin": "https://www.linkedin.com/in/alfonso-caballero-27bbb2b1",
-      "company_logo": "https://www.google.com/s2/favicons?domain=beyondtraveller.com&sz=128"
-    },
-    {
-      "full_name": "Geoffrey Ravoire",
-      "title": "Vice President",
-      "headline": "Vice President",
-      "functional_level": "",
-      "seniority_level": "vp",
-      "email": "geoffrey@huffmantravel.com",
-      "company": "Huffman Travel",
-      "company_address": "1165 N Clark St, Chicago, Illinois, US",
-      "company_website": "http://www.huffmantravel.com",
-      "company_description": "Huffman Travel is a US-based boutique luxury travel agency and consultancy that provides bespoke custom itineraries for global travelers. Their services include booking luxury hotels, villa rentals, yachts, and private aviation, alongside long-term travel planning and destination management.",
-      "company_phone": "+18007832009",
+      "seniority_level": "owner",
+      "email": "gregg@humbletravel.com",
+      "company": "Humble Travel",
+      "company_address": "",
+      "company_website": "http://www.humbletravel.com",
+      "company_description": "Humble Travel is a US-based luxury travel agency and founding Virtuoso member since 1986, specializing in leisure, corporate, group, and incentive travel. Their featured destinations include Europe (Spain, Portugal, Italy), Mexico, the Caribbean, and beyond.",
+      "company_phone": "",
       "company_country": "United States",
-      "linkedin": "https://www.linkedin.com/in/geoffreyravoire",
-      "company_logo": "https://www.google.com/s2/favicons?domain=huffmantravel.com&sz=128"
+      "linkedin": "https://www.linkedin.com/in/gregg-humble-aa50377",
+      "company_logo": "https://www.google.com/s2/favicons?domain=humbletravel.com&sz=128"
     },
     {
       "full_name": "Bernhard Steiner",
@@ -163,6 +147,22 @@
       "company_country": "United States",
       "linkedin": "https://www.linkedin.com/in/bernhardsteiner",
       "company_logo": "https://www.google.com/s2/favicons?domain=customtravelnetwork.com&sz=128"
+    },
+    {
+      "full_name": "Vicki Luxmoore",
+      "title": "Owner, Destination Manager",
+      "headline": "Destination Manager at Fleewinter",
+      "functional_level": "",
+      "seniority_level": "owner",
+      "email": "vicki@fleewinter.com",
+      "company": "Fleewinter",
+      "company_address": "49 stile hall gardens, london, greater london, united kingdom",
+      "company_website": "http://www.fleewinter.com",
+      "company_description": "Fleewinter is an independent tour operator and boutique travel advisor that provides tailor-made holiday itineraries across more than 60 global destinations. Utilizing a distributed team of specialists, they offer personalized services including the curation of boutique accommodation and private transfers.",
+      "company_phone": "+44 20 7112 0019",
+      "company_country": "United Kingdom",
+      "linkedin": "https://www.linkedin.com/in/vicki-luxmoore-9016381b",
+      "company_logo": "https://www.google.com/s2/favicons?domain=fleewinter.com&sz=128"
     }
   ]
 }
