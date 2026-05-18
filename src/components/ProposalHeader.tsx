@@ -4,10 +4,12 @@ import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
 export default function ProposalHeader({
-  onDownload,
+  downloadHref,
+  downloadFilename,
   currentSection,
 }: {
-  onDownload: () => void;
+  downloadHref: string;
+  downloadFilename?: string;
   currentSection?: string;
 }) {
   return (
@@ -41,14 +43,17 @@ export default function ProposalHeader({
           </AnimatePresence>
         </div>
 
-        <button
-          onClick={onDownload}
+        <a
+          href={downloadHref}
+          download={downloadFilename}
+          target="_blank"
+          rel="noopener noreferrer"
           className="justify-self-end bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-6 py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity inline-flex items-center gap-2"
         >
           <DownloadIcon />
           <span className="hidden sm:inline">Download PDF</span>
           <span className="sm:hidden">PDF</span>
-        </button>
+        </a>
       </div>
     </header>
   );

@@ -123,8 +123,6 @@ export default function ProposalPage() {
     return () => s?.removeEventListener("load", initCalendly);
   }, []);
 
-  const handlePrint = () => window.print();
-
   return (
     <main className="proposal-root">
       <motion.div
@@ -133,7 +131,11 @@ export default function ProposalPage() {
         className="fixed top-0 left-0 right-0 h-[2px] bg-[var(--color-secondary-container)] z-[60] print:hidden"
       />
 
-      <ProposalHeader onDownload={handlePrint} currentSection={currentSection} />
+      <ProposalHeader
+        downloadHref={`/proposals/${PROSPECT_SLUG}.pdf`}
+        downloadFilename={`StackLeaps-${PROSPECT_SLUG}-proposal.pdf`}
+        currentSection={currentSection}
+      />
 
       {/* =================== COVER =================== */}
       <section id="intro" className="cover-page bg-[var(--color-surface)]">
