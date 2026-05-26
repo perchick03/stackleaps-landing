@@ -1,0 +1,316 @@
+{
+  "prospect": {
+    "email": "barry@leviinsurance.com",
+    "full_name": "Barry Levi",
+    "company_name": "Levi & Associates Insurance",
+    "company_domain": "leviinsurance.com",
+    "state_abbr": "FL",
+    "state": "FL",
+    "linkedin": "https://www.linkedin.com/in/barry-levi-881875a",
+    "job_title": "Owner",
+    "n_total": 330,
+    "competition_mode": "two"
+  },
+  "matched_to": "FL mid-market employer-broker pairs renewing in next 120 days, $10K+ annual commission, current broker not a mega-aggregator, no broker-self-overlap.",
+  "generated_at": "2026-05-26",
+  "provider": "aiark",
+  "methodology": {
+    "source": "US Department of Labor Form 5500 Schedule A",
+    "filters": [
+      "State: FL",
+      "Plan size: 50-499 employees",
+      "Renewal window: next 120 days",
+      "Minimum annual broker commission: $10,000",
+      "Current broker is not a national mega-aggregator (Marsh, Mercer, Aon, Gallagher, Lockton, HUB, NFP, OneDigital, etc.)",
+      "Excludes any sponsor where Levi & Associates Insurance appears as the current broker"
+    ],
+    "enrichment": "Decision-maker contact data verified at time of brief generation."
+  },
+  "stats": {
+    "candidates_filtered": 110,
+    "attempts": 12,
+    "hits_total": 10,
+    "hits_clean": 10,
+    "hits_flagged": 0,
+    "partials": 1,
+    "misses": 1,
+    "wall_seconds": 101.9,
+    "provider": "aiark",
+    "credits_spent": 55.0,
+    "balance_start": 15041.5,
+    "balance_end": 14986.5
+  },
+  "switch_targets": [
+    {
+      "sponsor": {
+        "name": "GEOPOINT SURVEYING, INC.",
+        "state": "FL",
+        "employee_count": 329,
+        "naics": "541370",
+        "industry_name": "Professional & Technical Services",
+        "current_broker": "ADVOCATE CONSULTING GROUP",
+        "annual_commission_usd": 191233.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-05-31",
+        "next_renewal": "2026-05-31",
+        "renewal_in_days": 5
+      },
+      "contact": {
+        "full_name": "David Williams",
+        "title": "President / Owner of GeoPoint Surveying, Inc.",
+        "seniority_tier": "c_suite",
+        "email": "dwilliams@geopointsurvey.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/david-williams-7a835455"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "RULON COMPANY",
+        "state": "FL",
+        "employee_count": 186,
+        "naics": "321210",
+        "industry_name": "Manufacturing",
+        "current_broker": "MFB FINANCIAL INC",
+        "annual_commission_usd": 185063.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-05-31",
+        "next_renewal": "2026-05-31",
+        "renewal_in_days": 5
+      },
+      "contact": {
+        "full_name": "Matthew Robison",
+        "title": "Vice President of Business Operations",
+        "seniority_tier": "vp",
+        "email": "mrobison@rulonco.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/matthew-robison-8b699653"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "TOTAL MILITARY MANAGEMENT, INC.",
+        "state": "FL",
+        "employee_count": 239,
+        "naics": "493100",
+        "industry_name": "Transportation & Warehousing",
+        "current_broker": "MFB FINANCIAL, INC. DBA THE BAILEY",
+        "annual_commission_usd": 145417.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-05-31",
+        "next_renewal": "2026-05-31",
+        "renewal_in_days": 5
+      },
+      "contact": {
+        "full_name": "Carol K. Fan, CPA, MBA",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "cfan@totalwarrantyservices.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/fanc1"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "BIOMATRIX SPECIALTY PHARMACY, LLC",
+        "state": "FL",
+        "employee_count": 273,
+        "naics": "325410",
+        "industry_name": "Manufacturing",
+        "current_broker": "EMERSON ROGERS, LLC",
+        "annual_commission_usd": 306752.0,
+        "commission_tier": "large",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 35
+      },
+      "contact": {
+        "full_name": "Dan Cammarata",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "dcammarata@biomatrixsprx.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/dan-cammarata"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "UBICQUIA, INC.",
+        "state": "FL",
+        "employee_count": 162,
+        "naics": "541519",
+        "industry_name": "Professional & Technical Services",
+        "current_broker": "ALL ATLANTIC BENEFITS",
+        "annual_commission_usd": 172918.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 35
+      },
+      "contact": {
+        "full_name": "Tom Minichiello",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "tminichiello@ubicquia.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/tomminichiello"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "APALACHEE CENTER, INC.",
+        "state": "FL",
+        "employee_count": 482,
+        "naics": "813000",
+        "industry_name": "Other Services",
+        "current_broker": "SAMUEL ROGERS",
+        "annual_commission_usd": 188346.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 66
+      },
+      "contact": {
+        "full_name": "Stephanie Luckie, SHRM-CP",
+        "title": "Director of Human Resources",
+        "seniority_tier": "director",
+        "email": "stephaniel@apalacheecenter.org",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/stephanie-luckie-shrm-cp-a09aa050"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "PETRO SERVICES, INC.",
+        "state": "FL",
+        "employee_count": 210,
+        "naics": "447100",
+        "industry_name": "Retail Trade",
+        "current_broker": "SAUNDERS BENEFITS CONSULTING, LLC",
+        "annual_commission_usd": 156879.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 66
+      },
+      "contact": {
+        "full_name": "Michael Gazzalla",
+        "title": "Vice President of Retail",
+        "seniority_tier": "vp",
+        "email": "mgazzalla@southeastpetro.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/michaelgazzalla"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "KING OCEAN AGENCY INC.",
+        "state": "FL",
+        "employee_count": 262,
+        "naics": "336610",
+        "industry_name": "Manufacturing",
+        "current_broker": "HR BENEFITS SERVICES INC",
+        "annual_commission_usd": 138353.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 66
+      },
+      "contact": {
+        "full_name": "Holly Shearer, SPHR",
+        "title": "Director of HR",
+        "seniority_tier": "director",
+        "email": "hollys@kingplastic.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/holly-shearer-sphr-794912b"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "BANYAN COMMUNITY HEALTH CENTER, INC. AKA BANYAN HEALTH SYSTEMS",
+        "state": "FL",
+        "employee_count": 388,
+        "naics": "813000",
+        "industry_name": "Other Services",
+        "current_broker": "NE SOLUTIONS, INC.",
+        "annual_commission_usd": 180174.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-08-31",
+        "next_renewal": "2026-08-31",
+        "renewal_in_days": 97
+      },
+      "contact": {
+        "full_name": "Michael Evanoff",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "michael.evanoff@banyancenters.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/michaelevanoff"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "PRECISION FABRICATING & CLEANING, INC.",
+        "state": "FL",
+        "employee_count": 231,
+        "naics": "336300",
+        "industry_name": "Manufacturing",
+        "current_broker": "DOMINIC LAURETTA, INC.",
+        "annual_commission_usd": 136694.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-08-31",
+        "next_renewal": "2026-08-31",
+        "renewal_in_days": 97
+      },
+      "contact": {
+        "full_name": "Ira Ziff",
+        "title": "President (Executive Recruiter)",
+        "seniority_tier": "c_suite",
+        "email": "iraziff@precisionresearchgroup.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/iraziff"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    }
+  ],
+  "flagged_targets": []
+}

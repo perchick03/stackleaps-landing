@@ -2,15 +2,22 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { track } from "@vercel/analytics";
 
 const FORMSPREE_URL = "https://formspree.io/f/xwvwyodd";
 
-interface ContactModalProps {
+interface ListImpressionModalProps {
   isOpen: boolean;
   onClose: () => void;
+  prefill: {
+    name: string;
+    email: string;
+    company: string;
+    brief_slug: string;
+  };
 }
 
-export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
+export default function ListImpressionModal({ isOpen, onClose, prefill }: ListImpressionModalProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
   useEffect(() => {
@@ -29,9 +36,11 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
-
     const form = e.currentTarget;
     const data = new FormData(form);
+    data.append("_subject", `Switch-Target Brief impression — ${prefill.company}`);
+    data.append("source", "ebb-list");
+    data.append("brief_slug", prefill.brief_slug);
 
     try {
       const res = await fetch(FORMSPREE_URL, {
@@ -42,6 +51,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
       if (res.ok) {
         setStatus("success");
         form.reset();
+        track("impression_submitted", { slug: prefill.brief_slug, broker: prefill.company });
       } else {
         setStatus("error");
       }
@@ -52,7 +62,6 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
   function handleClose() {
     onClose();
-    // Reset form state after close animation
     setTimeout(() => setStatus("idle"), 300);
   }
 
@@ -67,19 +76,16 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
           className="fixed inset-0 z-[100] flex items-center justify-center px-4"
           onClick={handleClose}
         >
-          {/* Backdrop */}
           <div className="absolute inset-0 bg-[var(--color-primary)]/60 backdrop-blur-sm" />
 
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, y: 20, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="relative bg-white rounded-2xl shadow-ambient w-full max-w-lg p-8 md:p-10"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button */}
             <button
               onClick={handleClose}
               className="absolute top-4 right-4 text-[var(--color-on-surface-variant)]/50 hover:text-[var(--color-on-surface-variant)] transition-colors"
@@ -97,77 +103,63 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold text-[var(--color-primary)]">Message sent!</h3>
+                <h3 className="text-xl font-bold text-[var(--color-primary)]">Thanks for the feedback!</h3>
                 <p className="mt-2 text-[var(--color-on-surface-variant)]">
-                  We&apos;ll get back to you within 24 hours.
+                  We&apos;ll read it and get back to you within 24 hours.
                 </p>
-                <button
-                  onClick={handleClose}
-                  className="mt-6 text-sm font-semibold text-[var(--color-secondary)] hover:underline"
-                >
+                <button onClick={handleClose} className="mt-6 text-sm font-semibold text-[var(--color-secondary)] hover:underline">
                   Close
                 </button>
               </div>
             ) : (
               <>
-                <h3 className="text-2xl font-bold text-[var(--color-primary)]">Get in touch</h3>
-                <p className="mt-2 text-[var(--color-on-surface-variant)] text-sm">
-                  Tell us about your business and goals. We&apos;ll get back to you within 24 hours.
+                <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-on-surface-variant)]/70 mb-2">
+                  Switch-Target Brief
+                </div>
+                <h3 className="font-serif text-3xl text-[var(--color-primary)] leading-tight tracking-[-0.01em]">
+                  Your impression of this list
+                </h3>
+                <p className="mt-3 text-[var(--color-on-surface-variant)] text-sm leading-relaxed">
+                  Anything off? Anyone you want us to dig deeper on? Tell us in a sentence or two — it shapes the next brief.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
-                  <div>
-                    <label htmlFor="contact-name" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                      Name <span className="text-[var(--color-secondary)]">*</span>
-                    </label>
-                    <input
-                      id="contact-name"
-                      type="text"
-                      name="name"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
-                      placeholder="Your name"
-                    />
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="li-name" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">Name</label>
+                      <input
+                        id="li-name"
+                        type="text"
+                        name="name"
+                        defaultValue={prefill.name}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="li-email" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">Email</label>
+                      <input
+                        id="li-email"
+                        type="email"
+                        name="email"
+                        defaultValue={prefill.email}
+                        required
+                        className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
+                      />
+                    </div>
                   </div>
 
                   <div>
-                    <label htmlFor="contact-email" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                      Email <span className="text-[var(--color-secondary)]">*</span>
-                    </label>
-                    <input
-                      id="contact-email"
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
-                      placeholder="you@company.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="contact-company" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                      Company <span className="text-[var(--color-secondary)]">*</span>
-                    </label>
-                    <input
-                      id="contact-company"
-                      type="text"
-                      name="company"
-                      required
-                      className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
-                      placeholder="Your company"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="contact-message" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                      Message
+                    <label htmlFor="li-message" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
+                      Your impression <span className="text-[var(--color-secondary)]">*</span>
                     </label>
                     <textarea
-                      id="contact-message"
+                      id="li-message"
                       name="message"
-                      rows={3}
+                      rows={5}
+                      required
                       className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors resize-none"
-                      placeholder="Tell us what you're looking for..."
+                      placeholder="e.g. Row 3 looks great — I already pitched them last year. Skip retail next time. Add anyone on the OneDigital book if you can."
                     />
                   </div>
 
@@ -180,7 +172,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                     disabled={status === "submitting"}
                     className="w-full bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-6 py-3.5 rounded-lg font-bold text-base hover:opacity-90 transition-opacity disabled:opacity-60"
                   >
-                    {status === "submitting" ? "Sending..." : "Send Message"}
+                    {status === "submitting" ? "Sending..." : "Send Impression"}
                   </button>
                 </form>
               </>

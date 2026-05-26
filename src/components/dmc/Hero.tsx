@@ -16,7 +16,7 @@ export default function Hero() {
               transition={{ duration: 0.4, ease: "easeOut" }}
               className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-on-surface-variant)]/60"
             >
-              Built for B2B
+              Built for DMC
             </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
@@ -32,8 +32,8 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="text-lg md:text-xl text-[var(--color-on-surface-variant)] font-light max-w-lg leading-relaxed"
             >
-              We connect you with decision-makers and buyers who want to
-              work with you.
+              We connect you with tour operators and travel advisors who
+              want to work with your destination.
             </motion.p>
           </div>
 
@@ -63,7 +63,7 @@ export default function Hero() {
             className="pt-6 border-t border-[var(--color-outline-variant)]/20"
           >
             <span className="text-sm font-semibold text-[var(--color-primary)]">
-              7 quality introductions in 10 days - built for our own company
+              7 quality introductions in 10 days - built for our own DMC
             </span>
           </motion.div>
         </div>
@@ -161,10 +161,10 @@ function FloatingCard() {
           <div className="w-1 h-8 rounded-full bg-[var(--color-secondary)]" />
           <div>
             <p className="text-[11px] font-bold text-[var(--color-primary)]">
-              Qualified Prospect
+              UK Tour Operator
             </p>
             <p className="text-[10px] text-[var(--color-on-surface-variant)]">
-              Thu 15 · 10:00 AM · Intro call
+              Thu 15 · 10:00 AM · Introduction call
             </p>
           </div>
         </div>

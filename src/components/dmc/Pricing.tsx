@@ -3,10 +3,10 @@
 import { motion } from "framer-motion";
 
 const included = [
-  "ICP Match Report - 50 best-fit buyers mapped for your offer",
-  "Done-for-you personalized outreach to buyers in your target markets",
+  "Partner Match Report - 50 best-fit operators mapped for your destination",
+  "Done-for-you personalized outreach to operators in your target markets",
   "3 introductions to get started",
-  "Niche exclusivity - we never work with a competing business in your niche",
+  "Destination exclusivity - we never work with a competing DMC in your area",
 ];
 
 export default function Pricing() {
@@ -29,7 +29,7 @@ export default function Pricing() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
           >
-            The Pipeline Pilot
+            The Partner Pipeline Pilot
           </motion.h2>
         </div>
 
@@ -96,7 +96,7 @@ export default function Pricing() {
               Book a Free Strategy Call
             </a>
             <p className="mt-6 text-sm text-[var(--color-on-surface-variant)]/50">
-              Most agencies charge $5,000-$10,000/mo with no guaranteed meetings. You only pay when one happens.
+              A single trade show booth costs $15,000-$40,000. This is less than 5%.
             </p>
           </div>
         </motion.div>

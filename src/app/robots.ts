@@ -6,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/proposal/", "/top_icp/"],
+        disallow: ["/proposal/", "/top_icp/", "/ebb-list/"],
       },
     ],
     host: "https://stackleaps.com",

@@ -5,20 +5,20 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "Does cold outreach actually work?",
-    a: "Yes - when it's relevant and personalized. Every message is tailored to the prospect and your offer. Not a mass blast.",
+    q: "Does cold outreach actually work in travel?",
+    a: "Yes - when it's relevant and personalized. Every message is tailored to the operator and your destination. Not a mass blast.",
   },
   {
-    q: "What if my niche is too specific?",
-    a: "That's an advantage. The more specific your offer, the easier it is to find buyers looking for exactly that. Your niche is the wedge - we put your offer in front of the right people.",
+    q: "What if my destination is different from the Balkans?",
+    a: "The methodology is destination-agnostic. Tour operators are always looking for ground partners. Your destination is the offer - we put it in front of the right people.",
   },
   {
     q: "What if I'm not happy with the results?",
     a: "Your first 3 introductions are your test drive. If the quality isn't there, keep the ICP report and walk away. No contract.",
   },
   {
-    q: "Will you work with my competitors?",
-    a: "No - we only work with one client per niche. Your campaign data and strategy are completely confidential.",
+    q: "You run a DMC - don't you compete with me?",
+    a: "We're in the Balkans, and we only work with one DMC per destination. Your campaign data and strategy are completely confidential.",
   },
   {
     q: "Are there any hidden fees or contracts?",
