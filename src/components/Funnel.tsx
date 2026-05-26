@@ -8,28 +8,28 @@ const stages = [
   {
     label: "Match",
     leftStat: "Your Niche",
-    leftDesc: "Operators matched to your destination",
+    leftDesc: "Buyers matched to your offer",
     rightStat: "No Random Lists",
-    rightDesc: "Only partners who fit what you offer",
+    rightDesc: "Only buyers who fit what you offer",
   },
   {
     label: "Outreach",
     leftStat: "Personal",
-    leftDesc: "Every message tailored to the operator",
+    leftDesc: "Every message tailored to the prospect",
     rightStat: "Not Spam",
     rightDesc: "About their business, not a template",
   },
   {
     label: "Interest",
     leftStat: "Vetted",
-    leftDesc: "Only genuinely interested operators",
+    leftDesc: "Only genuinely interested buyers",
     rightStat: "No Tire-Kickers",
-    rightDesc: "Real partners ready to talk",
+    rightDesc: "Real buyers ready to talk",
   },
   {
     label: "Meeting",
     leftStat: "Booked",
-    leftDesc: "Qualified intro on your calendar",
+    leftDesc: "Qualified meeting on your calendar",
     rightStat: "Ready",
     rightDesc: "They already want what you offer",
   },
@@ -98,7 +98,7 @@ export default function Funnel() {
             transition={{ delay: 0.1 }}
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-4 leading-tight"
           >
-            From Your Destination to a Partner Meeting
+            Our Funnel: From Your Offer to a Qualified Meeting
           </motion.h2>
         </div>
 

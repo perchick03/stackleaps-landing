@@ -112,7 +112,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
               <>
                 <h3 className="text-2xl font-bold text-[var(--color-primary)]">Get in touch</h3>
                 <p className="mt-2 text-[var(--color-on-surface-variant)] text-sm">
-                  Tell us about your destination and goals. We&apos;ll get back to you within 24 hours.
+                  Tell us about your business and goals. We&apos;ll get back to you within 24 hours.
                 </p>
 
                 <form onSubmit={handleSubmit} className="mt-6 space-y-4">
@@ -146,7 +146,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
 
                   <div>
                     <label htmlFor="contact-company" className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                      Company / Destination <span className="text-[var(--color-secondary)]">*</span>
+                      Company <span className="text-[var(--color-secondary)]">*</span>
                     </label>
                     <input
                       id="contact-company"
@@ -154,7 +154,7 @@ export default function ContactModal({ isOpen, onClose }: ContactModalProps) {
                       name="company"
                       required
                       className="w-full px-4 py-3 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors"
-                      placeholder="Your company or destination"
+                      placeholder="Your company"
                     />
                   </div>
 

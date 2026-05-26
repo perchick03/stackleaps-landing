@@ -44,7 +44,7 @@ export default function Origin() {
               transition={{ delay: 0.1 }}
               className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
             >
-              I Didn&apos;t Build This as an Agency. I Built It for My Own DMC.
+              I Didn&apos;t Build This as an Agency. I Built It for My Own Company.
             </motion.h2>
 
             <motion.div
@@ -55,19 +55,28 @@ export default function Origin() {
               className="mt-8 space-y-5 text-[var(--color-on-surface-variant)] text-lg leading-relaxed"
             >
               <p>
-                I&apos;m co-founder of a Balkans Wanders DMC. My partner runs ground
-                operations - I joined as the technical side. When we struggled to
-                find tour operator partners, I built an outreach system to fix it.
+                I co-founded a tour company,{" "}
+                <a
+                  href="https://balkanwanders.com/balkan-destination-management-company"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--color-primary)] font-semibold underline decoration-[var(--color-secondary)] decoration-2 underline-offset-4 hover:opacity-80 transition-opacity"
+                >
+                  Balkan Wanders
+                </a>
+                . My partner runs ground operations - I joined as the technical
+                side. When we struggled to find new clients, I built an
+                outreach system to fix it.
               </p>
               <p>
                 It worked. <strong className="text-[var(--color-primary)] font-semibold">7 quality introductions in 10 days.</strong> We had to pause
                 the campaign because we couldn&apos;t handle the volume.
               </p>
               <p>
-                Other DMC owners started asking how we did it. That&apos;s how
+                Other founders started asking how we did it. That&apos;s how
                 StackLeaps started - the same system, opened up to{" "}
                 <strong className="text-[var(--color-primary)] font-semibold relative inline">
-                  one DMC per destination.
+                  one client per niche.
                   <svg className="absolute -bottom-1 left-0 w-full h-[6px]" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
                     <path d="M2 5.5C30 2 60 6 100 3.5C140 1 170 5.5 198 3" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" />
                   </svg>

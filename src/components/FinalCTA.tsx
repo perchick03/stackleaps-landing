@@ -12,7 +12,7 @@ export default function FinalCTA() {
           viewport={{ once: true }}
           className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight"
         >
-          Ready to Meet Your Next Partner?
+          Ready to Meet Your Next Client?
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 12 }}
@@ -21,9 +21,9 @@ export default function FinalCTA() {
           transition={{ delay: 0.1 }}
           className="mt-6 text-xl text-white/80 max-w-xl mx-auto"
         >
-          Book a free 30-minute strategy call. We&apos;ll discuss your destination, your ideal partners, and whether this is the right fit. Free 30-min call -{" "}
+          Book a free 30-minute strategy call. We&apos;ll discuss your offer, your ideal customer, and whether this is the right fit. Free 30-min call -{" "}
           <span className="relative inline-block">
-            one DMC operator to another.
+            one founder to another.
             <svg className="absolute -bottom-1 left-0 w-full h-[8px]" viewBox="0 0 240 10" fill="none" preserveAspectRatio="none">
               <path d="M3 7C20 3 45 8 80 4C115 0 150 7 180 3C200 1 225 6 237 4" stroke="var(--color-secondary-container)" strokeWidth="2.5" strokeLinecap="round" />
             </svg>
@@ -54,10 +54,10 @@ export default function FinalCTA() {
           className="mt-8 space-y-2 text-sm"
         >
           <p className="text-white/70 font-semibold">
-            7 quality introductions in 10 days - built for our own DMC
+            7 quality introductions in 10 days - built for our own company
           </p>
           <p className="text-white/50">
-            One DMC per destination - no conflicts
+            One client per niche - no conflicts
           </p>
         </motion.div>
       </div>
