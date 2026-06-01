@@ -1,0 +1,289 @@
+{
+  "prospect": {
+    "email": "fernando@pacificgroupbenefits.com",
+    "full_name": "Fernando Guevara",
+    "company_name": "Pacific Group Benefits",
+    "company_domain": "pacificgroupbenefits.com",
+    "state_abbr": "NV",
+    "state": "NV",
+    "linkedin": "https://www.linkedin.com/in/fernando-guevara-24847945",
+    "job_title": "Founder",
+    "n_total": 54,
+    "competition_mode": "two"
+  },
+  "matched_to": "NV mid-market employer-broker pairs renewing in next 120 days, $10K+ annual commission, current broker not a mega-aggregator, no broker-self-overlap.",
+  "generated_at": "2026-06-01",
+  "provider": "aiark",
+  "methodology": {
+    "source": "US Department of Labor Form 5500 Schedule A",
+    "filters": [
+      "State: NV",
+      "Plan size: 50-499 employees",
+      "Renewal window: next 120 days",
+      "Minimum annual broker commission: $10,000",
+      "Current broker is not a national mega-aggregator (Marsh, Mercer, Aon, Gallagher, Lockton, HUB, NFP, OneDigital, etc.)",
+      "Excludes any sponsor where Pacific Group Benefits appears as the current broker"
+    ],
+    "enrichment": "Decision-maker contact data verified at time of brief generation."
+  },
+  "stats": {
+    "candidates_filtered": 29,
+    "attempts": 29,
+    "hits_total": 14,
+    "hits_clean": 10,
+    "hits_flagged": 4,
+    "partials": 12,
+    "misses": 3,
+    "wall_seconds": 89.7,
+    "provider": "aiark",
+    "credits_spent": 110.0,
+    "balance_start": 12951.9,
+    "balance_end": 12841.9
+  },
+  "switch_targets": [
+    {
+      "sponsor": {
+        "name": "DURAFLAME, INC.",
+        "state": "NV",
+        "employee_count": 411,
+        "naics": "424990",
+        "industry_name": "Wholesale Trade",
+        "current_broker": "VERUS INSURANCE SERVICES, LLC.",
+        "annual_commission_usd": 174503.0,
+        "commission_tier": "medium",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 29
+      },
+      "contact": {
+        "full_name": "Lynette Patterson",
+        "title": "Corporate Director of Human Resources",
+        "seniority_tier": "director",
+        "email": "lpatterson@duraflame.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/lynette-patterson-24207b228"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "THE ANIMAL FOUNDATION",
+        "state": "NV",
+        "employee_count": 187,
+        "naics": "812910",
+        "industry_name": "Other Services",
+        "current_broker": "CRAGIN & PIKE, INC.",
+        "annual_commission_usd": 59652.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 29
+      },
+      "contact": {
+        "full_name": "Hilarie Grey",
+        "title": "Chief Executive Officer",
+        "seniority_tier": "c_suite",
+        "email": "hgrey@animalfoundation.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/hilarie-grey-400390149"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "THE SMITH CENTER FOR THE PERFORMING ARTS",
+        "state": "NV",
+        "employee_count": 127,
+        "naics": "711100",
+        "industry_name": "Arts, Entertainment & Recreation",
+        "current_broker": "CRAGIN & PIKE",
+        "annual_commission_usd": 44377.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 29
+      },
+      "contact": {
+        "full_name": "Suzanne Chabre",
+        "title": "Vice President and Chief Experience Officer",
+        "seniority_tier": "c_suite",
+        "email": "schabre@thesmithcenter.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/suzannechabre"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "JERRY'S NUGGET CASINO",
+        "state": "NV",
+        "employee_count": 184,
+        "naics": "721110",
+        "industry_name": "Accommodation & Food Services",
+        "current_broker": "CRAGIN & PIKE",
+        "annual_commission_usd": 42470.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-06-30",
+        "next_renewal": "2026-06-30",
+        "renewal_in_days": 29
+      },
+      "contact": {
+        "full_name": "Glen Yuen",
+        "title": "Vice President Finance",
+        "seniority_tier": "vp",
+        "email": "gyuen@jerrysnugget.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/glen-yuen-6a11864b"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "HELP OF SOUTHERN NEVADA",
+        "state": "NV",
+        "employee_count": 167,
+        "naics": "624100",
+        "industry_name": "Health Care & Social Assistance",
+        "current_broker": "CRAGIN & PIKE, INC.",
+        "annual_commission_usd": 62001.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 60
+      },
+      "contact": {
+        "full_name": "Fuilala Riley",
+        "title": "President & CEO",
+        "seniority_tier": "c_suite",
+        "email": "friley@helpsonv.org",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/fuilala-riley-22993723"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "LIFESKILLS UNLIMITED, INC",
+        "state": "NV",
+        "employee_count": 152,
+        "naics": "621210",
+        "industry_name": "Health Care & Social Assistance",
+        "current_broker": "OHM BENEFIT & INSURANCE SOLUTIONS",
+        "annual_commission_usd": 31855.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 60
+      },
+      "contact": {
+        "full_name": "Philip Lajoie",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "philip@lifeskillsunlimited.us",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/philip-lajoie-1292435"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "LUCKY LUCY D LLC",
+        "state": "NV",
+        "employee_count": 84,
+        "naics": "721120",
+        "industry_name": "Accommodation & Food Services",
+        "current_broker": "DISTINCTIVE INSURANCE, INC.",
+        "annual_commission_usd": 22778.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 60
+      },
+      "contact": {
+        "full_name": "Yunie Chang",
+        "title": "Owner",
+        "seniority_tier": "c_suite",
+        "email": "yunie@myluckypua.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/yoonheechang"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "MY RIDE TO WORK, LLC",
+        "state": "NV",
+        "employee_count": 112,
+        "naics": "488510",
+        "industry_name": "Transportation & Warehousing",
+        "current_broker": "IMA, INC.",
+        "annual_commission_usd": 15422.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-07-31",
+        "next_renewal": "2026-07-31",
+        "renewal_in_days": 60
+      },
+      "contact": {
+        "full_name": "Geoffrey Donahue",
+        "title": "President",
+        "seniority_tier": "c_suite",
+        "email": "gdonahue@myridetowork.com",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/geoffreydonahue"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    },
+    {
+      "sponsor": {
+        "name": "THREE SQUARE",
+        "state": "NV",
+        "employee_count": 116,
+        "naics": "624200",
+        "industry_name": "Health Care & Social Assistance",
+        "current_broker": "INSURANCE OFFICE OF AMERICA, INC.",
+        "annual_commission_usd": 45013.0,
+        "commission_tier": "small",
+        "plan_year_end": "2025-08-31",
+        "next_renewal": "2026-08-31",
+        "renewal_in_days": 91
+      },
+      "contact": {
+        "full_name": "Michelle Eckmann",
+        "title": "Chief Financial Officer",
+        "seniority_tier": "c_suite",
+        "email": "meckmann@threesquare.org",
+        "email_verified": true,
+        "linkedin": "https://www.linkedin.com/in/michelle-eckmann-97a2931b"
+      },
+      "quality": {
+        "flag": "clean",
+        "reasons": []
+      }
+    }
+  ],
+  "flagged_targets": []
+}
