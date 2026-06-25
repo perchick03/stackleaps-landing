@@ -196,7 +196,8 @@ export default function ProposalPage() {
         <p className="text-[17px] leading-[1.7] mb-10 max-w-3xl">
           We do all the outreach for you - finding the right advisors and operators,
           writing the emails, handling the replies - and book the introductions on your
-          calendar. Four stages:
+          calendar. Your side stays light: one kickoff call, approve the shortlist, then
+          take the introductions. Four stages:
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -236,12 +237,12 @@ export default function ProposalPage() {
             weeks="Weeks 3–6"
             title="Finding the best angle"
             icon={<BeakerIcon />}
-            summary="Send slowly, learn fast, then scale what works."
+            summary="Send slowly, learn fast, keep only what converts."
             bullets={[
               "Build 3–5 message angles for your offer",
               "Send them against the top advisors we pick",
               "Measure reply quality, not just open rates",
-              "Gradually increase volume on the angle that wins",
+              "Scale the winning angle to your capacity - never past it",
             ]}
           />
 
@@ -249,13 +250,13 @@ export default function ProposalPage() {
             tone="cream"
             phase="Phase 04"
             weeks="Week 7 onward"
-            title="Scale & qualifying calls"
+            title="Booked calls, at your pace"
             icon={<TrendingUpIcon />}
-            summary="Volume up. Real conversations on your calendar."
+            summary="Paced to what you can handle. Real conversations on your calendar."
             bullets={[
-              "Roll the winning angle out to the full matched audience",
+              "Roll the winning angle out - paced to your capacity, not blasted",
               "Replies handled instantly in your voice and tone",
-              "Booking + reminder sequence so meetings actually happen",
+              "Booking + reminder sequence so the calls actually happen",
               "Retarget leads every 3 months",
             ]}
           />
@@ -325,8 +326,15 @@ export default function ProposalPage() {
             <div className="font-mono text-[12px] tracking-[0.1em] font-semibold text-[var(--color-secondary)] uppercase">
               Day 60
             </div>
-            <div className="cover-title text-2xl md:text-[28px] leading-[1.2] text-[var(--color-primary)]">
-              Target: 3 booked introductions. Monthly cadence set from here.
+            <div>
+              <div className="cover-title text-2xl md:text-[28px] leading-[1.2] text-[var(--color-primary)]">
+                Target: 3 booked introductions - and the numbers to benchmark this
+                channel against a trade fair.
+              </div>
+              <div className="text-[14px] leading-[1.55] text-[var(--color-on-surface-variant)] mt-2">
+                Cost per call, reply quality, fit - real data to set next to your ~$20k
+                fairs before you commit to 2027.
+              </div>
             </div>
           </div>
         </div>
@@ -336,7 +344,7 @@ export default function ProposalPage() {
       <Page id="pricing" no="05" total="07" title="Pricing" runner="§ V · Pricing">
         <div className="border-t border-[var(--color-on-surface)]/15">
           <PriceRow item="Monthly retainer" amount="$750" suffix="/ month" note="Covers infrastructure - domains, mailboxes, deliverability" />
-          <PriceRow item="Per booked meeting" amount="$150" suffix="/ meeting" note="Paid only when the meeting happens" />
+          <PriceRow item="Per booked call" amount="$150" suffix="/ call" note="Paid only when the call happens" />
           <PriceRow item="Setup fee" amount="None" suffix="" note="No upfront commitment" />
         </div>
 
@@ -346,8 +354,8 @@ export default function ProposalPage() {
             per booked meeting, which means we only earn when you do.
           </Callout>
           <Callout label="Quality guardrail" tone="cream">
-            Billable meetings = advisors and operators inside the approved match shape.
-            We don&apos;t bill for anyone outside the agreed profile.
+            Billable calls = advisors and operators inside the approved match shape. We
+            don&apos;t bill for anyone outside the agreed profile.
           </Callout>
         </div>
 
@@ -711,7 +719,7 @@ function Funnel() {
   const stages = [
     { num: "~50", label1: "Approved", label2: "Match samples" },
     { num: "Refined", label1: "Clear target", label2: "Outreach" },
-    { num: "Thousands", label1: "Contacts", label2: "Rotated quarterly" },
+    { num: "Paced", label1: "High-fit only", label2: "Throttled to capacity" },
     { num: "∎", label1: "Meetings", label2: "Booked", accent: true },
   ];
   return (
