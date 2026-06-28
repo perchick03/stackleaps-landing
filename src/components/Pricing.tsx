@@ -14,20 +14,11 @@ export default function Pricing() {
     <section id="pricing" className="py-24 md:py-32 bg-[var(--color-surface-low)]">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--color-secondary)] font-bold tracking-widest uppercase text-sm"
-          >
-            The Offer
-          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] leading-tight"
           >
             The Pipeline Pilot
           </motion.h2>
@@ -91,11 +82,11 @@ export default function Pricing() {
           <div className="text-center">
             <a
               href="#book"
-              className="inline-block bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
+              className="inline-block bg-[var(--color-secondary)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
             >
               Book a Free Strategy Call
             </a>
-            <p className="mt-6 text-sm text-[var(--color-on-surface-variant)]/50">
+            <p className="mt-6 text-sm text-[var(--color-on-surface-variant)]">
               Most agencies charge $5,000-$10,000/mo with no guaranteed meetings. You only pay when one happens.
             </p>
           </div>

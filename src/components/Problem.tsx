@@ -36,47 +36,53 @@ export default function Problem() {
   return (
     <section id="problem" className="py-24 md:py-32 bg-[var(--color-surface-low)]">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="max-w-2xl mb-16 md:mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--color-secondary)] font-bold tracking-widest uppercase text-sm"
-          >
-            Sound familiar?
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
-          >
-            Great Products Don&apos;t Sell Themselves
-          </motion.h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
-          {pains.map((pain, i) => (
-            <motion.div
-              key={pain.title}
-              initial={{ opacity: 0, y: 24 }}
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-20">
+          {/* Left - heading (sticky on desktop) */}
+          <div className="lg:sticky lg:top-32 self-start">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.12 }}
-              className="group bg-[var(--color-surface-lowest)] rounded-xl p-8 md:p-10 shadow-ambient hover:shadow-lg transition-shadow duration-300"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] leading-tight"
             >
-              <div className="w-14 h-14 rounded-xl bg-[var(--color-surface-high)] flex items-center justify-center text-[var(--color-primary)] mb-6 group-hover:bg-[var(--color-secondary)] group-hover:text-white transition-colors duration-300">
-                {pain.icon}
-              </div>
-              <h3 className="text-xl font-bold text-[var(--color-primary)] mb-4">
-                {pain.title}
-              </h3>
-              <p className="text-[var(--color-on-surface-variant)] leading-relaxed">
-                {pain.body}
-              </p>
-            </motion.div>
-          ))}
+              Great Products Don&apos;t Sell Themselves
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="mt-6 text-lg text-[var(--color-on-surface-variant)] leading-relaxed max-w-md"
+            >
+              The best offer in your market means nothing if the right buyers never hear it. Three reasons growth stalls:
+            </motion.p>
+          </div>
+
+          {/* Right - pains as editorial blocks, not a card grid */}
+          <div className="flex flex-col gap-10 md:gap-12">
+            {pains.map((pain, i) => (
+              <motion.div
+                key={pain.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.12 }}
+                className="flex gap-5 md:gap-6"
+              >
+                <div className="shrink-0 w-12 h-12 rounded-xl bg-[var(--color-surface-high)] flex items-center justify-center text-[var(--color-primary)]">
+                  {pain.icon}
+                </div>
+                <div>
+                  <h3 className="text-xl md:text-2xl font-bold text-[var(--color-primary)]">
+                    {pain.title}
+                  </h3>
+                  <p className="mt-3 text-[var(--color-on-surface-variant)] leading-relaxed">
+                    {pain.body}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

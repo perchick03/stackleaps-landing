@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme inline {
-  --font-sans: var(--font-plus-jakarta);
-  --font-serif: var(--font-instrument-serif);
+  --font-sans: var(--font-hanken);
+  --font-serif: var(--font-spectral);
 
   /* Surface hierarchy —  "The Digital Curator" depth system */
   --color-surface: #f8f9ff;
@@ -44,6 +44,23 @@ body {
   background-color: var(--color-surface);
   color: var(--color-on-surface);
   font-family: var(--font-sans);
+}
+
+/* Editorial headings — Spectral serif carries the voice */
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  text-wrap: balance;
+}
+
+/* Respect reduced-motion: neutralize CSS transitions/animations.
+   Framer Motion loops are gated separately via useReducedMotion(). */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Glass effect utility */

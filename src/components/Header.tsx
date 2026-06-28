@@ -22,7 +22,7 @@ export default function Header() {
         </a>
         <button
           onClick={() => setIsContactOpen(true)}
-          className="bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-6 py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity"
+          className="bg-[var(--color-secondary)] text-white px-6 py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity"
         >
           Contact Us
         </button>

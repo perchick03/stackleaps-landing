@@ -35,20 +35,11 @@ export default function FAQ() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
           {/* Left - heading */}
           <div className="lg:sticky lg:top-32 self-start">
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[var(--color-secondary)] font-bold tracking-widest uppercase text-sm"
-            >
-              FAQ
-            </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] leading-tight"
             >
               Questions We Get Asked
             </motion.h2>

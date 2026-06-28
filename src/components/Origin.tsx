@@ -29,20 +29,11 @@ export default function Origin() {
 
           {/* Right - story */}
           <div>
-            <motion.span
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-[var(--color-secondary)] font-bold tracking-widest uppercase text-sm"
-            >
-              The Story
-            </motion.span>
             <motion.h2
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-[var(--color-primary)] mt-4 leading-tight"
+              className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-[var(--color-primary)] leading-tight"
             >
               I Didn&apos;t Build This as an Agency. I Built It for My Own Company.
             </motion.h2>

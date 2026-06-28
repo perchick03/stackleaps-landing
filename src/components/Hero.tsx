@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 
 export default function Hero() {
@@ -10,14 +10,6 @@ export default function Hero() {
         {/* Left - Copy */}
         <div className="flex flex-col gap-10 py-20 md:py-28 lg:py-36">
           <div className="space-y-7">
-            <motion.span
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="inline-block text-xs font-semibold tracking-widest uppercase text-[var(--color-on-surface-variant)]/60"
-            >
-              Built for B2B
-            </motion.span>
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -46,7 +38,7 @@ export default function Hero() {
           >
             <a
               href="#book"
-              className="inline-block bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-10 py-4 rounded-md font-bold text-lg shadow-ambient hover:opacity-90 transition-opacity"
+              className="inline-block bg-[var(--color-secondary)] text-white px-10 py-4 rounded-md font-bold text-lg shadow-ambient hover:opacity-90 transition-opacity"
             >
               Book a Free Strategy Call
             </a>
@@ -104,6 +96,7 @@ function FloatingCard() {
   const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
   const dates = [12, 13, 14, 15, 16];
   const bookedDay = 3; // Thursday
+  const reduce = useReducedMotion();
 
   return (
     <motion.div
@@ -113,8 +106,8 @@ function FloatingCard() {
       className="absolute -bottom-14 -left-8 sm:-left-16"
     >
       <motion.div
-        animate={{ y: [0, -14, 0] }}
-        transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+        animate={reduce ? undefined : { y: [0, -14, 0] }}
+        transition={reduce ? undefined : { duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
         className="bg-white rounded-2xl shadow-ambient border border-[var(--color-outline-variant)]/10 w-64 overflow-hidden"
       >
         {/* Header */}

@@ -1,20 +1,19 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Instrument_Serif } from "next/font/google";
+import { Spectral, Hanken_Grotesk } from "next/font/google";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
-const plusJakarta = Plus_Jakarta_Sans({
-  variable: "--font-plus-jakarta",
+const spectral = Spectral({
+  variable: "--font-spectral",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800"],
+  style: ["normal", "italic"],
 });
 
-const instrumentSerif = Instrument_Serif({
-  variable: "--font-instrument-serif",
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
-  weight: ["400"],
-  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -39,7 +38,7 @@ export default async function RootLayout({
   const country = (await headers()).get("x-vercel-ip-country");
   const skipAnalytics = country === "BG";
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${instrumentSerif.variable} antialiased`}>
+    <html lang="en" className={`${spectral.variable} ${hanken.variable} antialiased`}>
       <body>
         {children}
         {!skipAnalytics && <Analytics />}

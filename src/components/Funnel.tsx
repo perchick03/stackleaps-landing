@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 
@@ -57,10 +57,15 @@ const PROFILE_IMAGES = [
 export default function Funnel() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const reduce = useReducedMotion();
   const [activeStage, setActiveStage] = useState(-1);
 
   useEffect(() => {
     if (!isInView) return;
+    if (reduce) {
+      setActiveStage(stages.length - 1);
+      return;
+    }
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     function runCycle() {
@@ -77,26 +82,17 @@ export default function Funnel() {
     const loop = setInterval(runCycle, cycleLength);
     timers.push(loop);
     return () => timers.forEach(clearTimeout);
-  }, [isInView]);
+  }, [isInView, reduce]);
 
   return (
     <section className="py-20 md:py-32 bg-[var(--color-primary)] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="text-center mb-12 md:mb-20">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[var(--color-secondary-container)] font-bold tracking-widest uppercase text-sm"
-          >
-            Our Process
-          </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white mt-4 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight"
           >
             Our Funnel: From Your Offer to a Qualified Meeting
           </motion.h2>
@@ -106,7 +102,7 @@ export default function Funnel() {
 
         {/* ─── Desktop layout (lg+) ─── */}
         <div className="relative max-w-6xl mx-auto hidden lg:block">
-          {isInView && <ContinuousBubbles />}
+          {isInView && !reduce && <ContinuousBubbles />}
 
           <div style={{ height: FUNNEL_TOP_GAP }} />
 
@@ -148,7 +144,7 @@ export default function Funnel() {
                     </motion.div>
 
                     {/* Center funnel */}
-                    <FunnelBar stage={stage} index={i} isActive={isActive} isCurrently={isCurrently} width={w} activeStage={activeStage} />
+                    <FunnelBar stage={stage} index={i} isActive={isActive} isCurrently={isCurrently} width={w} activeStage={activeStage} reduce={reduce} />
 
                     {/* Right stat card */}
                     <motion.div
@@ -213,7 +209,7 @@ export default function Funnel() {
                           : "0.25rem",
                     }}
                   >
-                    {isCurrently && (
+                    {isCurrently && !reduce && (
                       <motion.div
                         initial={{ opacity: 0.4, scale: 1 }}
                         animate={{ opacity: 0, scale: 1.06 }}
@@ -281,7 +277,7 @@ export default function Funnel() {
           </p>
           <a
             href="#book"
-            className="inline-block bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
+            className="inline-block bg-[var(--color-secondary)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
           >
             Book a Free Strategy Call
           </a>
@@ -323,6 +319,7 @@ function FunnelBar({
   isCurrently,
   width: w,
   activeStage,
+  reduce,
 }: {
   stage: typeof stages[number];
   index: number;
@@ -330,6 +327,7 @@ function FunnelBar({
   isCurrently: boolean;
   width: number;
   activeStage: number;
+  reduce: boolean | null;
 }) {
   return (
     <div
