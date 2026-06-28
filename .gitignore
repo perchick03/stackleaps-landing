@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 .tmp/
+
+# editor / local tooling
+.vscode/
+.playwright-cli/
