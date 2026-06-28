@@ -1,0 +1,119 @@
+{
+  "client": "aries",
+  "generated_at": "Jun 28, 2026",
+  "hero": {
+    "image": "",
+    "display": {
+      "clientName": "Kevin",
+      "title": "",
+      "company": "Aries Freight Systems",
+      "email": ""
+    },
+    "fields": {
+      "campaignName": "Aries Freight – F&B Shipper Acquisition",
+      "primaryCompanyEmail": "",
+      "outreachBusinessName": "Aries Freight",
+      "redirectWebsite": "https://www.ariesfs.com"
+    }
+  },
+  "icps": [
+    {
+      "id": "icp-fnb",
+      "label": "Food & Beverage",
+      "fields": {
+        "industryDescription": "F&B manufacturers and processors — frozen, dairy, meat & poultry, produce/fresh, and beverage — plus F&B distributors and wholesalers shipping recurring temperature-controlled freight.",
+        "jobTitles": [
+          "Director / Manager of Logistics",
+          "Director / Manager of Transportation",
+          "Director / Manager of Supply Chain",
+          "VP Supply Chain",
+          "Cold-Chain / Quality / Compliance Lead",
+          "Plant / Operations Manager",
+          "Owner / President (smaller shippers)"
+        ],
+        "countries": ["United States"],
+        "companySize": "50–2,000 employees (mid-market — one logistics director can say yes without a formal RFP)",
+        "exclusions": "Add competitors, non-temperature-controlled-only shippers, and any regions or lanes Aries doesn't serve."
+      },
+      "estTam": {
+        "value": 8100,
+        "label": "cold-chain shipper contacts identified (US) — snapshot, ~4,000–5,700 strong-fit"
+      }
+    }
+  ],
+  "dreamList": [
+    {
+      "id": "lead-1",
+      "full_name": "Placeholder — lead to be sourced",
+      "title": "Director of Logistics",
+      "company": "Sample F&B Shipper 1",
+      "company_country": "United States",
+      "company_description": "Placeholder card — replace with a real sourced lead (lookalike + filters). A grounded why-fit (mode, lane/volume, OTIF/retail exposure) and a verified contact go here before this ships to the client.",
+      "seniority_level": "director",
+      "functional_level": "operations"
+    },
+    {
+      "id": "lead-2",
+      "full_name": "Placeholder — lead to be sourced",
+      "title": "VP Supply Chain",
+      "company": "Sample F&B Shipper 2",
+      "company_country": "United States",
+      "company_description": "Placeholder card — replace with a real sourced lead. Real, verifiable companies only; why-fit checked against their actual freight profile.",
+      "seniority_level": "vp",
+      "functional_level": "supply chain"
+    },
+    {
+      "id": "lead-3",
+      "full_name": "Placeholder — lead to be sourced",
+      "title": "Cold-Chain Compliance Lead",
+      "company": "Sample F&B Shipper 3",
+      "company_country": "United States",
+      "company_description": "Placeholder card — replace with a real sourced lead. If a named person is shown, LinkedIn + email-verified first, else show title only.",
+      "seniority_level": "manager",
+      "functional_level": "compliance"
+    }
+  ],
+  "offer": {
+    "serviceDescription": "Done-for-you cold email outreach that books qualified sales calls with F&B shippers — we build the list, write the copy, run warmed sending domains, and put booked calls on your calendar.",
+    "uniqueAngle": "Be the no-risk backup broker on a painful lane — second-source reefer capacity with continuous temperature monitoring and full carrier vetting on every load.",
+    "guarantees": [
+      "Pilot to 3 booked calls",
+      "$750 setup (itemized) + $150 per booked call — performance-based",
+      "No pay for no-shows or unqualified calls",
+      "No long-term contract",
+      "Warmed lookalike domains — your Aries domain is never at deliverability risk"
+    ],
+    "problemsSolved": [
+      "OTIF retail chargebacks ($100–$500+ per shipment) the logistics director is personally graded on",
+      "Perishable, must-arrive-by delivery windows that are tight and non-negotiable",
+      "Temperature-claim disputes when the data trail is incomplete",
+      "Reefer-LTL underservice and 2026 reefer capacity tightness — reliable backup coverage"
+    ],
+    "quantifiableResults": "Adjacent proof only: 7 booked calls in 10 days on a prior pilot (different industry) — not freight. No F&B freight results to claim yet; the pilot targets 3 booked calls. Do not reference freight case studies that don't exist.",
+    "process": [
+      "We tune this ICP with you",
+      "We build and verify the lead list",
+      "We run warmed-domain outreach and book the calls",
+      "You take the meetings; we optimize weekly"
+    ]
+  },
+  "faq": {
+    "items": [
+      {
+        "id": "faq-pricing",
+        "q": "How should we handle pricing / rate requests?",
+        "a": "Don't quote rates in email — offer a quick lane review or a short call to scope it."
+      },
+      {
+        "id": "faq-reseller",
+        "q": "What if they ask 'are you just a broker reselling my freight?'",
+        "a": "Lead with carrier vetting + temperature monitoring on every load; position as vetted backup capacity, not a reseller."
+      },
+      {
+        "id": "faq-namedrop",
+        "q": "Can we reference named clients (e.g. Anheuser-Busch)?",
+        "a": "Confirm with Kevin before any name-drop in outbound copy."
+      }
+    ]
+  }
+}
