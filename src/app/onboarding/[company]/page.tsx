@@ -130,6 +130,107 @@ function BrandLogo({ src, name }: { src?: string; name: string }) {
   );
 }
 
+// ponytail: temp, aries-only. Hardcoded "what Kevin gets" plan, built from the
+// $750-breakdown email thread. Lives in code (not aries.json) so it can't collide
+// with the data audit. Generalize into the template + JSON later, not today.
+function AriesStackLeapsPlan({ brandDomain, altDomain }: { brandDomain: string; altDomain: string }) {
+  const covers = [
+    ["Sending domains", `Lookalike domains (e.g. ${altDomain}) so ${brandDomain} is never put at risk.`],
+    ["Mailboxes", "The inbox fleet that actually sends, rented monthly."],
+    ["Warm-up & deliverability", "SPF/DKIM/DMARC and ~2 weeks of seasoning so you land in the primary inbox, not spam — plus ongoing monitoring."],
+    ["Sending platform", "Instantly — the engine that runs the campaigns and routes the replies."],
+    ["List build & management", "Researching and building your target lists across your verticals, and running the campaigns."],
+  ];
+  const kickoff = [
+    "You give the green light.",
+    "This form locks your targeting and voice (you're doing it now).",
+    "Quick Stripe payment for the first month to spin up the infrastructure.",
+    "We build your domains and warm the inboxes (~2 weeks) while we finalize the list.",
+  ];
+  const prices = [
+    { amount: "$750", suffix: "/ month", label: "Infrastructure + list build & management. The only fixed cost." },
+    { amount: "$150", suffix: "/ qualified call", label: "Paid only when the call actually happens." },
+    { amount: "None", suffix: "", label: "No setup fee. No contract. Walk away anytime." },
+  ];
+  return (
+    <Band tone="tint" width="wide">
+      <SectionHead
+        title="Your StackLeaps Plan"
+        sub="Exactly what you're getting, and where every dollar goes — no mystery. We build the list, write the outreach, handle the replies, and book qualified calls straight onto your calendar. You just show up."
+      />
+
+      {/* Pricing */}
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        {prices.map((p) => (
+          <div
+            key={p.amount}
+            className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5"
+          >
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-3xl font-bold text-[var(--color-primary)] tracking-tight">{p.amount}</span>
+              {p.suffix && <span className="text-sm font-medium text-[var(--color-on-surface-variant)]">{p.suffix}</span>}
+            </div>
+            <p className="mt-2 text-sm text-[var(--color-on-surface-variant)] leading-relaxed">{p.label}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* What the $750 covers */}
+      <div className="mt-6 rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
+        <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">Where the $750/month goes</span>
+        <ul className="space-y-4">
+          {covers.map(([title, desc]) => (
+            <li key={title} className="flex gap-3">
+              <svg className="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              <p className="text-[var(--color-on-surface)] leading-relaxed">
+                <span className="font-semibold">{title}</span>
+                <span className="text-[var(--color-on-surface-variant)]"> — {desc}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Risk reversal */}
+        <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
+          <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">Your risk is capped</span>
+          <ul className="space-y-3 text-[var(--color-on-surface)] leading-relaxed">
+            {[
+              "The first 3 qualified calls are your test drive — walk away anytime and you owe nothing for them.",
+              "You never pay for no-shows.",
+              "Not a decision-maker or otherwise unqualified? Flag it and it's free.",
+              "Everything past the $750/month is performance-based. We only get paid when you get qualified calls.",
+            ].map((t) => (
+              <li key={t} className="flex gap-2.5">
+                <span className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-[var(--color-secondary)]" />
+                <span>{t}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Kickoff steps */}
+        <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
+          <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">How we kick off</span>
+          <ol className="space-y-3">
+            {kickoff.map((t, i) => (
+              <li key={t} className="flex gap-3 text-[var(--color-on-surface)] leading-relaxed">
+                <span className="grid place-items-center w-6 h-6 shrink-0 rounded-full bg-[var(--color-secondary)]/12 text-[var(--color-secondary)] text-xs font-bold">
+                  {i + 1}
+                </span>
+                <span>{t}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </div>
+    </Band>
+  );
+}
+
 function OnboardingContent({ data }: { data: OnboardingData }) {
   const {
     overlay,
@@ -269,7 +370,7 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
         : []),
       ...(payload.offer.frontEndItems && payload.offer.frontEndItems.length
         ? [
-            `  Sample itineraries:`,
+            `  Sample lead magnets:`,
             ...payload.offer.frontEndItems.map(
               (it) => `    - ${it.name}${it.url ? ` (${it.url})` : ""}${it.note ? `: ${it.note}` : ""}`,
             ),
@@ -286,9 +387,17 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
       ...(payload.faq.global ? [``, `Anything else: ${payload.faq.global}`] : []),
     ].join("\n");
 
+    const contactEmail = h.fields.contactEmail || h.display.email || "";
     const fd = new FormData();
     fd.append("_subject", `Onboarding submitted: ${data.hero.display.company} (${data.client})`);
+    if (contactEmail) fd.append("_replyTo", contactEmail);
     fd.append("company", data.hero.display.company);
+    fd.append("client_slug", data.client);
+    fd.append("name", h.fields.contactName || h.display.clientName || "");
+    fd.append("email", contactEmail);
+    fd.append("phone", h.fields.contactPhone || h.display.phone || "");
+    fd.append("website", h.display.website || h.fields.redirectWebsite || "");
+    fd.append("preferred_contact", h.fields.contactCommMethod || "(not chosen)");
     fd.append("approved_count", String(approved));
     fd.append("rejected_count", String(rejected));
     fd.append("source", "onboarding");
@@ -386,6 +495,9 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
           edits save as you go, and clearing one puts our default back.
         </p>
       </section>
+
+      {/* ponytail: aries-only temp section, gated on slug. Remove when templated. */}
+      {data.client === "aries" && <AriesStackLeapsPlan brandDomain={baseDomain} altDomain={altDomain} />}
 
       {/* Campaign details: fact sheet */}
       <Band tone="base">
@@ -621,7 +733,10 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
           </div>
         )}
 
-        <h3 className="text-xl font-bold text-[var(--color-primary)] mb-1">Sample Dream-Fit Leads</h3>
+        <h3 className="flex items-center gap-1.5 text-xl font-bold text-[var(--color-primary)] mb-1">
+          Sample Dream-Fit Leads
+          <InfoHint text="Example companies from our data that match your ICP. As you mark each one a good or bad fit, we learn which accounts actually land — that's how we pin down your top ICP and go after the right prospects first." />
+        </h3>
         <p className="text-[var(--color-on-surface-variant)] mb-6">Real companies we can reach for you. Mark each one.</p>
         <DreamListCarousel leads={data.dreamList} getVerdict={getVerdict} setVerdict={setVerdict} />
       </Band>
@@ -733,7 +848,7 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
 
               <div className="mt-4">
                 <span className="block text-sm font-medium text-[var(--color-on-surface-variant)] mb-2">
-                  Sample Itineraries
+                  Sample Lead Magnet
                 </span>
                 <FrontEndEditor
                   items={getValue("offer.frontEndItems", data.offer.frontEndItems ?? [])}

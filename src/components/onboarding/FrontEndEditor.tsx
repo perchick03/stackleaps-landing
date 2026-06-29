@@ -27,8 +27,8 @@ export default function FrontEndEditor({ items, onItems }: FrontEndEditorProps) 
                 <EditableField
                   value={it.name}
                   onCommit={(v) => update(i, { name: v })}
-                  ariaLabel="Itinerary name"
-                  placeholder="Itinerary name"
+                  ariaLabel="Resource name"
+                  placeholder="Resource name"
                   className="font-semibold text-[var(--color-primary)]"
                 />
               </div>
@@ -49,7 +49,7 @@ export default function FrontEndEditor({ items, onItems }: FrontEndEditorProps) 
                 <button
                   type="button"
                   onClick={() => remove(i)}
-                  aria-label="Remove itinerary"
+                  aria-label="Remove resource"
                   className="w-7 h-7 grid place-items-center rounded-lg text-[var(--color-on-surface-variant)]/40 opacity-0 group-hover/fe:opacity-100 hover:text-red-600 hover:bg-red-50 transition-all"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -61,7 +61,7 @@ export default function FrontEndEditor({ items, onItems }: FrontEndEditorProps) 
             <EditableField
               value={it.url ?? ""}
               onCommit={(v) => update(i, { url: v })}
-              ariaLabel="Itinerary URL"
+              ariaLabel="Resource URL"
               placeholder="https://…"
               className="text-xs text-[var(--color-on-surface-variant)]"
             />
@@ -70,7 +70,7 @@ export default function FrontEndEditor({ items, onItems }: FrontEndEditorProps) 
               onCommit={(v) => update(i, { note: v })}
               ariaLabel="Best for"
               multiline
-              placeholder="Best for advisors whose clients…"
+              placeholder="Best for…"
               className="text-sm text-[var(--color-on-surface-variant)] leading-relaxed"
             />
           </div>
@@ -84,7 +84,7 @@ export default function FrontEndEditor({ items, onItems }: FrontEndEditorProps) 
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
         </svg>
-        Add itinerary
+        Add free resource
       </button>
     </div>
   );
