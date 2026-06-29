@@ -137,7 +137,20 @@ export function useLocalStorageDraft(client: string) {
     setOverlay((o) => setPath(o, ["verdicts", id], entry));
   };
 
-  return { overlay, saved, getValue, setField, clearField, getVerdict, setVerdict };
+  // Wipe all client edits back to our defaults.
+  const reset = () => {
+    setSaved("saving");
+    setOverlay({ v: VERSION });
+    if (typeof window !== "undefined") {
+      try {
+        window.localStorage.removeItem(storageKey);
+      } catch {
+        /* ignore */
+      }
+    }
+  };
+
+  return { overlay, saved, getValue, setField, clearField, getVerdict, setVerdict, reset };
 }
 
 export type { Verdict };

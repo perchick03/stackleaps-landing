@@ -1,5 +1,6 @@
 "use client";
 
+import EditableField from "./EditableField";
 import type { FaqItem } from "./types";
 
 interface FaqEditorProps {
@@ -8,9 +9,6 @@ interface FaqEditorProps {
   global: string;
   onGlobal: (text: string) => void;
 }
-
-const inputCls =
-  "w-full px-4 py-2.5 rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors";
 
 export default function FaqEditor({ items, onItems, global, onGlobal }: FaqEditorProps) {
   const update = (i: number, patch: Partial<FaqItem>) => {
@@ -22,45 +20,69 @@ export default function FaqEditor({ items, onItems, global, onGlobal }: FaqEdito
   const add = () => onItems([...items, { id: `new-${Date.now()}`, q: "", a: "" }]);
 
   return (
-    <div className="space-y-4">
-      {items.map((item, i) => (
-        <div
-          key={item.id}
-          className="rounded-2xl border border-[var(--color-outline-variant)]/20 bg-[var(--color-surface-lowest)] p-5 shadow-ambient"
-        >
-          <div className="flex items-start gap-2">
-            <input
-              type="text"
-              value={item.q}
-              placeholder="If a prospect asks…"
-              onChange={(e) => update(i, { q: e.target.value })}
-              className={`${inputCls} font-semibold`}
-            />
+    <div>
+      <div className="divide-y divide-[var(--color-outline-variant)]/15">
+        {items.map((item, i) => (
+          <div key={item.id} className="group/faq flex items-start gap-4 py-5 first:pt-0">
+            <span className="mt-1.5 font-serif text-xl font-bold text-[var(--color-secondary)] select-none">Q.</span>
+            <div className="flex-1 min-w-0">
+              <EditableField
+                value={item.q}
+                onCommit={(v) => update(i, { q: v })}
+                ariaLabel="Question"
+                placeholder="If a prospect asks…"
+                className="text-lg font-semibold text-[var(--color-primary)]"
+              />
+              <div className="mt-0.5">
+                <EditableField
+                  value={item.a}
+                  onCommit={(v) => update(i, { a: v })}
+                  ariaLabel="Answer"
+                  multiline
+                  placeholder="…here's how we should respond."
+                  className="text-[var(--color-on-surface-variant)] leading-relaxed"
+                />
+              </div>
+              {item.ask && (
+                <div className="mt-3 rounded-xl bg-[var(--color-secondary-fixed)]/40 px-4 py-3">
+                  <span className="flex items-center gap-1.5 text-xs font-semibold text-[var(--color-secondary)]">
+                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M4 21V4h13l-2 4 2 4H4" />
+                    </svg>
+                    We Need From You
+                  </span>
+                  <p className="text-sm text-[var(--color-on-surface)] mt-1">{item.ask}</p>
+                  <div className="mt-1.5 border-t border-[var(--color-secondary)]/15 pt-1.5">
+                    <EditableField
+                      value={item.reply ?? ""}
+                      onCommit={(v) => update(i, { reply: v })}
+                      ariaLabel="Your answer"
+                      multiline
+                      placeholder="Your answer…"
+                      className="text-[var(--color-on-surface)] leading-relaxed"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => remove(i)}
               aria-label="Remove question"
-              className="shrink-0 w-9 h-9 flex items-center justify-center rounded-lg text-[var(--color-on-surface-variant)]/60 hover:text-red-600 hover:bg-red-50 transition-colors"
+              className="mt-1.5 shrink-0 w-7 h-7 grid place-items-center rounded-lg text-[var(--color-on-surface-variant)]/40 opacity-0 group-hover/faq:opacity-100 hover:text-red-600 hover:bg-red-50 transition-all"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
-          <textarea
-            value={item.a}
-            placeholder="…here's how we should respond."
-            rows={2}
-            onChange={(e) => update(i, { a: e.target.value })}
-            className={`${inputCls} mt-2 resize-y leading-relaxed`}
-          />
-        </div>
-      ))}
+        ))}
+      </div>
 
       <button
         type="button"
         onClick={add}
-        className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-secondary)] hover:underline"
+        className="mt-5 inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-secondary)] hover:underline"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
@@ -68,16 +90,17 @@ export default function FaqEditor({ items, onItems, global, onGlobal }: FaqEdito
         Add a question
       </button>
 
-      <div className="pt-4">
-        <label className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
+      <div className="mt-10 rounded-2xl bg-[var(--color-surface-low)]/60 p-5 sm:p-6">
+        <span className="block text-sm font-medium text-[var(--color-on-surface-variant)] mb-1">
           Anything else we should know?
-        </label>
-        <textarea
+        </span>
+        <EditableField
           value={global}
+          onCommit={onGlobal}
+          ariaLabel="Anything else we should know"
+          multiline
           placeholder="Open notes, edge cases, things to avoid…"
-          rows={4}
-          onChange={(e) => onGlobal(e.target.value)}
-          className={`${inputCls} resize-y leading-relaxed`}
+          className="text-[var(--color-on-surface)] leading-relaxed"
         />
       </div>
     </div>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import type { LeadCardData, VerdictEntry } from "./types";
 
 function seniorityLabel(level: string): string {
@@ -18,21 +18,47 @@ function seniorityLabel(level: string): string {
   return map[level] || level.replace(/_/g, " ");
 }
 
-function PersonIcon() {
-  return (
-    <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--color-primary)]/30">
-      <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-      <circle cx="12" cy="7" r="4" />
-    </svg>
-  );
-}
-
 function LocationIcon() {
   return (
     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
       <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
       <circle cx="12" cy="10" r="3" />
     </svg>
+  );
+}
+
+function LeadLogo({ src, name }: { src?: string; name: string }) {
+  const [err, setErr] = useState(false);
+  return (
+    <span className="w-14 h-14 rounded-2xl bg-[var(--color-surface-lowest)] border border-[var(--color-outline-variant)]/20 grid place-items-center overflow-hidden shrink-0 shadow-sm">
+      {src && !err ? (
+        <Image src={src} alt="" width={32} height={32} unoptimized className="object-contain" onError={() => setErr(true)} />
+      ) : (
+        <span className="text-xl font-bold text-[var(--color-primary)]">{name.charAt(0).toUpperCase()}</span>
+      )}
+    </span>
+  );
+}
+
+function LinkChip({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--color-surface-low)] text-sm font-medium text-[var(--color-on-surface-variant)] hover:text-[var(--color-primary)] hover:bg-[var(--color-surface-high)] transition-colors"
+    >
+      {children}
+      {label}
+    </a>
   );
 }
 
@@ -47,9 +73,9 @@ function DreamCard({
   onVerdict: (v: VerdictEntry["verdict"]) => void;
   onNote: (note: string) => void;
 }) {
-  const [logoError, setLogoError] = useState(false);
   const approved = entry.verdict === "approve";
   const rejected = entry.verdict === "reject";
+  const domain = lead.company_website?.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
   return (
     <div
@@ -64,37 +90,18 @@ function DreamCard({
       {/* Identity header */}
       <div className="relative bg-gradient-to-br from-[var(--color-primary)]/[0.04] to-[var(--color-secondary-fixed)]/30 px-6 pt-6 pb-5">
         <div className="flex items-start gap-4">
-          <div className="w-16 h-16 rounded-2xl bg-[var(--color-surface-lowest)] border border-[var(--color-outline-variant)]/20 flex items-center justify-center shrink-0 shadow-sm">
-            <PersonIcon />
-          </div>
+          <LeadLogo src={lead.company_logo} name={lead.company} />
           <div className="min-w-0 flex-1">
-            <h3 className="text-lg font-semibold text-[var(--color-on-surface)] leading-tight">
-              {lead.full_name}
-            </h3>
+            <h3 className="text-lg font-semibold text-[var(--color-on-surface)] leading-tight">{lead.full_name}</h3>
             {lead.title && (
               <p className="text-sm text-[var(--color-on-surface-variant)] leading-snug mt-0.5 line-clamp-2">
                 {lead.title}
               </p>
             )}
-            <div className="flex items-center gap-2 mt-2">
-              {!logoError && lead.company_logo ? (
-                <Image
-                  src={lead.company_logo}
-                  alt=""
-                  width={18}
-                  height={18}
-                  unoptimized
-                  className="rounded object-contain shrink-0"
-                  onError={() => setLogoError(true)}
-                />
-              ) : (
-                <span className="w-5 h-5 rounded bg-[var(--color-primary)]/10 flex items-center justify-center text-[10px] font-bold text-[var(--color-primary)] shrink-0">
-                  {lead.company.charAt(0).toUpperCase()}
-                </span>
-              )}
-              <span className="text-sm font-medium text-[var(--color-primary)] truncate">{lead.company}</span>
+            <div className="flex items-center gap-x-2 gap-y-1 mt-2 flex-wrap">
+              <span className="text-sm font-medium text-[var(--color-primary)]">{lead.company}</span>
               {lead.company_country && (
-                <span className="flex items-center gap-1 text-xs text-[var(--color-on-surface-variant)] shrink-0">
+                <span className="inline-flex items-center gap-1 text-xs text-[var(--color-on-surface-variant)]">
                   <LocationIcon />
                   {lead.company_country}
                 </span>
@@ -119,20 +126,51 @@ function DreamCard({
       </div>
 
       {/* Body */}
-      <div className="px-6 py-4 flex-1 space-y-3">
+      <div className="px-6 py-4 flex-1 space-y-4">
+        {/* Inspect links */}
+        {(lead.company_website || lead.linkedin || lead.email) && (
+          <div className="flex flex-wrap gap-2">
+            {lead.company_website && (
+              <LinkChip href={lead.company_website} label={domain ?? "Website"}>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+                  <circle cx="12" cy="12" r="9" />
+                  <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
+                </svg>
+              </LinkChip>
+            )}
+            {lead.linkedin && (
+              <LinkChip href={lead.linkedin} label="LinkedIn">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+                </svg>
+              </LinkChip>
+            )}
+            {lead.email && (
+              <LinkChip href={`mailto:${lead.email}`} label="Email">
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-10 6L2 7" />
+                </svg>
+              </LinkChip>
+            )}
+          </div>
+        )}
+
         {lead.company_description && (
-          <p className="text-sm text-[var(--color-on-surface-variant)] leading-relaxed line-clamp-4">
+          <p className="text-sm text-[var(--color-on-surface-variant)] leading-relaxed line-clamp-6">
             {lead.company_description}
           </p>
         )}
-        {lead.company_website && (
-          <p className="text-sm font-medium text-[var(--color-primary)] truncate">
-            {lead.company_website.replace(/^https?:\/\/(www\.)?/, "")}
-          </p>
+
+        {lead.whyFit && (
+          <div className="rounded-xl bg-[var(--color-secondary-fixed)]/30 px-4 py-3">
+            <span className="text-xs font-semibold text-[var(--color-secondary)]">Why it fits</span>
+            <p className="text-sm text-[var(--color-on-surface)] mt-0.5 leading-relaxed">{lead.whyFit}</p>
+          </div>
         )}
       </div>
 
-      {/* Verdict footer — Tinder-style */}
+      {/* Verdict footer */}
       <div className="px-6 pb-5 pt-1 border-t border-[var(--color-outline-variant)]/15">
         <div className="flex gap-3 mt-4">
           <button
@@ -168,7 +206,7 @@ function DreamCard({
           value={entry.note ?? ""}
           onChange={(e) => onNote(e.target.value)}
           rows={2}
-          placeholder="Optional — why, or anyone like them?"
+          placeholder="Optional note: why, or anyone like them?"
           className="mt-3 w-full px-3 py-2 text-sm rounded-lg border border-[var(--color-outline-variant)]/30 bg-[var(--color-surface-low)] text-[var(--color-on-surface)] placeholder:text-[var(--color-on-surface-variant)]/40 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/40 focus:border-[var(--color-secondary)] transition-colors resize-none"
         />
       </div>
@@ -185,11 +223,12 @@ interface DreamListCarouselProps {
 export default function DreamListCarousel({ leads, getVerdict, setVerdict }: DreamListCarouselProps) {
   const [view, setView] = useState<"carousel" | "grid">("carousel");
   const [index, setIndex] = useState(0);
+  const reduce = useReducedMotion();
 
   if (leads.length === 0) {
     return (
       <div className="rounded-2xl border border-dashed border-[var(--color-outline-variant)]/40 bg-[var(--color-surface-low)]/40 px-6 py-12 text-center text-[var(--color-on-surface-variant)]">
-        Sample dream-fit leads are being sourced — they&apos;ll appear here shortly.
+        Sample dream-fit leads are being sourced. They&apos;ll appear here shortly.
       </div>
     );
   }
@@ -231,7 +270,7 @@ export default function DreamListCarousel({ leads, getVerdict, setVerdict }: Dre
       </div>
 
       {view === "grid" ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
           {leads.map((lead) => (
             <DreamCard key={lead.id} {...cardProps(lead)} />
           ))}
@@ -242,9 +281,9 @@ export default function DreamListCarousel({ leads, getVerdict, setVerdict }: Dre
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.id}
-                initial={{ opacity: 0, x: 24 }}
+                initial={reduce ? { opacity: 0 } : { opacity: 0, x: 24 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -24 }}
+                exit={reduce ? { opacity: 0 } : { opacity: 0, x: -24 }}
                 transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
               >
                 <DreamCard {...cardProps(current)} />
