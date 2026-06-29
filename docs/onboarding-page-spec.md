@@ -28,10 +28,10 @@ Two jobs in one scroll: **prove** we did the work (the ICP we built, real dream-
 ### 1 · Campaign Details
 - **Identity header** (not editable): logo (auto-pulled favicon, or a `logo` override), company name, contact name + title, and a contact strip (website, email, phone). Optional hero image.
 - **Editable campaign fields**, each with a `?` info tooltip where it helps:
-  - **Email signature name** (`campaignName`) — how outreach emails sign off
-  - **Primary company email** — tooltip explains we register lookalike sending domains
+  - **Email signature name** (`campaignName`): how outreach emails sign off
+  - **Primary company email**: tooltip explains we register lookalike sending domains
   - **Business name to use in outreach**
-  - **Website the campaign domains redirect to** — tooltip explains the redirect
+  - **Website the campaign domains redirect to**: tooltip explains the redirect
 - **Contact Person card** (editable): name, phone, email, and a **preferred-channel dropdown** (WhatsApp / Email / Slack). Who we coordinate with; may differ from the identity header.
 
 ### 2 · Ideal Customer Profile (ICP)  (tabs when a client has several)
@@ -52,8 +52,8 @@ Two jobs in one scroll: **prove** we did the work (the ICP we built, real dream-
 This is the **client's** offer that we promote to *their* prospects, not StackLeaps' service.
 - **What we promote** (`serviceDescription`) and **Your edge** (`uniqueAngle`)
 - **Guarantees / risk reversals**, **Problems your ideal client has that this solves** (lists)
-- **Proof we can reference** (`quantifiableResults`) — **real numbers only**, never fabricate; label any adjacent proof as adjacent
-- **What a client experiences if they start today** (`process`) — numbered steps
+- **Proof we can reference** (`quantifiableResults`): **real numbers only**, never fabricate; label any adjacent proof as adjacent
+- **What a client experiences if they start today** (`process`): numbered steps
 - **Front-end offer (the hook)** (`frontEndOffer`): the first-touch lead magnet. Renders when present, and unlocks:
   - **Example first-touch email** (`exampleEmail`): a sample email shown in a preview box (line breaks preserved)
   - **Sample itineraries** (`frontEndItems`): named hooks, each `{ name, url, note }`, with a clickable "View" link
