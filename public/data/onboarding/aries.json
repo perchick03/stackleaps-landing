@@ -1,19 +1,25 @@
 {
   "client": "aries",
-  "generated_at": "Jun 28, 2026",
+  "generated_at": "Jun 29, 2026",
   "hero": {
-    "image": "",
+    "image": "/data/onboarding/aries-hero.webp",
     "display": {
-      "clientName": "Kevin",
-      "title": "",
+      "clientName": "Kevin Eck",
+      "title": "VP Business Development",
       "company": "Aries Freight Systems",
-      "email": ""
+      "email": "kevin@ariesfs.com",
+      "phone": "773-572-2052",
+      "website": "ariesfs.com"
     },
     "fields": {
-      "campaignName": "Aries Freight, F&B Shipper Acquisition",
-      "primaryCompanyEmail": "",
-      "outreachBusinessName": "Aries Freight",
-      "redirectWebsite": "https://www.ariesfs.com"
+      "campaignName": "Kevin Eck, VP Business Development",
+      "primaryCompanyEmail": "ariesfs.com",
+      "outreachBusinessName": "Aries Freight Systems",
+      "redirectWebsite": "https://www.ariesfs.com",
+      "contactName": "Kevin Eck",
+      "contactPhone": "773-572-2052",
+      "contactEmail": "kevin@ariesfs.com",
+      "contactCommMethod": ""
     }
   },
   "icps": [
@@ -21,7 +27,7 @@
       "id": "icp-fnb",
       "label": "Food & Beverage",
       "fields": {
-        "industryDescription": "F&B manufacturers and processors, frozen, dairy, meat & poultry, produce/fresh, and beverage, plus F&B distributors and wholesalers shipping recurring temperature-controlled freight.",
+        "industryDescription": "F&B manufacturers and processors (frozen, dairy, meat & poultry, produce/fresh, and beverage), plus F&B distributors and wholesalers shipping recurring temperature-controlled freight. Roughly 7,000 cold-chain food and beverage shipper contacts identified in the US, of which about 4,000 to 5,000 are genuine cold-chain shippers after list-filtering (aggregate, before narrowing to Aries' lanes).",
         "jobTitles": [
           "Director / Manager of Logistics",
           "Director / Manager of Transportation",
@@ -31,88 +37,168 @@
           "Plant / Operations Manager",
           "Owner / President (smaller shippers)"
         ],
-        "countries": ["United States"],
-        "companySize": "50-2,000 employees (mid-market, one logistics director can say yes without a formal RFP)",
-        "exclusions": "Add competitors, non-temperature-controlled-only shippers, and any regions or lanes Aries doesn't serve."
+        "countries": [
+          "United States"
+        ],
+        "companySize": "50 to 2,000 employees (mid-market, where one logistics director can say yes without a formal RFP). Seniority floor: Manager. Sweet spot: Director.",
+        "exclusions": "Other freight brokers, 3PLs, carriers and forwarders (competitors, not buyers), dry / shelf-stable-only shippers, and any regions or lanes Aries does not serve.",
+        "idealClientWebsites": ""
       },
       "estTam": {
-        "value": 8100,
-        "label": "cold-chain shipper contacts identified (US), snapshot, ~4,000-5,700 strong-fit"
+        "value": "~7K",
+        "label": "US Cold-Chain Food & Beverage Shipper Contacts"
       }
     }
   ],
   "dreamList": [
     {
-      "id": "lead-1",
-      "full_name": "Placeholder, lead to be sourced",
-      "title": "Director of Logistics",
-      "company": "Sample F&B Shipper 1",
-      "company_country": "United States",
-      "company_description": "Placeholder card, replace with a real sourced lead (lookalike + filters). A grounded why-fit (mode, lane/volume, OTIF/retail exposure) and a verified contact go here before this ships to the client.",
+      "id": "lead-church-brothers",
+      "full_name": "Mike Manderson",
+      "title": "VP of Warehousing, Distribution & Fulfillment",
+      "company": "Church Brothers Farms",
+      "company_country": "Salinas, CA",
+      "company_website": "https://churchbrothers.com",
+      "email": "",
+      "company_description": "Family-owned, vertically integrated fresh-produce grower, processor and shipper (packaged salads, fresh-cut and whole-leaf vegetables, herbs), farming 45,000+ acres and shipping 50M+ cartons a year from a multi-state cooling network.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=churchbrothers.com&sz=128",
       "seniority_level": "director",
-      "functional_level": "operations"
+      "functional_level": "leadership",
+      "linkedin": "https://www.linkedin.com/in/mike-manderson-78957b6/",
+      "whyFit": "Fresh and value-added produce shipper moving recurring high-volume reefer out of a multi-state cooling network (CA / AZ / TX) into national grocery (live on Target shelves) and foodservice, with retail volume just expanded via the Mann Packing acquisition. OTIF chargeback pressure makes Aries a natural backup / second-source on overflow and tight delivery-window lanes."
     },
     {
-      "id": "lead-2",
-      "full_name": "Placeholder, lead to be sourced",
-      "title": "VP Supply Chain",
-      "company": "Sample F&B Shipper 2",
-      "company_country": "United States",
-      "company_description": "Placeholder card, replace with a real sourced lead. Real, verifiable companies only; why-fit checked against their actual freight profile.",
+      "id": "lead-west-liberty",
+      "full_name": "Jerrod Carlson",
+      "title": "Executive Director of Logistics",
+      "company": "West Liberty Foods",
+      "company_country": "West Liberty, IA",
+      "company_website": "https://wlfoods.com",
+      "email": "",
+      "company_description": "Farmer-owned protein processor and private-label co-packer making sliced deli meats and fully-cooked IQF proteins (turkey, chicken, beef, ham), 650M+ lbs/yr across three US plants.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=wlfoods.com&sz=128",
+      "seniority_level": "director",
+      "functional_level": "leadership",
+      "linkedin": "https://www.linkedin.com/in/jerrod-carlson-43b4a038/",
+      "whyFit": "Top-50 protein processor shipping refrigerated deli and frozen IQF proteins nationally into grocery/retail and large foodservice (Subway) from three plants. Heavy reefer/frozen volume plus retail OTIF exposure, a clean fit for Aries as a temp-monitored, FSMA-compliant backup / second-source carrier."
+    },
+    {
+      "id": "lead-bellisio",
+      "full_name": "Nien Duong",
+      "title": "SVP Operations, Engineering & Supply Chain",
+      "company": "Bellisio Foods",
+      "company_country": "Minneapolis, MN",
+      "company_website": "https://bellisiofoods.com",
+      "email": "",
+      "company_description": "National frozen-meals manufacturer (Michelina's, Boston Market, Atkins, Authentic Asia, plus co-packing) producing 2M+ frozen meals a day across three US plants. Subsidiary of CP Foods.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=bellisiofoods.com&sz=128",
       "seniority_level": "vp",
-      "functional_level": "supply chain"
+      "functional_level": "leadership",
+      "linkedin": "https://www.linkedin.com/in/nien-duong-45772417/",
+      "whyFit": "Deep-frozen entree maker running 2M+ meals/day across three plants into nationwide grocery and foodservice (plus co-packs and a military channel). Heavy reefer volume and OTIF exposure make Aries a fit to win backup / second-source temp-controlled lanes. Senior, supply-chain-owning entry point; expect the live lane buying to sit with a logistics/transportation team under him."
     },
     {
-      "id": "lead-3",
-      "full_name": "Placeholder, lead to be sourced",
-      "title": "Cold-Chain Compliance Lead",
-      "company": "Sample F&B Shipper 3",
-      "company_country": "United States",
-      "company_description": "Placeholder card, replace with a real sourced lead. If a named person is shown, LinkedIn + email-verified first, else show title only.",
-      "seniority_level": "manager",
-      "functional_level": "compliance"
+      "id": "lead-bolthouse",
+      "full_name": "Andy Balog",
+      "title": "Director, Logistics & Demand Planning",
+      "company": "Bolthouse Farms (Generous Brands)",
+      "company_country": "Bakersfield, CA",
+      "company_website": "https://bolthouse.com",
+      "email": "",
+      "company_description": "Refrigerated-beverage and dressing manufacturer (smoothies, 100% juices, protein and plant-based drinks, refrigerated dressings), top SKUs at ~90% ACV across 56,000+ US retail locations, from plants in Bakersfield CA and Prosser WA.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=bolthouse.com&sz=128",
+      "seniority_level": "director",
+      "functional_level": "leadership",
+      "linkedin": "https://www.linkedin.com/in/andy-balog-4ab0b1a3/",
+      "whyFit": "100% refrigerated freight from multi-state plants into Walmart, Kroger and national grocery DCs, a textbook OTIF-chargeback profile where Aries' GPS-tracked, temp-monitored reefer capacity is a credible backup / second-source. Bonus: Andy is Chicago-based, same metro as Aries."
+    },
+    {
+      "id": "lead-tillamook",
+      "full_name": "Mike Bever",
+      "title": "EVP, Chief Supply Chain Officer",
+      "company": "Tillamook County Creamery Association",
+      "company_country": "Tillamook, OR",
+      "company_website": "https://tillamook.com",
+      "email": "",
+      "company_description": "Farmer-owned dairy cooperative (founded 1909) making cheese, ice cream, yogurt, cream cheese, sour cream and butter, sold in all 50 states from plants in Oregon and a new ice-cream plant in Decatur, IL.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=tillamook.com&sz=128",
+      "seniority_level": "c_suite",
+      "functional_level": "leadership",
+      "linkedin": "https://www.linkedin.com/in/mike-bever-2ab7672a/",
+      "whyFit": "National dairy co-op shipping refrigerated and frozen freight from OR and IL plants into Costco, Walmart, Target and Kroger under strict retail OTIF, a clean fit for Aries' temp-monitored, GPS-tracked reefer as a backup / second-source on tight grocery windows. Senior contact; the live lane buying likely sits with a logistics/transportation team under him."
     }
   ],
   "offer": {
-    "serviceDescription": "Done-for-you cold email outreach that books qualified sales calls with F&B shippers, we build the list, write the copy, run warmed sending domains, and put booked calls on your calendar.",
-    "uniqueAngle": "Be the no-risk backup broker on a painful lane, second-source reefer capacity with continuous temperature monitoring and full carrier vetting on every load.",
+    "serviceDescription": "Full-service reefer and cold-chain freight brokerage for F&B shippers: dry van, reefer FTL, reefer LTL, frozen and multi-temp, backed by a 100,000+ vetted-carrier network, with continuous temperature monitoring and real-time GPS on every reefer load.",
+    "uniqueAngle": "Be the no-risk backup broker on a painful lane: second-source reefer capacity with continuous temperature monitoring and full carrier vetting on every load, so on-time and temperature-safe stays covered even when primary capacity tightens.",
     "guarantees": [
-      "Pilot to 3 booked calls",
-      "$750 setup (itemized) + $150 per booked call, performance-based",
-      "No pay for no-shows or unqualified calls",
-      "No long-term contract",
-      "Warmed lookalike domains, your Aries domain is never at deliverability risk"
+      "Continuous temperature monitoring + real-time GPS on every reefer load",
+      "Every reefer carrier is FSMA and CARB compliant and fully vetted (FMCSA authority, insurance, safety record, continuous identity verification)",
+      "99.9% claims-free track record across all modes",
+      "Equipment from sprinter / reefer-LTL to 53-ft and multi-temp trailers, ambient (55F) down to deep frozen (-20F)",
+      "24/7 dispatch, live tracking, hourly updates, EDI, same-day invoicing, hard-copy POD, and a dedicated rep who knows the freight"
     ],
     "problemsSolved": [
-      "OTIF retail chargebacks ($100-$500+ per shipment) the logistics director is personally graded on",
+      "OTIF retail chargebacks (often cited around $100 to $500 per shipment or a percentage of PO value) that the logistics director is personally graded on",
       "Perishable, must-arrive-by delivery windows that are tight and non-negotiable",
       "Temperature-claim disputes when the data trail is incomplete",
       "Reefer-LTL underservice and 2026 reefer capacity tightness, reliable backup coverage"
     ],
-    "quantifiableResults": "Adjacent proof only: 7 booked calls in 10 days on a prior pilot (different industry), not freight. No F&B freight results to claim yet; the pilot targets 3 booked calls. Do not reference freight case studies that don't exist.",
+    "quantifiableResults": "100,000+ vetted carriers; 99.9% claims-free delivery rate across all modes; FMCSA licensed and bonded, BBB accredited; full modal coverage including dry van, reefer, frozen and multi-temp.",
     "process": [
-      "We tune this ICP with you",
-      "We build and verify the lead list",
-      "We run warmed-domain outreach and book the calls",
-      "You take the meetings; we optimize weekly"
-    ]
+      "Quick lane review: share your toughest reefer lane, volume, and delivery windows",
+      "We match vetted, FSMA/CARB-compliant reefer capacity and confirm coverage",
+      "Every load ships with continuous temperature monitoring + real-time GPS, 24/7 dispatch",
+      "POD and same-day invoicing; we scale into more lanes as the backup proves out"
+    ],
+    "frontEndOffer": "A free reefer lane review plus an OTIF chargeback-exposure read on your toughest temperature-controlled lane. A no-obligation second-source capacity check, not a hard sell.",
+    "exampleEmail": "{{first_name}},\n\nSaw that {{company}} ships a lot of temperature-controlled freight on tight retail delivery windows, where one late or short reefer load turns into an OTIF chargeback that lands on you.\n\nWe come in as a vetted, FSMA-compliant backup on the one or two reefer lanes where your primary runs tight, so the hard lanes stay covered and you are not switching anyone.\n\nHappy to send a quick read on your toughest reefer lane, what it is running against the current market and where the OTIF exposure sits, yours to keep. Worth a look?"
   },
   "faq": {
     "items": [
       {
-        "id": "faq-pricing",
-        "q": "How should we handle pricing / rate requests?",
-        "a": "Don't quote rates in email, offer a quick lane review or a short call to scope it."
+        "id": "faq-reseller",
+        "q": "\"Aren't you just a broker reselling my freight?\"",
+        "a": "Lead with carrier vetting plus temperature monitoring on every load: vetted backup capacity with a real person accountable, not a faceless reseller."
       },
       {
-        "id": "faq-reseller",
-        "q": "What if they ask 'are you just a broker reselling my freight?'",
-        "a": "Lead with carrier vetting + temperature monitoring on every load; position as vetted backup capacity, not a reseller."
+        "id": "faq-incumbent",
+        "q": "\"We already have carriers / a primary broker.\"",
+        "a": "That is exactly the fit. We come in as your second-source / backup on tight reefer lanes and peak overflow, not a rip-and-replace."
+      },
+      {
+        "id": "faq-rates",
+        "q": "\"What are your rates?\"",
+        "a": "Rates depend on the lane, commodity, and equipment, so we will not throw out a cold number. Quick lane review or a short call and we will scope it properly.",
+        "ask": "Any rate or margin guidance you want us to work within, or keep it lane-review only?",
+        "reply": ""
+      },
+      {
+        "id": "faq-temp-proof",
+        "q": "\"Can you actually hold temperature, and prove it?\"",
+        "a": "Continuous temperature monitoring and real-time GPS on every reefer load, with FSMA and CARB-compliant vetted carriers.",
+        "ask": "Do your carriers provide downloadable temp logs / an audit trail, or is it live-monitoring only? (We need to know before we claim it.)",
+        "reply": ""
       },
       {
         "id": "faq-namedrop",
-        "q": "Can we reference named clients (e.g. Anheuser-Busch)?",
-        "a": "Confirm with Kevin before any name-drop in outbound copy."
+        "q": "\"Can you reference named clients (e.g. Anheuser-Busch)?\"",
+        "a": "Yes, we can reference relevant named accounts once you confirm which are OK to use, anonymized if you prefer (for example a national beverage brand).",
+        "ask": "OK to reference Anheuser-Busch / Lindsay Windows in outreach (even anonymized)?",
+        "reply": ""
+      },
+      {
+        "id": "faq-carrier-count",
+        "q": "How big is your carrier network?",
+        "a": "A vetted network with FMCSA authority, insurance, and safety checks on every carrier before dispatch.",
+        "ask": "Your site shows both 10,000+ and 100,000+ for the carrier network. Which number should we use in outreach?",
+        "reply": ""
+      },
+      {
+        "id": "faq-scope",
+        "q": "\"Which F&B should we focus on, and how big?\"",
+        "a": "Default is all cold-chain F&B (frozen, dairy, meat & poultry, produce, beverage), mid-market 50 to 2,000 employees, national.",
+        "ask": "Narrow the sub-vertical, strongest lanes/regions, size floor, and manufacturers-only vs include distributors?",
+        "reply": ""
       }
     ]
   }
