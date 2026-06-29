@@ -1,0 +1,209 @@
+{
+  "client": "tiernan",
+  "generated_at": "Jun 29, 2026",
+  "hero": {
+    "image": "/data/onboarding/tiernan-hero.webp",
+    "display": {
+      "clientName": "Kristine Bileskalne",
+      "title": "Founder",
+      "company": "Tiernan Travel",
+      "email": "kristine@tiernantravel.com",
+      "phone": "",
+      "website": "tiernantravel.com"
+    },
+    "fields": {
+      "campaignName": "Kristine Bileskalne, Founder",
+      "primaryCompanyEmail": "tiernantravel.com",
+      "outreachBusinessName": "Tiernan Travel",
+      "redirectWebsite": "https://tiernantravel.com",
+      "contactName": "Kristine Bileskalne",
+      "contactPhone": "",
+      "contactEmail": "kristine@tiernantravel.com",
+      "contactCommMethod": ""
+    }
+  },
+  "icps": [
+    {
+      "id": "icp-advisors",
+      "label": "US Luxury Travel Advisors",
+      "fields": {
+        "industryDescription": "US boutique luxury leisure travel advisors: owner-led, bespoke trip designers selling high-end travel to affluent Americans who want a reliable UK & Ireland partner on the ground. Independent agencies and owner-advisors inside consortia (Signature, Virtuoso, Tzell/FROSCH member shops).",
+        "jobTitles": ["Owner", "Founder", "President", "Principal Advisor"],
+        "countries": ["United States", "California", "Florida", "New York", "Texas", "Illinois"],
+        "companySize": "Solo advisor to ~50 people. Boutique-to-small is the sweet spot.",
+        "exclusions": "Corporate / business-travel agencies (TMCs), big network HQs (FROSCH/Tzell corporate), cruise-only retail, and mass-market or budget agencies. Anyone not selling bespoke luxury leisure.",
+        "idealClientWebsites": ""
+      },
+      "estTam": {
+        "value": "8K-10K",
+        "label": "US Luxury Leisure Travel Advisor Contacts"
+      }
+    }
+  ],
+  "dreamList": [
+    {
+      "id": "lead-hill-barrett",
+      "full_name": "Karimah Dossa",
+      "title": "Executive Director",
+      "company": "Hill Barrett Travel",
+      "company_country": "Woodinville, WA",
+      "company_website": "https://hillbarrett.com",
+      "email": "karimah@hillbarrett.com",
+      "company_description": "Boutique luxury agency designing bespoke worldwide trips for a select set of clients since 1998. Accolades include Classic Vacations Star Performer and Abercrombie & Kent 100 Club.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=hillbarrett.com&sz=128",
+      "seniority_level": "director",
+      "functional_level": "leadership",
+      "linkedin": "https://linkedin.com/in/karimah-dossa-b8617b17",
+      "whyFit": "Signature member, boutique luxury, bespoke worldwide design, natural UK/Ireland ground-partner fit."
+    },
+    {
+      "id": "lead-jetset",
+      "full_name": "Julia Douglas",
+      "title": "Owner",
+      "company": "JetSet World Travel",
+      "company_country": "Chicago, IL",
+      "company_website": "https://jetsetworldtravel.com",
+      "email": "julia@jetsetworldtravel.com",
+      "company_description": "Female-founded independent boutique offering concierge-level luxury travel: bespoke getaways, private charters, luxury safaris, through a virtual community of advisors.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=jetsetworldtravel.com&sz=128",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "linkedin": "https://linkedin.com/in/julia-pirrung-63171221",
+      "whyFit": "Signature member, female-founded boutique, concierge-level bespoke luxury, strong UK/Ireland partner fit."
+    },
+    {
+      "id": "lead-royal",
+      "full_name": "Kendra Thornton",
+      "title": "President & CEO",
+      "company": "Royal Travel & Tours",
+      "company_country": "Winnetka, IL",
+      "company_website": "https://royal-travel.com",
+      "email": "kthornton@royal-travel.com",
+      "company_description": "Boutique luxury agency with 50 years of expertise and Signature Travel Network membership, designing bespoke itineraries for individuals and families.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=royal-travel.com&sz=128",
+      "seniority_level": "c_suite",
+      "functional_level": "leadership",
+      "linkedin": "https://linkedin.com/in/kendrathornton",
+      "whyFit": "Signature member, 50-year boutique, owner-led bespoke luxury for families, ideal UK/Ireland partner."
+    },
+    {
+      "id": "lead-prestige",
+      "full_name": "Ivy Tjok",
+      "title": "Owner",
+      "company": "Prestige Travel",
+      "company_country": "Vero Beach, FL",
+      "company_website": "https://prestigetvl.com",
+      "email": "ivy.tjok@prestigetvl.com",
+      "company_description": "Signature Travel Network member and the only locally-owned agency in continuous operation in its area since 1995, specializing in luxury custom travel, cultural tours and culinary/wine journeys.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=prestigetvl.com&sz=128",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "linkedin": "https://linkedin.com/in/ivy-tjok-3240a933",
+      "whyFit": "Signature member, owner-led since 1995, luxury custom + cultural/culinary journeys, clean UK/Ireland fit."
+    },
+    {
+      "id": "lead-avenues",
+      "full_name": "Monika Leuenberger",
+      "title": "President",
+      "company": "Avenues of the World Travel",
+      "company_country": "Flagstaff, AZ",
+      "company_website": "https://avenuesoftheworld.com",
+      "email": "monika@avenuesoftheworld.com",
+      "company_description": "Independent boutique advisor and Signature Travel Network member in Flagstaff, AZ, designing personalized custom itineraries for individuals and families. Voted Best of Flagstaff for 21 years.",
+      "company_logo": "https://www.google.com/s2/favicons?domain=avenuesoftheworld.com&sz=128",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "linkedin": "https://linkedin.com/in/monika-leuenberger-1614797",
+      "whyFit": "Signature member, independent owner-led boutique, custom international itineraries, natural UK/Ireland ground-partner fit."
+    }
+  ],
+  "offer": {
+    "serviceDescription": "Bespoke, full-package luxury journeys through Ireland, Northern Ireland, Scotland, England and Wales, designed for American travelers. Tiernan is the UK & Ireland ground partner: the advisor sells, Tiernan designs and runs the trip.",
+    "uniqueAngle": "Family-owned, 20+ years, luxury and quality over quantity. Full bespoke only, never short city breaks or hop-on-hop-off. B2B only: works solely with advisors, never direct-to-consumer, so the client relationship stays the advisor's.",
+    "guarantees": [
+      "Your clients always stay yours: a white-label partnership",
+      "Bespoke proposals turned around in 24-48 hours",
+      "20+ years of on-the-ground UK & Ireland expertise",
+      "Full-package journeys handled end to end"
+    ],
+    "problemsSolved": [
+      "Finding a trustworthy UK & Ireland ground partner who won't poach the client",
+      "Designing genuinely bespoke luxury itineraries instead of cookie-cutter packages",
+      "Getting fast, reliable proposals during a busy season",
+      "On-the-ground logistics and quality control for discerning American travelers"
+    ],
+    "quantifiableResults": "20+ years of UK & Ireland experience; ETOA member; partnered with Tourism Ireland, Visit Britain, Visit Scotland and Visit Wales; real advisor testimonials (a US advisor who 'sent five families this summer,' problems 'solved within minutes,' itineraries that are 'not cookie-cutter'). Proposals delivered in 24-48 hours; clients who stay for good (high lifetime value).",
+    "process": [
+      "Hop on a call and share your voice, the client's dates, interests and preferences",
+      "Tiernan designs a bespoke UK/Ireland proposal in 24-48 hours",
+      "You present it to your client under your own brand",
+      "Tiernan runs the trip on the ground; you keep the relationship"
+    ],
+    "frontEndOffer": "A complimentary sample UK/Ireland itinerary, sent as the first touch. A partnership introduction, not a hard sell.",
+    "exampleEmail": "Hello Simon,\n\nI noticed that <Company Name> is focused on wine-tasting tours to Spain and Portugal, but I didn't see a dedicated UK/Ireland option in your portfolio.\n\nI went ahead and built a white-label itinerary designed to match that standard.\nOpen to seeing the draft?",
+    "frontEndItems": [
+      {
+        "name": "Ireland Iconic Highlights",
+        "url": "https://tiernantravel.com/experiences/ireland-iconic-highlights/",
+        "note": "Best for advisors whose clients want the definitive first-time Ireland: Cliffs of Moher, Wild Atlantic Way, Dublin, delivered private and bespoke."
+      },
+      {
+        "name": "The Golfing Trail: Scotland's Best Greens",
+        "url": "https://tiernantravel.com/experiences/the-golfing-trail-scotlands-best-greens/",
+        "note": "Best for advisors with golf-traveller clients chasing Scotland's legendary courses, paired with luxury stays and private transfers."
+      },
+      {
+        "name": "Emerald Isle Romance: A Honeymoon to Remember",
+        "url": "https://tiernantravel.com/experiences/emerald-isle-romance-a-honeymoon-to-remember/",
+        "note": "Best for advisors booking honeymoons, anniversaries or proposals who want a romantic, castle-stay Ireland."
+      }
+    ]
+  },
+  "faq": {
+    "items": [
+      {
+        "id": "faq-rates",
+        "q": "\"Is that net or commissionable? What are your rates?\"",
+        "a": "Don't quote cold. \"For a real number I'd need the client's dates, party size, interests and accommodation level. I can turn a proposal around in 24-48h.\"",
+        "ask": "Net rates vs commission? Typical advisor margin?",
+        "reply": ""
+      },
+      {
+        "id": "faq-credentials",
+        "q": "\"Can you share credentials, references or reviews?\" (luxury advisors always ask)",
+        "a": "20+ years, family-owned; ETOA member; partners with Tourism Ireland, Visit Britain, Visit Scotland, Visit Wales; advisor testimonials (e.g. a US advisor who 'sent five families this summer').",
+        "ask": "References we can name + permission to use them; licensing/bonding/insurance?",
+        "reply": ""
+      },
+      {
+        "id": "faq-virtuoso",
+        "q": "\"Are you a Virtuoso or Signature preferred partner?\" (your targets ARE Signature members)",
+        "a": "",
+        "ask": "Confirm preferred/affiliate status. This one matters a lot for this audience.",
+        "reply": ""
+      },
+      {
+        "id": "faq-how-work",
+        "q": "\"How do you typically work? What do you need from me?\"",
+        "a": "You sell and keep the client; we design and run it on the ground. To quote: client dates, party size, interests, accommodation level, arrival city. Proposal back in 24-48h."
+      },
+      {
+        "id": "faq-coverage",
+        "q": "\"Do you cover Scotland, England, Wales? Can you combine Ireland and Scotland?\"",
+        "a": "Yes. Ireland, Northern Ireland, Scotland, England, Wales. Multi-country UK & Ireland trips are our core."
+      },
+      {
+        "id": "faq-hotels",
+        "q": "\"5-star hotels? Are transfers private?\"",
+        "a": "Luxury, full-package and bespoke: boutique-to-5-star to the client's standard, private drivers/transfers throughout. (A testimonial cites a private driver for a full 2-week trip.)"
+      },
+      {
+        "id": "faq-photos",
+        "q": "\"Can you share photos I can use on social?\"",
+        "a": "",
+        "ask": "Shareable image/content pack?",
+        "reply": ""
+      }
+    ]
+  }
+}
