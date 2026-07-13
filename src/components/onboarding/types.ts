@@ -1,9 +1,13 @@
 // Shared types for the client onboarding page (/onboarding/[client]).
 // JSON in public/data/onboarding/{client}.json holds DEFAULTS; client edits
 // live in localStorage as a sparse Overlay (see useLocalStorageDraft).
+//
+// Shape: hero + agenda + ownership sit above a tab bar. Everything else lives
+// in a tab (offer / icp / replies / expectations / questions). One line per
+// idea - this is a working session, not homework.
 
 export interface LeadCardData {
-  id: string; // stable id; verdicts key on this, never on email/index
+  id: string; // stable id; fit scores key on this, never on email/index
   full_name: string;
   title?: string;
   company: string;
@@ -15,61 +19,105 @@ export interface LeadCardData {
   functional_level?: string;
   email?: string;
   linkedin?: string;
-  whyFit?: string; // grounded reason this lead fits the ICP (optional)
+  whyFit?: string; // ONE short line. Not a paragraph.
 }
 
+/* ---- targeting ---- */
+
 export interface IcpFields {
-  industryDescription: string;
-  jobTitles: string[];
-  countries: string[];
-  companySize: string;
-  exclusions: string; // "do not target", anti-ICP, rendered in the dream-list section
-  idealClientWebsites?: string; // client's own current / wished-for clients (comma-separated); renders when present
+  companySize: string; // a range, free text
+  jobTitles: string[]; // titles & personas
+  countries: string[]; // location
+  signals: string[]; // buying triggers we can filter a list on ("recently founded", "2nd location")
 }
 
 export interface Icp {
-  id: string; // stable id, overlay edits key on this
-  label: string;
+  id: string;
+  label: string; // the target vertical, e.g. "Dental Practices"
   fields: IcpFields;
-  estTam?: { value: string | number; label: string }; // display-only snapshot (string allows a range, e.g. "8K-10K")
 }
 
-export interface HeroFields {
-  campaignName: string; // email signature name
-  primaryCompanyEmail: string;
-  outreachBusinessName: string;
-  redirectWebsite: string;
-  // Contact person we coordinate with during the campaign (may differ from hero identity).
-  contactName?: string;
-  contactPhone?: string;
-  contactEmail?: string;
-  contactCommMethod?: string; // WhatsApp | Email | Slack
+export interface Targeting {
+  idealCustomers: string[]; // their current / dream-fit clients - we find lookalikes
+  doNotTarget: string[]; // anti-ICP
 }
 
-export interface FrontEndItem {
-  name: string;
-  url?: string;
-  note?: string; // "best for..." framing
+/* ---- offer ---- */
+
+export interface ServiceLine {
+  id: string;
+  name: string; // "Tax Planning"
+  line: string; // the offer in ONE sentence
+}
+
+// Rendered to LOOK like an email (subject line + body), not a wall of text.
+// Body keeps {{merge_tags}} - they get highlighted on render.
+export interface ExampleEmail {
+  id: string;
+  subject: string;
+  body: string;
 }
 
 export interface OfferFields {
-  serviceDescription: string;
-  uniqueAngle: string;
-  guarantees: string[];
+  services: ServiceLine[];
+  guarantees: string[]; // uniqueness / risk reversal / guarantees - one line each
   problemsSolved: string[];
-  quantifiableResults: string;
-  process: string[];
-  frontEndOffer?: string; // the first-touch hook / lead magnet; renders when present
-  exampleEmail?: string; // sample first-touch email; renders under the front-end offer
-  frontEndItems?: FrontEndItem[]; // named instances of the hook (e.g. sample itineraries)
+  proof: string[]; // numerical proof - one line each
+  guidingQuestion?: string; // the one question the front-end offer has to answer
+  frontEndOffer: string; // the hook, one short line
+  emails: ExampleEmail[]; // 1-2 SHORT examples
+  leadMagnets: string[]; // candidate magnets, one per line
 }
+
+/* ---- replies ---- */
 
 export interface FaqItem {
   id: string;
   q: string;
   a: string;
-  ask?: string; // our open question for the client to answer/validate (e.g. "net rates vs commission?")
-  reply?: string; // client's answer to our ask
+  ask?: string; // what we still need from the client on this one
+  reply?: string; // their answer
+}
+
+/* ---- expectations ---- */
+
+export interface RiskItem {
+  id: string;
+  risk: string;
+  prevention: string;
+}
+
+export interface TimelinePhase {
+  id: string;
+  phase: string; // "MONTH 0"
+  title: string; // "Onboarding, warm-up, kickoff and launch"
+  bullets: string[];
+  dates?: { label: string; value: string }[]; // only where we can name a real date
+}
+
+export interface Expectations {
+  risks: RiskItem[];
+  greatMeeting: string; // what a great meeting looks like for them
+  timeline: TimelinePhase[];
+}
+
+/* ---- open questions ---- */
+
+// What we need from the CLIENT before we can build. Distinct from FaqItem,
+// which is how we answer a PROSPECT. Keep `q` to one line.
+export interface OpenQuestion {
+  id: string;
+  q: string;
+  why?: string; // one short line - what this decides
+  priority?: "blocking" | "important";
+}
+
+/* ---- page ---- */
+
+export interface HeroFields {
+  primaryCompanyEmail: string;
+  outreachBusinessName: string;
+  redirectWebsite: string;
 }
 
 export interface OnboardingData {
@@ -77,7 +125,7 @@ export interface OnboardingData {
   generated_at?: string;
   hero: {
     image?: string;
-    logo?: string; // logo image url; falls back to a favicon derived from the website
+    logo?: string;
     display: {
       clientName: string;
       title: string;
@@ -88,16 +136,27 @@ export interface OnboardingData {
     };
     fields: HeroFields;
   };
+  agenda?: string[];
+  ownership?: { us: string[]; them: string[] };
+  // Says out loud that the pre-filled content is a stand-in, not us telling the
+  // client how their own business works. Shown atop the Offer + Ideal Customer tabs.
+  placeholderNote?: string;
   icps: Icp[];
+  targeting?: Targeting;
   dreamList: LeadCardData[];
   offer: OfferFields;
   faq: { items: FaqItem[] };
+  expectations?: Expectations;
+  openQuestions?: OpenQuestion[];
 }
 
-export type Verdict = "approve" | "reject";
+/* ---- client edits ---- */
+
+// 1-5 fit score, replacing the old binary approve/reject.
+export type Fit = 1 | 2 | 3 | 4 | 5;
 
 export interface VerdictEntry {
-  verdict: Verdict | null;
+  fit: Fit | null;
   note?: string;
 }
 
@@ -105,9 +164,13 @@ export interface VerdictEntry {
 export interface Overlay {
   v: number;
   updatedAt?: string;
-  hero?: Partial<HeroFields>;
   icps?: Record<string, Partial<IcpFields>>;
+  targeting?: Partial<Targeting>;
   offer?: Partial<OfferFields>;
   verdicts?: Record<string, VerdictEntry>;
   faq?: { items?: FaqItem[]; global?: string };
+  expectations?: { greatMeeting?: string };
+  openQuestions?: Record<string, string>; // question id -> answer
+  cancelTrigger?: string;
+  notes?: string; // free-text scratchpad, filled live on the call
 }

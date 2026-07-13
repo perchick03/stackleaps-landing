@@ -1,0 +1,312 @@
+{
+  "client": "vibe",
+  "generated_at": "Jul 13, 2026",
+  "hero": {
+    "image": "/data/onboarding/vibe-financials-hero.webp",
+    "display": {
+      "clientName": "Jeremy Watson",
+      "title": "CEO / Owner",
+      "company": "Vibe Financials",
+      "email": "jeremy.watson@vibefinancials.com",
+      "website": "vibefinancials.com"
+    },
+    "fields": {
+      "primaryCompanyEmail": "jeremy.watson@vibefinancials.com",
+      "outreachBusinessName": "Vibe Financials",
+      "redirectWebsite": "https://vibefinancials.com"
+    }
+  },
+  "placeholderNote": "The following is a placeholder around a dental example.",
+  "agenda": [
+    "How we work together - who owns what",
+    "Your services, and what we lead with",
+    "Who we go after",
+    "How we handle replies and objections",
+    "What could break this, and what prevents it",
+    "What we still need from you"
+  ],
+  "ownership": {
+    "us": [
+      "Infrastructure, deliverability, and sending volume",
+      "Targeting, list building, and campaign copy",
+      "Reply handling from first positive to booked meeting",
+      "The numbers: a scoreboard posted before every review call",
+      "Surfacing problems first, with the fix attached"
+    ],
+    "them": [
+      "The offer, pricing, proof, and product truth",
+      "Fast lead-quality feedback in weeks 1-3",
+      "Showing up to booked meetings and running the sales motion",
+      "Responses within the standards we set today",
+      "Telling us early when something feels off"
+    ]
+  },
+  "icps": [
+    {
+      "id": "icp-dental",
+      "label": "Dental Practices (example)",
+      "fields": {
+        "companySize": "Owner-operated practices, roughly 5-30 staff. Big enough to be clearly profitable, small enough that the owner still reads their own email.",
+        "jobTitles": ["Owner", "Practice Owner", "Managing Partner"],
+        "countries": ["United States"],
+        "signals": ["Recently expanded"]
+      }
+    }
+  ],
+  "targeting": {
+    "idealCustomers": [],
+    "doNotTarget": ["Practices owned by a larger group - the owner isn't the buyer"]
+  },
+  "dreamList": [
+    {
+      "id": "lead-singletary",
+      "full_name": "Dr. Macon Singletary",
+      "title": "Owner · Periodontist, DDS MS",
+      "company": "North Raleigh Periodontics & Implant Center",
+      "company_country": "Raleigh, NC",
+      "company_website": "https://www.northraleighperio.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=northraleighperio.com&sz=128",
+      "linkedin": "https://www.linkedin.com/in/macon-singletary-8316a112",
+      "company_description": "Single-location periodontics and dental implant practice serving the Triangle. 14 staff on the retirement plan, $18.2M in plan assets, $56,640 of employer contributions last year.",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "whyFit": "Large, well-funded, owner-operated specialist practice. Clearly profitable."
+    },
+    {
+      "id": "lead-kakosian",
+      "full_name": "Dr. Kenn Kakosian",
+      "title": "Owner · General & Cosmetic, DDS",
+      "company": "DentAlign NYC",
+      "company_country": "New York, NY",
+      "company_website": "https://www.nyc-dentalign.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=nyc-dentalign.com&sz=128",
+      "linkedin": "https://www.linkedin.com/in/kenn-kakosian-0a64b8146/",
+      "company_description": "General and cosmetic dentistry in the Chrysler Building, Invisalign Platinum Provider. 7 staff on the plan, $17.8M in plan assets, $50,238 contributed last year.",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "whyFit": "Small team, very high earnings. Owner-operated. Shows headcount isn't the filter."
+    },
+    {
+      "id": "lead-fatehi",
+      "full_name": "Dr. Sharo Fatehi",
+      "title": "Owner · Oral & Maxillofacial Surgeon, DDS",
+      "company": "Fatehi Oral Surgery and Dental Implants",
+      "company_country": "Laguna Niguel, CA",
+      "company_website": "https://www.fatehioralsurgery.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=fatehioralsurgery.com&sz=128",
+      "company_description": "Oral and maxillofacial surgery - implants, wisdom teeth, bone grafting, anesthesia. Orange County, 25+ years. 8 staff on the plan, $13.4M in plan assets, $65,318 contributed.",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "whyFit": "Established surgical practice, owner-operated, clearly profitable. (No LinkedIn found.)"
+    },
+    {
+      "id": "lead-daniel",
+      "full_name": "Dr. Steven Daniel",
+      "title": "Owner · Periodontist, DDS",
+      "company": "Periodontics & Implant Dentistry of Middle Tennessee",
+      "company_country": "Murfreesboro, TN",
+      "company_website": "https://www.middletennesseeperio.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=middletennesseeperio.com&sz=128",
+      "linkedin": "https://www.linkedin.com/in/steven-daniel-660b8933/",
+      "company_description": "Periodontics and implant dentistry - gum disease, regenerative therapy, implants. Three doctors. 23 staff on the plan, $9.1M in plan assets, $60,172 contributed.",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "whyFit": "Multi-doctor group - the larger end of the range. Is this size still a fit for you?"
+    },
+    {
+      "id": "lead-dunn",
+      "full_name": "Dr. S. Kendall Dunn",
+      "title": "Owner · Orthodontist, DMD MS",
+      "company": "Dunn & Schreiber Orthodontics (Just for Grins Orthodontics)",
+      "company_country": "Montgomery, AL",
+      "company_website": "https://justforgrinsortho.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=justforgrinsortho.com&sz=128",
+      "company_description": "Two-partner orthodontic practice with three Alabama locations (Montgomery, Wetumpka, Millbrook). Established 1990. 22 staff on the retirement plan, $14.0M in plan assets, $128,431 of employer contributions last year.",
+      "seniority_level": "owner",
+      "functional_level": "leadership",
+      "whyFit": "Two owners, three locations, 35 years established. Clearly profitable."
+    }
+  ],
+  "offer": {
+    "services": [
+      {
+        "id": "svc-tax",
+        "name": "Tax Planning",
+        "line": "A quarterly tax plan with a dollar figure on it: entity, comp, retirement, and depreciation moves flagged before their deadlines pass, not after filing."
+      },
+      {
+        "id": "svc-vcfo",
+        "name": "Virtual CFO / FP&A",
+        "line": "Monthly numbers you can run the practice on: clean books, one dashboard, and a monthly call that says what to do next and what it's worth."
+      },
+      { "id": "svc-accounting", "name": "Accounting / Bookkeeping", "line": "" }
+    ],
+    "guarantees": [
+      "If the plan doesn't identify at least 2x its fee in annual tax savings, the plan is free. (Fee-back guarantee; promises nothing about the IRS.)"
+    ],
+    "problemsSolved": [
+      "Your accountant shows up in April to report what already happened, then goes quiet until extension season, so every tax-saving move expires unused."
+    ],
+    "proof": [
+      "We handle multi-state, spiky-income returns for pro athletes and one of the largest law firms in Texas; your practice's return is not the hardest thing on our desk.",
+      "~50 five-star Google reviews"
+    ],
+    "guidingQuestion": "What could you do for a prospect in 30 minutes that they'd happily pay $100 for?",
+    "frontEndOffer": "To be decided on this call. Whatever the answer to that question is, that's what goes in the first email.",
+    "leadMagnets": [
+      "Option A - the value happens on the call. Your first 15 minutes IS the deliverable: you walk the owner through the handful of things you'd check on a business like theirs. It's your discovery call, renamed. Zero extra work. (If this one: what are the 6-8 things you'd actually check?)",
+      "Option B - we build them something before the call. We put together a short one-page brief per prospect from public information, so they get something real without you lifting a finger. (If this one: what would you want it to say?)"
+    ],
+    "emails": [
+      {
+        "id": "email-brief",
+        "subject": "fyi {{first_name}}",
+        "body": "{{first_name}}, if we built you a one-page brief on what to look at before the Sept 15 estimate (we pull the filings and write it, no charge, you just reply \"send\"), worth a look?"
+      },
+      {
+        "id": "email-second-location",
+        "subject": "{{city}} office",
+        "body": "Dr. {{last_name}}, saw the {{city}} office was added last year. First-year entity and depreciation choices usually set a practice's tax bill for the next five. We run a 15-minute mid-year check on exactly this, no charge, you keep the checklist either way.\n\nWorth doing?"
+      }
+    ]
+  },
+  "faq": {
+    "items": [
+      {
+        "id": "faq-have-cpa",
+        "q": "\"I already have an accountant.\"",
+        "a": "",
+        "ask": "This is the objection we'll hear most. How do you answer it? Your words will be better than ours.",
+        "reply": ""
+      },
+      {
+        "id": "faq-specialist",
+        "q": "\"Do you specialise in my industry?\"",
+        "a": "",
+        "ask": "How do you want to be positioned - specialists in something, or generalists who do it all? Whatever's true.",
+        "reply": ""
+      },
+      {
+        "id": "faq-credentials",
+        "q": "\"What are your credentials?\"",
+        "a": "",
+        "ask": "What can we say in the copy, and which credentials would you like us to lead with?",
+        "reply": ""
+      },
+      {
+        "id": "faq-cost",
+        "q": "\"What does it cost?\"",
+        "a": "",
+        "ask": "Price range stated in the email, or held back for the call? Both work - stating it filters harder.",
+        "reply": ""
+      },
+      {
+        "id": "faq-compliance",
+        "q": "\"Is a tax firm even allowed to email me like this?\"",
+        "a": "",
+        "ask": "You know these rules far better than we do. Anything we must say, or must never say, in an email going out under your name?",
+        "reply": ""
+      }
+    ]
+  },
+  "expectations": {
+    "risks": [
+      {
+        "id": "risk-deliverability",
+        "risk": "Deliverability dips",
+        "prevention": "Monitored daily, with warm-up buffers and rotation. Any dips reported to you the week it happens, with the fix attached."
+      },
+      {
+        "id": "risk-lead-quality",
+        "risk": "Lead-quality calibration, weeks 1-3",
+        "prevention": "First lists reviewed together before launch, and your feedback on every early positive tightens targeting before month two."
+      },
+      {
+        "id": "risk-conversion",
+        "risk": "Reply-to-meeting conversion",
+        "prevention": "Every positive reply gets a tracked follow-up path, and the positives-to-booked ratio sits on the scoreboard at every review call."
+      }
+    ],
+    "greatMeeting": "An owner-operated practice, the decision-maker actually on the call, profitable enough to afford you.",
+    "timeline": [
+      {
+        "id": "m0",
+        "phase": "Month 0",
+        "title": "Onboarding, warm-up, kickoff and launch",
+        "bullets": [
+          "Targeting and offer captured - that's today",
+          "Sending inboxes warm up over 14 days",
+          "Lists built and copy written",
+          "You sign off before anything sends"
+        ],
+        "dates": [
+          { "label": "Kickoff", "value": "Jul 23, 2026" },
+          { "label": "Launch", "value": "Jul 28, 2026" }
+        ]
+      },
+      {
+        "id": "m1",
+        "phase": "Month 1",
+        "title": "ICP calibration and campaign tuning",
+        "bullets": [
+          "First replies come back",
+          "Targeting tightened around who actually responds",
+          "Copy and angles tuned from what lands"
+        ]
+      },
+      {
+        "id": "m2",
+        "phase": "Month 2",
+        "title": "Pipeline up - meetings booked",
+        "bullets": [
+          "Meetings landing on your calendar",
+          "Every positive reply worked through to a booking"
+        ]
+      }
+    ]
+  },
+  "openQuestions": [
+    {
+      "id": "q-retainer-price",
+      "q": "What does an everyday retainer client pay you per month?",
+      "why": "Sets who we target, and makes the ROI math yours instead of mine.",
+      "priority": "blocking"
+    },
+    {
+      "id": "q-trigger-problem",
+      "q": "What's the #1 problem a client has right before they hire you? What made them finally pick up the phone?",
+      "why": "That's the first line of every email we write.",
+      "priority": "blocking"
+    },
+    {
+      "id": "q-credential",
+      "q": "Can we use 'CPA' or 'EA' in the copy? What credentials do you want us to lead with?",
+      "why": "So the copy claims exactly what's true and nothing more.",
+      "priority": "blocking"
+    },
+    {
+      "id": "q-landing-page",
+      "q": "Which page should our sending domains point to?",
+      "why": "They go live with warm-up this week, so they need a destination that converts.",
+      "priority": "blocking"
+    },
+    {
+      "id": "q-vertical",
+      "q": "Dental, law firms, physicians - which do we start with? And do you have clients in any of them today?",
+      "why": "You named all three. Your call which one we aim at first.",
+      "priority": "important"
+    },
+    {
+      "id": "q-proof",
+      "q": "What proof can we use? Client stories, results, reviews - anything you'd stand behind in writing.",
+      "why": "A cold email with no proof is just a claim.",
+      "priority": "important"
+    },
+    {
+      "id": "q-compliance",
+      "q": "Any compliance limits or personal limits you want to add for cold outreach? Anything we must say, or must never say?",
+      "why": "So we never write something that puts you at risk.",
+      "priority": "important"
+    }
+  ]
+}

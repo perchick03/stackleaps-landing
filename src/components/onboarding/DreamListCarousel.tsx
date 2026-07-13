@@ -3,7 +3,51 @@
 import { useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import type { LeadCardData, VerdictEntry } from "./types";
+import type { Fit, LeadCardData, VerdictEntry } from "./types";
+
+// 1-5 fit scale. Replaces the old binary approve/reject - a dentist can be
+// "probably" and that's the signal we actually want.
+const FIT_SCALE: { score: Fit; emoji: string; label: string }[] = [
+  { score: 1, emoji: "👎", label: "Not a fit" },
+  { score: 2, emoji: "🙁", label: "Weak" },
+  { score: 3, emoji: "😐", label: "Maybe" },
+  { score: 4, emoji: "🙂", label: "Good" },
+  { score: 5, emoji: "🤩", label: "Dream fit" },
+];
+
+function FitScale({ value, onPick }: { value: Fit | null; onPick: (v: Fit | null) => void }) {
+  const picked = FIT_SCALE.find((f) => f.score === value);
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <span className="text-xs font-semibold text-[var(--color-on-surface-variant)]">Fit</span>
+        <span className="text-xs font-semibold text-[var(--color-primary)] h-4">{picked?.label ?? ""}</span>
+      </div>
+      <div className="flex gap-1.5">
+        {FIT_SCALE.map((f) => {
+          const on = value === f.score;
+          return (
+            <button
+              key={f.score}
+              type="button"
+              onClick={() => onPick(on ? null : f.score)}
+              aria-label={`${f.score} - ${f.label}`}
+              title={f.label}
+              className={`flex-1 flex flex-col items-center gap-0.5 py-2 rounded-xl border text-sm transition-all cursor-pointer ${
+                on
+                  ? "border-[var(--color-secondary)] bg-[var(--color-secondary)]/10 ring-2 ring-[var(--color-secondary)]/25"
+                  : "border-[var(--color-outline-variant)]/40 hover:border-[var(--color-secondary)]/50 hover:bg-[var(--color-surface-low)] opacity-60 hover:opacity-100"
+              }`}
+            >
+              <span className="text-lg leading-none">{f.emoji}</span>
+              <span className="text-[10px] font-bold text-[var(--color-on-surface-variant)]">{f.score}</span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 function seniorityLabel(level: string): string {
   const map: Record<string, string> = {
@@ -70,21 +114,22 @@ function DreamCard({
 }: {
   lead: LeadCardData;
   entry: VerdictEntry;
-  onVerdict: (v: VerdictEntry["verdict"]) => void;
+  onVerdict: (v: Fit | null) => void;
   onNote: (note: string) => void;
 }) {
-  const approved = entry.verdict === "approve";
-  const rejected = entry.verdict === "reject";
+  const fit = entry.fit ?? null;
   const domain = lead.company_website?.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
   return (
     <div
       className={`flex flex-col bg-[var(--color-surface-lowest)] rounded-2xl border overflow-hidden shadow-ambient transition-colors ${
-        approved
-          ? "border-green-500/40"
-          : rejected
-            ? "border-red-400/40"
-            : "border-[var(--color-outline-variant)]/20"
+        fit === null
+          ? "border-[var(--color-outline-variant)]/20"
+          : fit >= 4
+            ? "border-green-500/40"
+            : fit <= 2
+              ? "border-red-400/40"
+              : "border-amber-400/40"
       }`}
     >
       {/* Identity header */}
@@ -170,38 +215,9 @@ function DreamCard({
         )}
       </div>
 
-      {/* Verdict footer */}
-      <div className="px-6 pb-5 pt-1 border-t border-[var(--color-outline-variant)]/15">
-        <div className="flex gap-3 mt-4">
-          <button
-            type="button"
-            onClick={() => onVerdict(rejected ? null : "reject")}
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm border transition-colors cursor-pointer ${
-              rejected
-                ? "bg-red-500 text-white border-red-500"
-                : "border-[var(--color-outline-variant)]/40 text-[var(--color-on-surface-variant)] hover:border-red-300 hover:text-red-600"
-            }`}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-            Not a fit
-          </button>
-          <button
-            type="button"
-            onClick={() => onVerdict(approved ? null : "approve")}
-            className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl font-semibold text-sm border transition-colors cursor-pointer ${
-              approved
-                ? "bg-green-600 text-white border-green-600"
-                : "border-[var(--color-outline-variant)]/40 text-[var(--color-on-surface-variant)] hover:border-green-400 hover:text-green-700"
-            }`}
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-            Dream fit
-          </button>
-        </div>
+      {/* Fit footer */}
+      <div className="px-6 pb-5 pt-4 border-t border-[var(--color-outline-variant)]/15">
+        <FitScale value={fit} onPick={onVerdict} />
         <textarea
           value={entry.note ?? ""}
           onChange={(e) => onNote(e.target.value)}
@@ -233,14 +249,14 @@ export default function DreamListCarousel({ leads, getVerdict, setVerdict }: Dre
     );
   }
 
-  const decided = leads.filter((l) => getVerdict(l.id).verdict !== null).length;
+  const decided = leads.filter((l) => getVerdict(l.id).fit !== null).length;
   const clamped = Math.min(index, leads.length - 1);
   const current = leads[clamped];
 
   const cardProps = (lead: LeadCardData) => ({
     lead,
     entry: getVerdict(lead.id),
-    onVerdict: (v: VerdictEntry["verdict"]) => setVerdict(lead.id, { ...getVerdict(lead.id), verdict: v }),
+    onVerdict: (v: Fit | null) => setVerdict(lead.id, { ...getVerdict(lead.id), fit: v }),
     onNote: (note: string) => setVerdict(lead.id, { ...getVerdict(lead.id), note }),
   });
 

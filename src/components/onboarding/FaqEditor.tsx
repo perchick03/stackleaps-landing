@@ -99,7 +99,7 @@ export default function FaqEditor({ items, onItems, global, onGlobal }: FaqEdito
           onCommit={onGlobal}
           ariaLabel="Anything else we should know"
           multiline
-          placeholder="Open notes, edge cases, things to avoid…"
+          placeholder="Objections you hear most, open notes, edge cases, things to avoid…"
           className="text-[var(--color-on-surface)] leading-relaxed"
         />
       </div>

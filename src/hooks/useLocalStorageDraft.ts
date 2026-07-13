@@ -1,14 +1,16 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { Overlay, Verdict, VerdictEntry } from "@/components/onboarding/types";
+import type { Fit, Overlay, VerdictEntry } from "@/components/onboarding/types";
 
-const VERSION = 1;
+// v2: verdicts went from binary approve/reject to a 1-5 fit score. Old v1
+// drafts are dropped rather than migrated - they're stale working sessions.
+const VERSION = 2;
 const DEBOUNCE_MS = 400;
 
 const clone = <T,>(o: T): T => JSON.parse(JSON.stringify(o));
 
-// Generic immutable path helpers — paths are dot strings, e.g. "icps.icp-1.companySize".
+// Generic immutable path helpers - paths are dot strings, e.g. "icps.icp-1.companySize".
 // ponytail: one generic getter/setter/unsetter beats five bespoke per-section ones.
 
 function getPath(obj: Record<string, unknown>, path: string[]): unknown {
@@ -29,7 +31,7 @@ function setPath(obj: Overlay, path: string[], value: unknown): Overlay {
   return next;
 }
 
-// Delete a key, then prune now-empty parent objects so the overlay stays sparse —
+// Delete a key, then prune now-empty parent objects so the overlay stays sparse -
 // this is what makes "empty field = revert to default" work (no stored "").
 function unsetPath(obj: Overlay, path: string[]): Overlay {
   const next = clone(obj);
@@ -58,7 +60,7 @@ export function useLocalStorageDraft(client: string) {
   const storageKey = `sl_onboarding_v1:${client}`;
 
   const [overlay, setOverlay] = useState<Overlay>(() => {
-    // SSR-safe lazy init — never touch localStorage outside this guard.
+    // SSR-safe lazy init - never touch localStorage outside this guard.
     if (typeof window === "undefined") return { v: VERSION };
     try {
       const raw = window.localStorage.getItem(storageKey);
@@ -76,7 +78,7 @@ export function useLocalStorageDraft(client: string) {
     overlayRef.current = overlay;
   }, [overlay]);
 
-  // Debounced write — don't hit localStorage on every keystroke.
+  // Debounced write - don't hit localStorage on every keystroke.
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (firstRun.current) {
@@ -91,7 +93,7 @@ export function useLocalStorageDraft(client: string) {
         );
         setSaved("saved");
       } catch {
-        /* quota / private mode — drop silently, edits stay in memory */
+        /* quota / private mode - drop silently, edits stay in memory */
       }
     }, DEBOUNCE_MS);
     return () => clearTimeout(t);
@@ -130,7 +132,7 @@ export function useLocalStorageDraft(client: string) {
   };
 
   const getVerdict = (id: string): VerdictEntry =>
-    overlay.verdicts?.[id] ?? { verdict: null, note: "" };
+    overlay.verdicts?.[id] ?? { fit: null, note: "" };
 
   const setVerdict = (id: string, entry: VerdictEntry) => {
     setSaved("saving");
@@ -153,4 +155,4 @@ export function useLocalStorageDraft(client: string) {
   return { overlay, saved, getValue, setField, clearField, getVerdict, setVerdict, reset };
 }
 
-export type { Verdict };
+export type { Fit };

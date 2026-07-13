@@ -9,97 +9,67 @@ import EditableField from "@/components/onboarding/EditableField";
 import EditableList from "@/components/onboarding/EditableList";
 import DreamListCarousel from "@/components/onboarding/DreamListCarousel";
 import FaqEditor from "@/components/onboarding/FaqEditor";
-import FrontEndEditor from "@/components/onboarding/FrontEndEditor";
+import EmailPreview from "@/components/onboarding/EmailPreview";
 import { useLocalStorageDraft } from "@/hooks/useLocalStorageDraft";
-import type { FaqItem, Icp, OnboardingData } from "@/components/onboarding/types";
+import type {
+  ExampleEmail,
+  FaqItem,
+  OnboardingData,
+  OpenQuestion,
+  ServiceLine,
+} from "@/components/onboarding/types";
 
 // Shared Formspree form (also used by ContactModal). Submissions are tagged
 // source=onboarding. Swap to a dedicated form id later if onboarding volume grows.
 const FORMSPREE_ENDPOINT = "https://formspree.io/f/xwvwyodd";
 
-const valueText = "text-lg font-medium text-[var(--color-on-surface)]";
-const proseText = "text-base sm:text-lg text-[var(--color-on-surface)] leading-relaxed";
+const TABS = [
+  { id: "offer", label: "Offer" },
+  { id: "icp", label: "Ideal Customer" },
+  { id: "replies", label: "Replies & Objections" },
+  { id: "expectations", label: "Expectations" },
+  { id: "questions", label: "Open Questions" },
+] as const;
+type TabId = (typeof TABS)[number]["id"];
 
-// Content is always visible (no scroll-reveal gating; a blank onboarding
-// section is far worse than no entrance animation). Motion lives on the
-// hero and on interactions instead.
-function Band({
-  tone = "base",
-  width = "prose",
-  children,
-}: {
-  tone?: "base" | "tint";
-  width?: "prose" | "wide";
-  children: React.ReactNode;
-}) {
+const CANCEL_Q =
+  "What is the single thing that, if it happened, would make you want to immediately cancel the partnership?";
+
+function Section({ title, sub, children }: { title: string; sub?: string; children: React.ReactNode }) {
   return (
-    <section className={tone === "tint" ? "bg-[var(--color-surface-low)]/40" : ""}>
-      <div className={`${width === "wide" ? "max-w-5xl" : "max-w-3xl"} mx-auto px-5 sm:px-8 py-16 sm:py-20`}>
-        {children}
-      </div>
+    <section className="mb-12">
+      <h3 className="text-lg font-bold text-[var(--color-primary)] tracking-tight">{title}</h3>
+      {sub && <p className="mt-1 mb-4 text-sm text-[var(--color-on-surface-variant)]">{sub}</p>}
+      <div className={sub ? "" : "mt-4"}>{children}</div>
     </section>
   );
 }
 
-function SectionHead({ title, sub }: { title: string; sub?: string }) {
+// The pre-filled content is a stand-in so the client can react instead of stare at a
+// blank form. Say that out loud, or it reads as us telling them their own business.
+function PlaceholderNote({ text }: { text: string }) {
   return (
-    <header className="mb-8">
-      <h2 className="text-2xl sm:text-[2rem] font-bold text-[var(--color-primary)] tracking-tight">{title}</h2>
-      {sub && <p className="mt-2 text-[var(--color-on-surface-variant)] leading-relaxed">{sub}</p>}
-    </header>
-  );
-}
-
-function InfoHint({ text }: { text: string }) {
-  return (
-    <span className="relative inline-flex group/hint align-middle">
-      <button
-        type="button"
-        onClick={(e) => e.preventDefault()}
-        aria-label="More info"
-        className="w-4 h-4 grid place-items-center rounded-full bg-[var(--color-on-surface-variant)]/15 text-[var(--color-on-surface-variant)] text-[10px] font-bold leading-none hover:bg-[var(--color-primary)] hover:text-white transition-colors"
+    <div className="flex gap-3 rounded-2xl bg-[var(--color-secondary)]/8 ring-1 ring-[var(--color-secondary)]/20 px-5 py-4 mb-10">
+      <svg
+        className="w-5 h-5 shrink-0 mt-0.5 text-[var(--color-secondary)]"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+        strokeWidth={2}
       >
-        ?
-      </button>
-      <span
-        role="tooltip"
-        className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-64 z-50 rounded-lg bg-[var(--color-primary)] text-white text-xs leading-relaxed p-3 shadow-ambient whitespace-pre-line opacity-0 translate-y-1 group-hover/hint:opacity-100 group-hover/hint:translate-y-0 group-focus-within/hint:opacity-100 group-focus-within/hint:translate-y-0 transition-all duration-150"
-      >
-        {text}
-      </span>
-    </span>
+        <circle cx="12" cy="12" r="9" />
+        <path strokeLinecap="round" d="M12 8h.01M11 12h1v4h1" />
+      </svg>
+      <p className="text-sm text-[var(--color-on-surface)] leading-relaxed">{text}</p>
+    </div>
   );
 }
 
-function Field({ label, hint, children }: { label: string; hint?: string; children: React.ReactNode }) {
+function Band({ tone = "base", children }: { tone?: "base" | "tint"; children: React.ReactNode }) {
   return (
-    <label className="block">
-      <span className="flex items-center gap-1.5 text-sm font-medium text-[var(--color-on-surface-variant)] mb-1">
-        {label}
-        {hint && <InfoHint text={hint} />}
-      </span>
-      {children}
-    </label>
-  );
-}
-
-const COMM_OPTIONS = ["WhatsApp", "Email", "Slack"];
-
-function CommMethodSelect({ value, onChange }: { value: string; onChange: (v: string) => void }) {
-  return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      aria-label="Preferred contact method"
-      className={`${valueText} w-full bg-[var(--color-surface-low)] rounded-lg px-3 py-2 border border-[var(--color-outline-variant)]/25 focus:outline-none focus:ring-2 focus:ring-[var(--color-secondary)]/30 focus:border-[var(--color-secondary)] transition-colors cursor-pointer`}
-    >
-      <option value="">Choose a channel…</option>
-      {COMM_OPTIONS.map((o) => (
-        <option key={o} value={o}>
-          {o}
-        </option>
-      ))}
-    </select>
+    <section className={tone === "tint" ? "bg-[var(--color-surface-low)]/40" : ""}>
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-14">{children}</div>
+    </section>
   );
 }
 
@@ -130,145 +100,15 @@ function BrandLogo({ src, name }: { src?: string; name: string }) {
   );
 }
 
-// ponytail: temp, aries-only. Hardcoded "what Kevin gets" plan, built from the
-// $750-breakdown email thread. Lives in code (not aries.json) so it can't collide
-// with the data audit. Generalize into the template + JSON later, not today.
-function AriesStackLeapsPlan({ brandDomain, altDomain }: { brandDomain: string; altDomain: string }) {
-  const covers = [
-    ["Sending domains", `Lookalike domains (e.g. ${altDomain}) so ${brandDomain} is never put at risk.`],
-    ["Mailboxes", "The inbox fleet that actually sends, rented monthly."],
-    ["Warm-up & deliverability", "SPF/DKIM/DMARC and ~2 weeks of seasoning so you land in the primary inbox, not spam — plus ongoing monitoring."],
-    ["Sending platform", "Instantly — the engine that runs the campaigns and routes the replies."],
-    ["List build & management", "Researching and building your target lists across your verticals, and running the campaigns."],
-  ];
-  const kickoff = [
-    "You give the green light.",
-    "This form locks your targeting and voice (you're doing it now).",
-    "Quick Stripe payment for the first month to spin up the infrastructure.",
-    "We build your domains and warm the inboxes (~2 weeks) while we finalize the list.",
-  ];
-  const prices = [
-    { amount: "$750", suffix: "/ month", label: "Infrastructure + list build & management. The only fixed cost." },
-    { amount: "$150", suffix: "/ qualified call", label: "Paid only when the call actually happens." },
-    { amount: "None", suffix: "", label: "No setup fee. No contract. Walk away anytime." },
-  ];
-  return (
-    <Band tone="tint" width="wide">
-      <SectionHead
-        title="Your StackLeaps Plan"
-        sub="Exactly what you're getting, and where every dollar goes — no mystery. We build the list, write the outreach, handle the replies, and book qualified calls straight onto your calendar. You just show up."
-      />
-
-      {/* Pricing */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        {prices.map((p) => (
-          <div
-            key={p.amount}
-            className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5"
-          >
-            <div className="flex items-baseline gap-1.5">
-              <span className="text-3xl font-bold text-[var(--color-primary)] tracking-tight">{p.amount}</span>
-              {p.suffix && <span className="text-sm font-medium text-[var(--color-on-surface-variant)]">{p.suffix}</span>}
-            </div>
-            <p className="mt-2 text-sm text-[var(--color-on-surface-variant)] leading-relaxed">{p.label}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* What the $750 covers */}
-      <div className="mt-6 rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
-        <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">Where the $750/month goes</span>
-        <ul className="space-y-4">
-          {covers.map(([title, desc]) => (
-            <li key={title} className="flex gap-3">
-              <svg className="w-5 h-5 mt-0.5 shrink-0 text-[var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-              </svg>
-              <p className="text-[var(--color-on-surface)] leading-relaxed">
-                <span className="font-semibold">{title}</span>
-                <span className="text-[var(--color-on-surface-variant)]"> — {desc}</span>
-              </p>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
-        {/* Risk reversal */}
-        <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
-          <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">Your risk is capped</span>
-          <ul className="space-y-3 text-[var(--color-on-surface)] leading-relaxed">
-            {[
-              "The first 3 qualified calls are your test drive — walk away anytime and you owe nothing for them.",
-              "You never pay for no-shows.",
-              "Not a decision-maker or otherwise unqualified? Flag it and it's free.",
-              "Everything past the $750/month is performance-based. We only get paid when you get qualified calls.",
-            ].map((t) => (
-              <li key={t} className="flex gap-2.5">
-                <span className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full bg-[var(--color-secondary)]" />
-                <span>{t}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        {/* Kickoff steps */}
-        <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-7">
-          <span className="block text-sm font-semibold text-[var(--color-primary)] mb-4">How we kick off</span>
-          <ol className="space-y-3">
-            {kickoff.map((t, i) => (
-              <li key={t} className="flex gap-3 text-[var(--color-on-surface)] leading-relaxed">
-                <span className="grid place-items-center w-6 h-6 shrink-0 rounded-full bg-[var(--color-secondary)]/12 text-[var(--color-secondary)] text-xs font-bold">
-                  {i + 1}
-                </span>
-                <span>{t}</span>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </div>
-    </Band>
-  );
-}
-
 function OnboardingContent({ data }: { data: OnboardingData }) {
-  const {
-    overlay,
-    saved,
-    getValue,
-    setField: rawSetField,
-    clearField: rawClearField,
-    getVerdict,
-    setVerdict: rawSetVerdict,
-    reset,
-  } = useLocalStorageDraft(data.client);
-  const [activeIcp, setActiveIcp] = useState(data.icps[0]?.id ?? "");
+  const { overlay, saved, getValue, setField, clearField, getVerdict, setVerdict, reset } =
+    useLocalStorageDraft(data.client);
+  const [tab, setTab] = useState<TabId>("offer");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
-
-  // Any edit after a successful send clears the "sent" state so the client can resubmit.
-  const touch = () => setStatus((s) => (s === "success" || s === "error" ? "idle" : s));
-  const setField = (path: string, value: unknown) => {
-    touch();
-    rawSetField(path, value);
-  };
-  const clearField = (path: string) => {
-    touch();
-    rawClearField(path);
-  };
-  const setVerdict = (id: string, entry: Parameters<typeof rawSetVerdict>[1]) => {
-    touch();
-    rawSetVerdict(id, entry);
-  };
   const reduce = useReducedMotion();
-  const logoSrc = data.hero.logo ?? faviconFor(data.hero.display.website ?? data.hero.fields.redirectWebsite);
+
   const d = data.hero.display;
-  const baseDomain = hostOf(data.hero.fields.redirectWebsite || data.hero.display.website);
-  const altDomain = baseDomain ? `try${baseDomain}` : "tryyourbrand.com";
-  const sigHint = `The name your outreach emails are signed with at the bottom of each message.\n\nExample:\n${data.hero.fields.campaignName || "Jane Doe, Founder"}\n${data.hero.fields.outreachBusinessName || "Your Business"}`;
-  const emailHint = `We register lookalike sending domains (e.g. ${altDomain}) and send from inboxes like name@${altDomain}, so your real domain stays clean and protected from deliverability risk.`;
-  const siteHint = `We point the campaign domain (e.g. ${altDomain}) to redirect here, so links in your emails reach your real site while the sending domain stays separate.`;
-  const tamHint =
-    "An estimate of the total people we could realistically contact for this ICP, based on the baseline data we have. It depends heavily on the country/region, company or employee size, and job titles above, so it shifts as we tune the ICP.";
+  const logoSrc = data.hero.logo ?? faviconFor(d.website ?? data.hero.fields.redirectWebsite);
 
   // Empty or equals-default reverts to our default (deletes the override).
   const commit = (path: string, def: string) => (raw: string) => {
@@ -282,127 +122,137 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
   };
 
   const handleReset = () => {
-    if (window.confirm("Reset all your edits back to our defaults? This cannot be undone.")) {
+    if (window.confirm("Reset all edits back to our defaults? This cannot be undone.")) {
       reset();
       setStatus("idle");
     }
   };
 
-  const icp: Icp | undefined = data.icps.find((i) => i.id === activeIcp) ?? data.icps[0];
+  const offer = { ...data.offer, ...(overlay.offer ?? {}) };
+  const targeting = { ...(data.targeting ?? { idealCustomers: [], doNotTarget: [] }), ...(overlay.targeting ?? {}) };
+  const services: ServiceLine[] = getValue("offer.services", data.offer.services);
+  const openQs: OpenQuestion[] = data.openQuestions ?? [];
+  const answeredQs = openQs.filter((q) => getValue(`openQuestions.${q.id}`, "").trim()).length;
 
   function buildPayload() {
-    const heroFields = { ...data.hero.fields, ...(overlay.hero ?? {}) };
     const icps = data.icps.map((i) => ({
       id: i.id,
       label: i.label,
       fields: { ...i.fields, ...(overlay.icps?.[i.id] ?? {}) },
-      estTam: i.estTam,
     }));
-    const offer = { ...data.offer, ...(overlay.offer ?? {}) };
     const dreamList = data.dreamList.map((l) => {
       const v = getVerdict(l.id);
-      return { id: l.id, company: l.company, full_name: l.full_name, verdict: v.verdict, note: v.note ?? "" };
+      return { id: l.id, company: l.company, full_name: l.full_name, fit: v.fit, note: v.note ?? "" };
     });
     const faqItems = (overlay.faq?.items ?? data.faq.items).filter((it) => it.q.trim() || it.a.trim());
-    const faqGlobal = overlay.faq?.global ?? "";
     return {
       client: data.client,
-      hero: { display: data.hero.display, fields: heroFields },
+      hero: { display: d, fields: data.hero.fields },
       icps,
+      targeting,
       dreamList,
       offer,
-      faq: { items: faqItems, global: faqGlobal },
+      faq: { items: faqItems, global: overlay.faq?.global ?? "" },
+      expectations: {
+        greatMeeting: getValue("expectations.greatMeeting", data.expectations?.greatMeeting ?? ""),
+      },
+      cancelTrigger: getValue("cancelTrigger", ""),
+      openQuestions: openQs.map((q) => ({
+        id: q.id,
+        q: q.q,
+        priority: q.priority ?? "blocking",
+        reply: getValue(`openQuestions.${q.id}`, ""),
+      })),
+      notes: getValue("notes", ""),
     };
   }
 
   async function handleSubmit() {
     if (status === "submitting") return;
     setStatus("submitting");
-    const payload = buildPayload();
-    const approved = payload.dreamList.filter((d) => d.verdict === "approve").length;
-    const rejected = payload.dreamList.filter((d) => d.verdict === "reject").length;
+    const p = buildPayload();
 
-    const h = payload.hero;
     const fullForm = [
-      `ONBOARDING SUBMISSION: ${h.display.company}`,
+      `ONBOARDING SUBMISSION: ${d.company}`,
       `Client slug: ${data.client}`,
+      `Contact: ${d.clientName}${d.title ? `, ${d.title}` : ""} - ${d.email || "(no email)"}`,
       ``,
-      `CONTACT (identity)`,
-      `  ${h.display.clientName}${h.display.title ? `, ${h.display.title}` : ""}`,
-      `  ${h.display.email || "(no email)"}`,
+      `OPEN QUESTIONS (${p.openQuestions.filter((q) => q.reply).length}/${p.openQuestions.length} answered)`,
+      ...p.openQuestions.flatMap((q) => [
+        `  [${q.priority.toUpperCase()}] ${q.q}`,
+        `    -> ${q.reply || "(unanswered)"}`,
+      ]),
       ``,
-      `CAMPAIGN DETAILS`,
-      `  Email signature name: ${h.fields.campaignName}`,
-      `  Primary company email: ${h.fields.primaryCompanyEmail || "(none)"}`,
-      `  Business name in outreach: ${h.fields.outreachBusinessName}`,
-      `  Redirect website: ${h.fields.redirectWebsite}`,
-      `  Contact person: ${h.fields.contactName || "(none)"}`,
-      `    phone: ${h.fields.contactPhone || "(none)"}`,
-      `    email: ${h.fields.contactEmail || "(none)"}`,
-      `    preferred channel: ${h.fields.contactCommMethod || "(not chosen)"}`,
+      `CANCEL TRIGGER`,
+      `  Q: ${CANCEL_Q}`,
+      `  -> ${p.cancelTrigger || "(unanswered)"}`,
       ``,
-      ...payload.icps.flatMap((icp) => [
-        `ICP: ${icp.label}   (est. reach: ${icp.estTam?.value ?? "n/a"})`,
-        `  Target industry: ${icp.fields.industryDescription}`,
-        `  Job titles: ${icp.fields.jobTitles.join(", ")}`,
-        `  Countries / regions: ${icp.fields.countries.join(", ")}`,
-        `  Company size: ${icp.fields.companySize}`,
-        `  Ideal customer websites: ${icp.fields.idealClientWebsites || "(none given)"}`,
-        `  Do NOT target: ${icp.fields.exclusions}`,
+      `SERVICES`,
+      ...p.offer.services.map((s) => `  ${s.name}: ${s.line}`),
+      ``,
+      `GUARANTEES / RISK REVERSAL`,
+      ...p.offer.guarantees.map((g) => `  - ${g}`),
+      ``,
+      `PROBLEMS SOLVED`,
+      ...p.offer.problemsSolved.map((x) => `  - ${x}`),
+      ``,
+      `NUMERICAL PROOF`,
+      ...p.offer.proof.map((x) => `  - ${x}`),
+      ``,
+      `FRONT-END OFFER`,
+      `  ${p.offer.frontEndOffer}`,
+      `  Lead magnets:`,
+      ...p.offer.leadMagnets.map((m) => `    - ${m}`),
+      `  Example emails:`,
+      ...p.offer.emails.flatMap((e) => [
+        `    Subject: ${e.subject}`,
+        ...e.body.split("\n").map((l) => `      ${l}`),
         ``,
       ]),
-      `DREAM LEADS for ${payload.icps.map((i) => i.label).join(" / ")}: ${approved} approved, ${rejected} rejected (of ${payload.dreamList.length})`,
-      ...payload.dreamList.map((l) => {
-        const mark = l.verdict === "approve" ? "[APPROVED]" : l.verdict === "reject" ? "[REJECTED]" : "[no verdict]";
-        return `  ${mark} ${l.full_name}, ${l.company}${l.note ? `   note: ${l.note}` : ""}`;
-      }),
       ``,
-      `OFFER`,
-      `  Service: ${payload.offer.serviceDescription}`,
-      `  Edge: ${payload.offer.uniqueAngle}`,
-      `  Guarantees: ${payload.offer.guarantees.join(" | ")}`,
-      `  Problems solved: ${payload.offer.problemsSolved.join(" | ")}`,
-      `  Proof: ${payload.offer.quantifiableResults}`,
-      `  Process: ${payload.offer.process.join(" > ")}`,
-      ...(payload.offer.frontEndOffer ? [`  Front-end offer: ${payload.offer.frontEndOffer}`] : []),
-      ...(payload.offer.exampleEmail
-        ? [`  Example first-touch email:`, ...payload.offer.exampleEmail.split("\n").map((l) => `    ${l}`)]
-        : []),
-      ...(payload.offer.frontEndItems && payload.offer.frontEndItems.length
-        ? [
-            `  Sample lead magnets:`,
-            ...payload.offer.frontEndItems.map(
-              (it) => `    - ${it.name}${it.url ? ` (${it.url})` : ""}${it.note ? `: ${it.note}` : ""}`,
-            ),
-          ]
-        : []),
+      `TARGETING`,
+      ...p.icps.flatMap((i) => [
+        `  VERTICAL: ${i.label}`,
+        `    Company size: ${i.fields.companySize}`,
+        `    Titles: ${i.fields.jobTitles.join(", ")}`,
+        `    Location: ${i.fields.countries.join(", ")}`,
+        `    Signals: ${(i.fields.signals ?? []).join(", ") || "(none)"}`,
+      ]),
+      `  Ideal customers: ${p.targeting.idealCustomers.join(" | ") || "(none given)"}`,
+      `  Do NOT target: ${p.targeting.doNotTarget.join(" | ") || "(none given)"}`,
       ``,
-      `REPLY / OBJECTION HANDLING`,
-      ...payload.faq.items.map((it) => {
+      `DREAM LEADS (1-5 fit)`,
+      ...p.dreamList.map(
+        (l) => `  [${l.fit ?? "-"}/5] ${l.full_name}, ${l.company}${l.note ? `   note: ${l.note}` : ""}`,
+      ),
+      ``,
+      `REPLIES / OBJECTIONS`,
+      ...p.faq.items.map((it) => {
         let s = `  Q: ${it.q}\n  A: ${it.a}`;
-        if (it.ask) s += `\n  >> WE NEED FROM YOU: ${it.ask}`;
-        if (it.reply) s += `\n  >> CLIENT ANSWER: ${it.reply}`;
+        if (it.ask) s += `\n  >> WE NEED: ${it.ask}`;
+        if (it.reply) s += `\n  >> THEIR ANSWER: ${it.reply}`;
         return s;
       }),
-      ...(payload.faq.global ? [``, `Anything else: ${payload.faq.global}`] : []),
+      ...(p.faq.global ? [``, `Anything else: ${p.faq.global}`] : []),
+      ``,
+      `A GREAT MEETING LOOKS LIKE`,
+      `  ${p.expectations.greatMeeting || "(not set)"}`,
+      ``,
+      `NOTES (from the call)`,
+      ...(p.notes ? p.notes.split("\n").map((l) => `  ${l}`) : ["  (none)"]),
     ].join("\n");
 
-    const contactEmail = h.fields.contactEmail || h.display.email || "";
     const fd = new FormData();
-    fd.append("_subject", `Onboarding submitted: ${data.hero.display.company} (${data.client})`);
-    if (contactEmail) fd.append("_replyTo", contactEmail);
-    fd.append("company", data.hero.display.company);
+    fd.append("_subject", `Onboarding submitted: ${d.company} (${data.client})`);
+    if (d.email) fd.append("_replyTo", d.email);
+    fd.append("company", d.company);
     fd.append("client_slug", data.client);
-    fd.append("name", h.fields.contactName || h.display.clientName || "");
-    fd.append("email", contactEmail);
-    fd.append("phone", h.fields.contactPhone || h.display.phone || "");
-    fd.append("website", h.display.website || h.fields.redirectWebsite || "");
-    fd.append("preferred_contact", h.fields.contactCommMethod || "(not chosen)");
-    fd.append("approved_count", String(approved));
-    fd.append("rejected_count", String(rejected));
+    fd.append("name", d.clientName);
+    fd.append("email", d.email);
     fd.append("source", "onboarding");
+    fd.append("questions_answered", `${p.openQuestions.filter((q) => q.reply).length}/${p.openQuestions.length}`);
     fd.append("full_form", fullForm);
-    fd.append("payload_json", JSON.stringify(payload, null, 2));
+    fd.append("payload_json", JSON.stringify(p, null, 2));
 
     try {
       const res = await fetch(FORMSPREE_ENDPOINT, {
@@ -429,13 +279,17 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
           className="relative h-60 sm:h-80 rounded-[1.75rem] overflow-hidden shadow-ambient"
         >
           {data.hero.image ? (
-            <Image src={data.hero.image} alt="" fill className="object-cover" priority />
+            <Image
+              src={data.hero.image}
+              alt=""
+              fill
+              // Without sizes, `fill` defaults to 100vw and Next upscales to 3840.
+              sizes="(max-width: 1024px) 100vw, 1024px"
+              className="object-cover"
+              priority
+            />
           ) : (
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-container)] flex items-center justify-center">
-              <span className="font-serif text-[8rem] leading-none text-white/15">
-                {data.hero.display.company.charAt(0).toUpperCase()}
-              </span>
-            </div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-primary-container)]" />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--color-primary)]/85 via-[var(--color-primary)]/15 to-transparent" />
           <div className="absolute bottom-0 left-0 p-6 sm:p-10 text-white">
@@ -444,9 +298,7 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
             </p>
             <div className="flex items-center gap-3">
               <BrandLogo src={logoSrc} name={d.company} />
-              <h1 className="font-serif text-4xl sm:text-5xl font-bold leading-[1.05] tracking-tight">
-                {d.company}
-              </h1>
+              <h1 className="font-serif text-4xl sm:text-5xl font-bold leading-[1.05] tracking-tight">{d.company}</h1>
             </div>
             {(d.clientName || d.title) && (
               <p className="mt-2 text-white/85">{[d.clientName, d.title].filter(Boolean).join("  ·  ")}</p>
@@ -454,427 +306,535 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
           </div>
         </motion.div>
 
-        {/* Contact details strip */}
-        <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--color-on-surface-variant)]">
-          {d.website && (
-            <a
-              href={d.website.startsWith("http") ? d.website : `https://${d.website}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 hover:text-[var(--color-primary)] transition-colors"
-            >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                <circle cx="12" cy="12" r="9" />
-                <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" />
-              </svg>
-              {d.website.replace(/^https?:\/\/(www\.)?/, "")}
-            </a>
-          )}
-          {d.email && (
-            <a href={`mailto:${d.email}`} className="inline-flex items-center gap-1.5 hover:text-[var(--color-primary)] transition-colors">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                <rect x="2" y="4" width="20" height="16" rx="2" />
-                <path d="m22 7-10 6L2 7" />
-              </svg>
-              {d.email}
-            </a>
-          )}
-          {d.phone && (
-            <span className="inline-flex items-center gap-1.5">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.09 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              {d.phone}
-            </span>
-          )}
-        </div>
-
-        <p className="mt-7 max-w-2xl text-lg text-[var(--color-on-surface-variant)] leading-relaxed">
-          We pre-filled everything below with our best starting point.{" "}
-          <span className="font-semibold text-[var(--color-on-surface)]">Click any value to correct us</span>. Your
-          edits save as you go, and clearing one puts our default back.
+        <p className="mt-6 max-w-2xl text-[var(--color-on-surface-variant)] leading-relaxed">
+          Everything below is pre-filled with our best guess.{" "}
+          <span className="font-semibold text-[var(--color-on-surface)]">Click any line to correct us.</span> Edits save
+          as you go.
         </p>
       </section>
 
-      {/* ponytail: aries-only temp section, gated on slug. Remove when templated. */}
-      {data.client === "aries" && <AriesStackLeapsPlan brandDomain={baseDomain} altDomain={altDomain} />}
+      {/* Agenda */}
+      {data.agenda && data.agenda.length > 0 && (
+        <Band>
+          <h2 className="text-2xl font-bold text-[var(--color-primary)] tracking-tight mb-6">What we cover today</h2>
+          <ol className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            {data.agenda.map((item, i) => (
+              <li key={item} className="flex items-center gap-3">
+                <span className="grid place-items-center w-7 h-7 shrink-0 rounded-full bg-[var(--color-secondary)]/12 text-[var(--color-secondary)] text-xs font-bold">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+                <span className="text-[var(--color-on-surface)]">{item}</span>
+              </li>
+            ))}
+          </ol>
+        </Band>
+      )}
 
-      {/* Campaign details: fact sheet */}
-      <Band tone="base">
-        <SectionHead title="Campaign Details" sub="What we'll use to run your outreach." />
-        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7">
-          <Field label="Email signature name" hint={sigHint}>
-            <EditableField
-              value={getValue("hero.campaignName", data.hero.fields.campaignName)}
-              onCommit={commit("hero.campaignName", data.hero.fields.campaignName)}
-              ariaLabel="Email signature name"
-              placeholder="Your name as it signs off emails"
-              className={valueText}
-            />
-          </Field>
-          <Field label="Primary company email" hint={emailHint}>
-            <EditableField
-              value={getValue("hero.primaryCompanyEmail", data.hero.fields.primaryCompanyEmail)}
-              onCommit={commit("hero.primaryCompanyEmail", data.hero.fields.primaryCompanyEmail)}
-              ariaLabel="Primary company email"
-              placeholder="you@company.com"
-              className={valueText}
-            />
-          </Field>
-          <Field label="Business name to use in outreach">
-            <EditableField
-              value={getValue("hero.outreachBusinessName", data.hero.fields.outreachBusinessName)}
-              onCommit={commit("hero.outreachBusinessName", data.hero.fields.outreachBusinessName)}
-              ariaLabel="Business name to use in outreach"
-              placeholder="Business name"
-              className={valueText}
-            />
-          </Field>
-          <Field label="Website the campaign domains redirect to" hint={siteHint}>
-            <EditableField
-              value={getValue("hero.redirectWebsite", data.hero.fields.redirectWebsite)}
-              onCommit={commit("hero.redirectWebsite", data.hero.fields.redirectWebsite)}
-              ariaLabel="Website the campaign domains redirect to"
-              placeholder="https://…"
-              className={valueText}
-            />
-          </Field>
-        </dl>
-
-        {/* Contact person */}
-        <div className="mt-8 rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6">
-          <h3 className="text-base font-semibold text-[var(--color-primary)]">Contact Person</h3>
-          <p className="text-sm text-[var(--color-on-surface-variant)] mb-4">
-            Who we&apos;ll coordinate with during the campaign. Edit if it&apos;s someone else.
+      {/* Ownership */}
+      {data.ownership && (
+        <Band tone="tint">
+          <h2 className="text-2xl font-bold text-[var(--color-primary)] tracking-tight">
+            An operator partner, not a vendor
+          </h2>
+          <p className="mt-1 mb-7 text-[var(--color-on-surface-variant)]">
+            We own the outcome with you. Here are the ownership lines, explicit from day one.
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6">
-            <Field label="Name">
-              <EditableField
-                value={getValue("hero.contactName", data.hero.fields.contactName ?? "")}
-                onCommit={commit("hero.contactName", data.hero.fields.contactName ?? "")}
-                ariaLabel="Contact name"
-                placeholder="Full name"
-                className={valueText}
-              />
-            </Field>
-            <Field label="Phone">
-              <EditableField
-                value={getValue("hero.contactPhone", data.hero.fields.contactPhone ?? "")}
-                onCommit={commit("hero.contactPhone", data.hero.fields.contactPhone ?? "")}
-                ariaLabel="Contact phone"
-                placeholder="Add a number"
-                className={valueText}
-              />
-            </Field>
-            <Field label="Email">
-              <EditableField
-                value={getValue("hero.contactEmail", data.hero.fields.contactEmail ?? "")}
-                onCommit={commit("hero.contactEmail", data.hero.fields.contactEmail ?? "")}
-                ariaLabel="Contact email"
-                placeholder="you@company.com"
-                className={valueText}
-              />
-            </Field>
-            <Field label="Preferred contact method">
-              <CommMethodSelect
-                value={getValue("hero.contactCommMethod", data.hero.fields.contactCommMethod ?? "")}
-                onChange={(v) =>
-                  v ? setField("hero.contactCommMethod", v) : clearField("hero.contactCommMethod")
-                }
-              />
-            </Field>
-          </div>
-        </div>
-      </Band>
-
-      {/* ICP dossier */}
-      <Band tone="tint">
-        <SectionHead title="The Ideal Customer Profile (ICP) We Built" sub="Who we'll target on your behalf. Tune anything that's off." />
-
-        {data.icps.length > 1 && (
-          <div className="flex flex-wrap gap-2 mb-7">
-            {data.icps.map((i) => (
-              <button
-                key={i.id}
-                type="button"
-                onClick={() => setActiveIcp(i.id)}
-                className={`px-4 py-2 rounded-full text-sm font-semibold transition-colors ${
-                  i.id === icp?.id
-                    ? "bg-[var(--color-primary)] text-white"
-                    : "bg-[var(--color-surface-lowest)] text-[var(--color-on-surface-variant)] hover:text-[var(--color-primary)]"
-                }`}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {[
+              { who: "StackLeaps owns", items: data.ownership.us, accent: "var(--color-secondary)" },
+              { who: `${d.company} owns`, items: data.ownership.them, accent: "var(--color-primary)" },
+            ].map((col) => (
+              <div
+                key={col.who}
+                className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6"
               >
-                {i.label}
-              </button>
+                <span className="block text-xs font-bold uppercase tracking-wider mb-4" style={{ color: col.accent }}>
+                  {col.who}
+                </span>
+                <ul className="space-y-3">
+                  {col.items.map((t) => (
+                    <li key={t} className="flex gap-2.5 text-[var(--color-on-surface)] leading-relaxed">
+                      <span
+                        className="mt-2 w-1.5 h-1.5 shrink-0 rounded-full"
+                        style={{ backgroundColor: col.accent }}
+                      />
+                      <span>{t}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             ))}
           </div>
-        )}
+        </Band>
+      )}
 
-        {icp && (
-          <div className="space-y-9">
-            {icp.estTam && (
-              <div>
-                {icp.estTam.label && (
-                  <h3 className="text-xl sm:text-2xl font-bold text-[var(--color-primary)] mb-2">
-                    {icp.estTam.label}
-                  </h3>
-                )}
-                <p className="flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
-                  <span className="font-serif text-2xl sm:text-3xl font-bold text-[var(--color-primary)] bg-[var(--color-secondary-container)]/40 rounded-md px-2.5 py-0.5 box-decoration-clone">
-                    ≈ {typeof icp.estTam.value === "number" ? icp.estTam.value.toLocaleString() : icp.estTam.value}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 text-sm text-[var(--color-on-surface-variant)]">
-                    Est. Total Addressable Market (TAM)
-                    <InfoHint text={tamHint} />
-                  </span>
-                </p>
-              </div>
-            )}
-
-            {/* Target industry: free text, no label */}
-            <EditableField
-              value={getValue(`icps.${icp.id}.industryDescription`, icp.fields.industryDescription)}
-              onCommit={commit(`icps.${icp.id}.industryDescription`, icp.fields.industryDescription)}
-              ariaLabel="Target industry"
-              multiline
-              className={proseText}
-            />
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7">
-              <Field label="Job titles to reach">
-                <EditableList
-                  value={getValue(`icps.${icp.id}.jobTitles`, icp.fields.jobTitles)}
-                  onCommit={commitList(`icps.${icp.id}.jobTitles`)}
-                  variant="chips"
-                  itemPlaceholder="Director of Logistics"
-                  addLabel="Add title"
-                />
-              </Field>
-              <Field label="Countries / regions to target">
-                <EditableList
-                  value={getValue(`icps.${icp.id}.countries`, icp.fields.countries)}
-                  onCommit={commitList(`icps.${icp.id}.countries`)}
-                  variant="chips"
-                  itemPlaceholder="United States"
-                  addLabel="Add region"
-                />
-              </Field>
-            </div>
-
-            <Field label="Ideal company size (employees, revenue, volume)">
-              <EditableField
-                value={getValue(`icps.${icp.id}.companySize`, icp.fields.companySize)}
-                onCommit={commit(`icps.${icp.id}.companySize`, icp.fields.companySize)}
-                ariaLabel="Ideal company size"
-                multiline
-                className={valueText}
-              />
-            </Field>
+      {/* Tab bar */}
+      <div className="sticky top-0 z-30 bg-[var(--color-surface)]/85 glass-effect border-y border-[var(--color-outline-variant)]/15">
+        <div className="max-w-5xl mx-auto px-5 sm:px-8">
+          <div className="flex gap-1 overflow-x-auto py-2.5 -mb-px">
+            {TABS.map((t) => {
+              const on = tab === t.id;
+              const badge =
+                t.id === "questions" && openQs.length ? `${answeredQs}/${openQs.length}` : null;
+              return (
+                <button
+                  key={t.id}
+                  type="button"
+                  onClick={() => setTab(t.id)}
+                  className={`shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold transition-colors cursor-pointer ${
+                    on
+                      ? "bg-[var(--color-primary)] text-white"
+                      : "text-[var(--color-on-surface-variant)] hover:bg-[var(--color-surface-low)] hover:text-[var(--color-primary)]"
+                  }`}
+                >
+                  {t.label}
+                  {badge && (
+                    <span
+                      className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${
+                        on ? "bg-white/20 text-white" : "bg-red-500/15 text-red-600"
+                      }`}
+                    >
+                      {badge}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
-        )}
-      </Band>
+        </div>
+      </div>
 
-      {/* Dream list + targeting boxes */}
-      <Band tone="base" width="wide">
-        <SectionHead
-          title="Your Ideal Customers"
-          sub="Add your own dream clients and the kinds of company to avoid, then mark the sample leads we found."
-        />
+      <div className="max-w-5xl mx-auto px-5 sm:px-8 py-12">
+        {/* ---------- TAB: OFFER ---------- */}
+        {tab === "offer" && (
+          <div>
+            {data.placeholderNote && <PlaceholderNote text={data.placeholderNote} />}
+            <Section title="Services we lead with" sub="One sentence each - in your words, how you'd say it to a client.">
+              <div className="space-y-3">
+                {services.map((s, i) => (
+                  <div
+                    key={s.id}
+                    className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-4 sm:p-5"
+                  >
+                    <span className="block text-xs font-bold uppercase tracking-wider text-[var(--color-secondary)] mb-1">
+                      {s.name}
+                    </span>
+                    <EditableField
+                      value={s.line}
+                      onCommit={(v) => {
+                        const next = services.slice();
+                        next[i] = { ...s, line: v };
+                        setField("offer.services", next);
+                      }}
+                      ariaLabel={`${s.name} offer line`}
+                      multiline
+                      placeholder="The offer in one sentence…"
+                      className="text-[var(--color-on-surface)] leading-relaxed"
+                    />
+                  </div>
+                ))}
+              </div>
+            </Section>
 
-        {icp && (
-          <div
-            className={`grid grid-cols-1 ${
-              icp.fields.idealClientWebsites !== undefined ? "lg:grid-cols-2" : ""
-            } gap-5 mb-12`}
-          >
-            {icp.fields.idealClientWebsites !== undefined && (
-              <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6">
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-[var(--color-primary)] mb-1">
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                    <circle cx="12" cy="12" r="9" />
-                    <circle cx="12" cy="12" r="4" />
-                    <circle cx="12" cy="12" r="0.5" fill="currentColor" />
-                  </svg>
-                  Ideal Customer Websites
-                </span>
-                <p className="text-xs text-[var(--color-on-surface-variant)] mb-2">
-                  5-10 sites of your current or dream-fit clients, comma-separated. We find lookalikes.
-                </p>
+            <Section
+              title="Uniqueness, risk reversal & guarantees"
+              sub="Any guarantee or risk-reversal you'd put your name to?"
+            >
+              <EditableList
+                value={getValue("offer.guarantees", data.offer.guarantees)}
+                onCommit={commitList("offer.guarantees")}
+                variant="lines"
+                marker="check"
+                itemPlaceholder="Add a guarantee you'd stand behind"
+                addLabel="Add guarantee"
+              />
+            </Section>
+
+            <Section
+              title="Problems your ideal client has that this solves"
+              sub="What's the #1 problem a client has right before they hire you - what made them finally pick up the phone?"
+            >
+              <EditableList
+                value={getValue("offer.problemsSolved", data.offer.problemsSolved)}
+                onCommit={commitList("offer.problemsSolved")}
+                variant="lines"
+                marker="dot"
+                itemPlaceholder="The problem, in your words"
+                addLabel="Add problem"
+              />
+            </Section>
+
+            <Section
+              title="Proof we can point to"
+              sub="Anything you'd stand behind in writing - reviews, client stories, credentials, results."
+            >
+              <EditableList
+                value={getValue("offer.proof", data.offer.proof)}
+                onCommit={commitList("offer.proof")}
+                variant="lines"
+                marker="check"
+                itemPlaceholder="Proof we can use in an email"
+                addLabel="Add proof"
+              />
+            </Section>
+
+            <Section title="Front-end offer" sub="What a prospect gets before they ever talk to you. We decide this together today.">
+              {data.offer.guidingQuestion && (
+                <blockquote className="mb-5 rounded-2xl bg-[var(--color-primary)] text-white px-6 py-5">
+                  <span className="block text-[11px] font-bold uppercase tracking-wider text-white/60 mb-2">
+                    The question we&apos;re here to answer
+                  </span>
+                  <p className="font-serif text-xl sm:text-2xl font-bold leading-snug">
+                    &ldquo;{data.offer.guidingQuestion}&rdquo;
+                  </p>
+                </blockquote>
+              )}
+              <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5">
                 <EditableField
-                  value={getValue(`icps.${icp.id}.idealClientWebsites`, icp.fields.idealClientWebsites ?? "")}
-                  onCommit={commit(`icps.${icp.id}.idealClientWebsites`, icp.fields.idealClientWebsites ?? "")}
-                  ariaLabel="Ideal customer websites"
+                  value={getValue("offer.frontEndOffer", data.offer.frontEndOffer)}
+                  onCommit={commit("offer.frontEndOffer", data.offer.frontEndOffer)}
+                  ariaLabel="Front-end offer"
                   multiline
-                  placeholder="acme-travel.com, example.com, ..."
                   className="text-[var(--color-on-surface)] leading-relaxed"
                 />
               </div>
-            )}
 
-            <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6">
-              <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-red-600 mb-1">
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
-                  <circle cx="12" cy="12" r="9" />
-                  <path strokeLinecap="round" d="M5.6 5.6l12.8 12.8" />
-                </svg>
-                Do Not Target
-              </span>
-              <p className="text-xs text-[var(--color-on-surface-variant)] mb-2">
-                Anti-ideal customers to steer clear of (e.g. large corporate agencies). Not competitors.
-              </p>
-              <EditableField
-                value={getValue(`icps.${icp.id}.exclusions`, icp.fields.exclusions)}
-                onCommit={commit(`icps.${icp.id}.exclusions`, icp.fields.exclusions)}
-                ariaLabel="Do not target"
-                multiline
-                className="text-[var(--color-on-surface-variant)] leading-relaxed"
-              />
-            </div>
+              <div className="mt-5">
+                <span className="block text-sm font-semibold text-[var(--color-primary)]">
+                  Two ways we could build it
+                </span>
+                <p className="text-xs text-[var(--color-on-surface-variant)] mb-2">
+                  Both are zero extra work for you. Which one fits?
+                </p>
+                <EditableList
+                  value={getValue("offer.leadMagnets", data.offer.leadMagnets)}
+                  onCommit={commitList("offer.leadMagnets")}
+                  variant="lines"
+                  marker="number"
+                  itemPlaceholder="A one-page illustration, generated from their own filing"
+                  addLabel="Add magnet"
+                />
+              </div>
+
+              <div className="mt-6">
+                <span className="block text-sm font-semibold text-[var(--color-primary)] mb-2">Example emails</span>
+                <EmailPreview
+                  emails={getValue("offer.emails", data.offer.emails)}
+                  from={`${d.clientName} · ${data.hero.fields.outreachBusinessName}`}
+                  onEmails={(next: ExampleEmail[]) => setField("offer.emails", next)}
+                />
+              </div>
+            </Section>
+
+            <Section title="Notes" sub="Scratchpad for the call. Nothing here gets cleaned up or overwritten.">
+              <div className="rounded-2xl bg-amber-50/60 ring-1 ring-amber-300/40 p-5">
+                <EditableField
+                  value={getValue("notes", "")}
+                  onCommit={(v) => (v.trim() ? setField("notes", v) : clearField("notes"))}
+                  ariaLabel="Call notes"
+                  multiline
+                  placeholder="Type anything here during the call…"
+                  className="text-[var(--color-on-surface)] leading-relaxed min-h-[6rem]"
+                />
+              </div>
+            </Section>
           </div>
         )}
 
-        <h3 className="flex items-center gap-1.5 text-xl font-bold text-[var(--color-primary)] mb-1">
-          Sample Dream-Fit Leads
-          <InfoHint text="Example companies from our data that match your ICP. As you mark each one a good or bad fit, we learn which accounts actually land — that's how we pin down your top ICP and go after the right prospects first." />
-        </h3>
-        <p className="text-[var(--color-on-surface-variant)] mb-6">Real companies we can reach for you. Mark each one.</p>
-        <DreamListCarousel leads={data.dreamList} getVerdict={getVerdict} setVerdict={setVerdict} />
-      </Band>
-
-      {/* Offer */}
-      <Band tone="tint">
-        <SectionHead title="Your Offer" sub="What we'll promote. Correct anything we got wrong." />
-        <div className="space-y-9">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-7">
-            <Field label="What we promote">
-              <EditableField
-                value={getValue("offer.serviceDescription", data.offer.serviceDescription)}
-                onCommit={commit("offer.serviceDescription", data.offer.serviceDescription)}
-                ariaLabel="What we promote"
-                multiline
-                className={proseText}
-              />
-            </Field>
-            <Field label="Your edge for this client">
-              <EditableField
-                value={getValue("offer.uniqueAngle", data.offer.uniqueAngle)}
-                onCommit={commit("offer.uniqueAngle", data.offer.uniqueAngle)}
-                ariaLabel="Your edge"
-                multiline
-                className={proseText}
-              />
-            </Field>
-          </div>
-
-          <Field label="Guarantees / risk reversals">
-            <EditableList
-              value={getValue("offer.guarantees", data.offer.guarantees)}
-              onCommit={commitList("offer.guarantees")}
-              variant="lines"
-              marker="check"
-              itemPlaceholder="No pay for unqualified calls"
-              addLabel="Add guarantee"
-            />
-          </Field>
-
-          <Field label="Problems your ideal client has that this solves">
-            <EditableList
-              value={getValue("offer.problemsSolved", data.offer.problemsSolved)}
-              onCommit={commitList("offer.problemsSolved")}
-              variant="lines"
-              marker="dot"
-              itemPlaceholder="OTIF retail chargebacks"
-              addLabel="Add problem"
-            />
-          </Field>
-
-          <div className="rounded-2xl bg-[var(--color-secondary-fixed)]/40 p-5 sm:p-6">
-            <span className="block text-sm font-semibold text-[var(--color-secondary)] mb-1.5">
-              Proof we can reference (real numbers only)
-            </span>
-            <EditableField
-              value={getValue("offer.quantifiableResults", data.offer.quantifiableResults)}
-              onCommit={commit("offer.quantifiableResults", data.offer.quantifiableResults)}
-              ariaLabel="Quantifiable results"
-              multiline
-              className="text-[var(--color-on-surface)] leading-relaxed"
-            />
-          </div>
-
-          <Field label="What a client experiences if they start today">
-            <EditableList
-              value={getValue("offer.process", data.offer.process)}
-              onCommit={commitList("offer.process")}
-              variant="lines"
-              marker="number"
-              itemPlaceholder="We build and verify the lead list"
-              addLabel="Add step"
-            />
-          </Field>
-
-          {data.offer.frontEndOffer !== undefined && (
-            <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6">
-              <span className="block text-sm font-semibold text-[var(--color-primary)] mb-1.5">
-                Front-End Offer: The First-Touch Hook
-              </span>
-              <EditableField
-                value={getValue("offer.frontEndOffer", data.offer.frontEndOffer ?? "")}
-                onCommit={commit("offer.frontEndOffer", data.offer.frontEndOffer ?? "")}
-                ariaLabel="Front-end offer"
-                multiline
-                className="text-[var(--color-on-surface)] leading-relaxed"
-              />
-
-              {data.offer.exampleEmail !== undefined && (
-                <div className="mt-4 rounded-xl border border-[var(--color-outline-variant)]/25 bg-[var(--color-surface-low)]/50 overflow-hidden">
-                  <div className="flex items-center gap-1.5 px-4 py-2 border-b border-[var(--color-outline-variant)]/20 text-xs font-semibold text-[var(--color-on-surface-variant)]">
-                    <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.8}>
-                      <rect x="2" y="4" width="20" height="16" rx="2" />
-                      <path d="m22 7-10 6L2 7" />
-                    </svg>
-                    Example First-Touch Email
+        {/* ---------- TAB: ICP ---------- */}
+        {tab === "icp" && (
+          <div>
+            {data.placeholderNote && <PlaceholderNote text={data.placeholderNote} />}
+            <Section title="Who we go after" sub="One card per vertical. Correct anything that's off.">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {data.icps.map((icp) => (
+                  <div
+                    key={icp.id}
+                    className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6"
+                  >
+                    <span className="block text-xs font-bold uppercase tracking-wider text-[var(--color-secondary)] mb-4">
+                      {icp.label}
+                    </span>
+                    <div className="space-y-4">
+                      <div>
+                        <span className="block text-xs font-medium text-[var(--color-on-surface-variant)] mb-0.5">
+                          Company size
+                        </span>
+                        <EditableField
+                          value={getValue(`icps.${icp.id}.companySize`, icp.fields.companySize)}
+                          onCommit={commit(`icps.${icp.id}.companySize`, icp.fields.companySize)}
+                          ariaLabel="Company size"
+                          className="text-[var(--color-on-surface)]"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-xs font-medium text-[var(--color-on-surface-variant)] mb-1.5">
+                          Titles &amp; personas
+                        </span>
+                        <EditableList
+                          value={getValue(`icps.${icp.id}.jobTitles`, icp.fields.jobTitles)}
+                          onCommit={commitList(`icps.${icp.id}.jobTitles`)}
+                          variant="chips"
+                          itemPlaceholder="Owner"
+                          addLabel="Add title"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-xs font-medium text-[var(--color-on-surface-variant)] mb-1.5">
+                          Location
+                        </span>
+                        <EditableList
+                          value={getValue(`icps.${icp.id}.countries`, icp.fields.countries)}
+                          onCommit={commitList(`icps.${icp.id}.countries`)}
+                          variant="chips"
+                          itemPlaceholder="United States"
+                          addLabel="Add location"
+                        />
+                      </div>
+                      <div>
+                        <span className="block text-xs font-medium text-[var(--color-on-surface-variant)] mb-0.5">
+                          Signals
+                        </span>
+                        <p className="text-[11px] text-[var(--color-on-surface-variant)]/70 mb-1.5">
+                          Buying triggers we can filter a list on. Fine to leave empty.
+                        </p>
+                        <EditableList
+                          value={getValue(`icps.${icp.id}.signals`, icp.fields.signals ?? [])}
+                          onCommit={commitList(`icps.${icp.id}.signals`)}
+                          variant="chips"
+                          itemPlaceholder="Recently founded"
+                          addLabel="Add signal"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="px-4 py-3">
-                    <EditableField
-                      value={getValue("offer.exampleEmail", data.offer.exampleEmail ?? "")}
-                      onCommit={commit("offer.exampleEmail", data.offer.exampleEmail ?? "")}
-                      ariaLabel="Example first-touch email"
-                      multiline
-                      className="text-sm text-[var(--color-on-surface)] leading-relaxed whitespace-pre-line"
-                    />
-                  </div>
-                </div>
-              )}
+                ))}
+              </div>
+            </Section>
 
-              <div className="mt-4">
-                <span className="block text-sm font-medium text-[var(--color-on-surface-variant)] mb-2">
-                  Sample Lead Magnet
-                </span>
-                <FrontEndEditor
-                  items={getValue("offer.frontEndItems", data.offer.frontEndItems ?? [])}
-                  onItems={(items) =>
-                    items.length ? setField("offer.frontEndItems", items) : clearField("offer.frontEndItems")
-                  }
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-12">
+              <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5 sm:p-6">
+                <span className="block text-sm font-semibold text-[var(--color-primary)]">Your ideal customers</span>
+                <p className="text-xs text-[var(--color-on-surface-variant)] mb-3">
+                  Current or dream-fit clients. We find lookalikes.
+                </p>
+                <EditableList
+                  value={getValue("targeting.idealCustomers", targeting.idealCustomers)}
+                  onCommit={commitList("targeting.idealCustomers")}
+                  variant="lines"
+                  marker="dot"
+                  itemPlaceholder="acme-dental.com"
+                  addLabel="Add customer"
+                />
+              </div>
+              <div className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-red-400/25 p-5 sm:p-6">
+                <span className="block text-sm font-semibold text-red-600">Do not target</span>
+                <p className="text-xs text-[var(--color-on-surface-variant)] mb-3">
+                  Anti-ideal customers. Not competitors.
+                </p>
+                <EditableList
+                  value={getValue("targeting.doNotTarget", targeting.doNotTarget)}
+                  onCommit={commitList("targeting.doNotTarget")}
+                  variant="lines"
+                  marker="dot"
+                  itemPlaceholder="DSO-owned practices"
+                  addLabel="Add exclusion"
                 />
               </div>
             </div>
-          )}
-        </div>
-      </Band>
 
-      {/* FAQ */}
-      <Band tone="base">
-        <SectionHead
-          title="Reply & Objection Handling"
-          sub="How should we answer when prospects ask? Add anything you want handled a certain way."
-        />
-        <FaqEditor
-          items={getValue("faq.items", data.faq.items)}
-          onItems={(items: FaqItem[]) => setField("faq.items", items)}
-          global={getValue("faq.global", "")}
-          onGlobal={(text: string) => (text ? setField("faq.global", text) : clearField("faq.global"))}
-        />
-      </Band>
+            <Section title="Sample dream-fit leads" sub="Real companies we can reach. Score each 1-5.">
+              <DreamListCarousel leads={data.dreamList} getVerdict={getVerdict} setVerdict={setVerdict} />
+            </Section>
+          </div>
+        )}
+
+        {/* ---------- TAB: REPLIES ---------- */}
+        {tab === "replies" && (
+          <div>
+            <Section title="Replies & objection handling" sub="How we answer when prospects push back.">
+              <FaqEditor
+                items={getValue("faq.items", data.faq.items)}
+                onItems={(items: FaqItem[]) => setField("faq.items", items)}
+                global={getValue("faq.global", "")}
+                onGlobal={(text: string) => (text ? setField("faq.global", text) : clearField("faq.global"))}
+              />
+            </Section>
+          </div>
+        )}
+
+        {/* ---------- TAB: EXPECTATIONS ---------- */}
+        {tab === "expectations" && data.expectations && (
+          <div>
+            <Section
+              title="Our honest risks, and what prevents them"
+              sub="We would rather name the failure modes than promise there are none."
+            >
+              <div className="space-y-3">
+                {data.expectations.risks.map((r) => (
+                  <div
+                    key={r.id}
+                    className="rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-1.5 w-2 h-2 shrink-0 rounded-full bg-amber-500" />
+                      <div>
+                        <p className="font-semibold text-[var(--color-on-surface)]">{r.risk}</p>
+                        <p className="mt-1 text-sm text-[var(--color-on-surface-variant)] leading-relaxed">
+                          <span className="font-bold text-[var(--color-secondary)]">PREVENTION: </span>
+                          {r.prevention}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Section>
+
+            <Section title="What a great meeting looks like for you" sub="We agree the definition here.">
+              <div className="rounded-2xl bg-[var(--color-secondary-fixed)]/40 p-5">
+                <EditableField
+                  value={getValue("expectations.greatMeeting", data.expectations.greatMeeting)}
+                  onCommit={commit("expectations.greatMeeting", data.expectations.greatMeeting)}
+                  ariaLabel="What a great meeting looks like"
+                  multiline
+                  placeholder="A qualified meeting for you means…"
+                  className="text-[var(--color-on-surface)] leading-relaxed"
+                />
+              </div>
+            </Section>
+
+            {/* Cancel trigger - the early-warning system gets built around this answer. */}
+            <Section title="">
+              <div className="rounded-2xl bg-red-50/70 ring-1 ring-red-300/40 p-6">
+                <span className="block text-[11px] font-bold uppercase tracking-wider text-red-600 mb-3">
+                  Your answer · captured live
+                </span>
+                <p className="text-xl font-bold text-[var(--color-on-surface)] leading-snug mb-5">{CANCEL_Q}</p>
+                <div className="rounded-xl bg-[var(--color-surface-lowest)] ring-1 ring-red-300/40 px-4 py-3">
+                  <EditableField
+                    value={getValue("cancelTrigger", "")}
+                    onCommit={(v) => (v.trim() ? setField("cancelTrigger", v) : clearField("cancelTrigger"))}
+                    ariaLabel="Cancel trigger"
+                    multiline
+                    placeholder="Your answer…"
+                    className="text-[var(--color-on-surface)] leading-relaxed"
+                  />
+                </div>
+                <p className="mt-5 pt-4 border-t border-red-300/30 text-sm italic text-red-700/80 leading-relaxed">
+                  We watch for this one specifically, and tell you the moment it starts to look likely.
+                </p>
+              </div>
+            </Section>
+
+            <Section title="How this rolls out" sub="Month one is setup, not results. Here's the honest shape of it.">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {data.expectations.timeline.map((ph) => (
+                  <div
+                    key={ph.id}
+                    className="flex flex-col rounded-2xl bg-[var(--color-surface-lowest)] ring-1 ring-[var(--color-outline-variant)]/15 p-5"
+                  >
+                    <span className="block text-[11px] font-bold uppercase tracking-wider text-[var(--color-on-surface-variant)]/70 mb-1.5">
+                      {ph.phase}
+                    </span>
+                    <span className="block text-base font-bold text-[var(--color-primary)] leading-snug mb-4">
+                      {ph.title}
+                    </span>
+                    <ul className="space-y-2.5 flex-1">
+                      {ph.bullets.map((b) => (
+                        <li key={b} className="flex gap-2.5 text-sm text-[var(--color-on-surface)] leading-relaxed">
+                          <span className="mt-1.5 w-1.5 h-1.5 shrink-0 rounded-full bg-[var(--color-secondary)]" />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    {ph.dates && ph.dates.length > 0 && (
+                      <div className="mt-5 pt-4 border-t border-[var(--color-outline-variant)]/20 space-y-1.5">
+                        {ph.dates.map((dt) => (
+                          <div
+                            key={dt.label}
+                            className="flex items-center justify-between gap-2 px-3 py-1.5 rounded-lg bg-[var(--color-surface-low)]"
+                          >
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-[var(--color-on-surface-variant)]">
+                              {dt.label}
+                            </span>
+                            <span className="font-mono text-sm font-semibold text-[var(--color-primary)]">
+                              {dt.value}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </Section>
+          </div>
+        )}
+
+        {/* ---------- TAB: OPEN QUESTIONS ---------- */}
+        {tab === "questions" && (
+          <div>
+            <Section
+              title="What we need from you"
+              sub={
+                openQs.length
+                  ? `${answeredQs} of ${openQs.length} answered. Red = we can't launch without it.`
+                  : undefined
+              }
+            >
+              {openQs.length === 0 && (
+                <div className="rounded-2xl border border-dashed border-[var(--color-outline-variant)]/40 bg-[var(--color-surface-low)]/40 px-6 py-12 text-center text-[var(--color-on-surface-variant)]">
+                  No questions yet. Add them to{" "}
+                  <code className="font-mono text-sm text-[var(--color-primary)]">openQuestions</code> in{" "}
+                  <code className="font-mono text-sm text-[var(--color-primary)]">{data.client}.json</code>.
+                </div>
+              )}
+              <div className="space-y-3">
+                {openQs.map((q) => {
+                  const blocking = q.priority !== "important";
+                  return (
+                    <div
+                      key={q.id}
+                      className={`rounded-2xl bg-[var(--color-surface-lowest)] p-5 ring-1 ${
+                        blocking ? "ring-red-500/25" : "ring-[var(--color-outline-variant)]/20"
+                      }`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <span
+                          className={`mt-1.5 w-2 h-2 shrink-0 rounded-full ${
+                            blocking ? "bg-red-500" : "bg-amber-500"
+                          }`}
+                        />
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-[var(--color-on-surface)] leading-snug">{q.q}</p>
+                          {q.why && (
+                            <p className="mt-0.5 text-sm text-[var(--color-on-surface-variant)]">{q.why}</p>
+                          )}
+                          <div className="mt-3 rounded-xl border border-[var(--color-outline-variant)]/25 bg-[var(--color-surface-low)]/50 px-4 py-2.5">
+                            <EditableField
+                              value={getValue(`openQuestions.${q.id}`, "")}
+                              onCommit={(v) =>
+                                v.trim()
+                                  ? setField(`openQuestions.${q.id}`, v.trim())
+                                  : clearField(`openQuestions.${q.id}`)
+                              }
+                              ariaLabel={q.q}
+                              multiline
+                              placeholder="Your answer…"
+                              className="text-[var(--color-on-surface)] leading-relaxed"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Section>
+          </div>
+        )}
+      </div>
 
       {/* Sticky submit bar */}
       <div className="fixed bottom-0 inset-x-0 z-40 bg-[var(--color-surface-lowest)]/80 glass-effect shadow-[0_-12px_30px_rgba(14,29,43,0.06)]">
@@ -891,7 +851,7 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
             <button
               type="button"
               onClick={handleReset}
-              className="text-sm text-[var(--color-on-surface-variant)]/70 hover:text-red-600 underline-offset-2 hover:underline transition-colors"
+              className="text-sm text-[var(--color-on-surface-variant)]/70 hover:text-red-600 underline-offset-2 hover:underline transition-colors cursor-pointer"
             >
               Reset
             </button>
@@ -910,7 +870,7 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
               type="button"
               onClick={handleSubmit}
               disabled={status === "submitting"}
-              className="bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity disabled:opacity-60"
+              className="bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-secondary-container)] text-white px-6 py-3 rounded-lg font-bold hover:opacity-90 transition-opacity disabled:opacity-60 cursor-pointer"
             >
               {status === "submitting" ? "Sending…" : status === "success" ? "Submit again" : "Submit onboarding"}
             </button>
@@ -942,7 +902,10 @@ export default function OnboardingPage() {
         if (!json.hero) miss.push("hero");
         if (!Array.isArray(json.icps) || json.icps.length === 0) miss.push("icps");
         if (!Array.isArray(json.dreamList)) miss.push("dreamList");
+        // v2 offer shape. Pre-tabs files (tiernan, aries) fail here rather than
+        // white-screening on offer.services.map - migrate them if they're needed again.
         if (!json.offer) miss.push("offer");
+        else if (!Array.isArray(json.offer.services)) miss.push("offer.services (old schema - needs migration)");
         if (!json.faq) miss.push("faq");
         if (miss.length) {
           setMissing(miss);
@@ -974,7 +937,9 @@ export default function OnboardingPage() {
           <p className="text-[var(--color-on-surface-variant)] mb-4">Missing required fields:</p>
           <ul className="text-left inline-block text-sm font-mono bg-red-50 border border-red-200 rounded-lg px-4 py-3">
             {missing.map((f) => (
-              <li key={f} className="text-red-700">- {f}</li>
+              <li key={f} className="text-red-700">
+                - {f}
+              </li>
             ))}
           </ul>
         </div>
