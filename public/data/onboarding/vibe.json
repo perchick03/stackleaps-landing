@@ -16,7 +16,7 @@
       "redirectWebsite": "https://vibefinancials.com"
     }
   },
-  "placeholderNote": "Rebuilt from our Jul 13 call - your pricing, your guarantee, your objection answers, in your words. Anything you disagree with, change it here. The sample leads below are REAL Atlanta-area businesses, and we didn't guess at their size: every one filed a Form 5500 with the Department of Labor showing $300k-$400k a year going into staff retirement plans. That's public, verifiable proof they clear your $1M floor - better than any database estimate. There are 637 more like them in Atlanta metro and 1,319 in Georgia. Rate these 1-5 and tell us which VERTICALS to lean into - that's the one decision we can't make for you.",
+  "placeholderNote": "Rebuilt from our Jul 13 call - your pricing, your guarantee, your objection answers, in your words. Anything you disagree with, change it here. The sample leads below are REAL Atlanta-area businesses, and we didn't guess at their size: every one filed a Form 5500 with the Department of Labor showing $300k-$400k a year going into staff retirement plans. That's public, verifiable proof they clear your $1M floor - better than any database estimate. The pool behind them: 637 in Atlanta metro, 1,319 in Georgia, 7,005 across the Southeast. Rate these 1-5 and tell us which VERTICALS to lean into - that's the one decision we can't make for you.",
   "agenda": [
     "How we work together - who owns what",
     "Your services, and what we lead with",
@@ -56,7 +56,7 @@
           "President"
         ],
         "countries": [
-          "United States - Georgia first, then Southeast, then East Coast, then national"
+          "United States. Georgia first (they already know your firm), then Southeast, then East Coast, then national. You also have a Santa Monica office, so the West Coast is open later."
         ],
         "signals": [
           "None required - if they fit the model, they're a lead. We start broad and tighten around whoever replies."
@@ -132,7 +132,7 @@
       "Restaurants - razor-thin margins, your call. Bookkeeping at most, never CFO.",
       "Anything thin-margin: retail, grocery, distribution/wholesale, general contracting, staffing, trucking. Same reason as restaurants - $5M of revenue at a 5% margin can't fund a $60k engagement.",
       "Under $1M revenue - these are bookkeeping leads, not CFO leads. We'll hold them in a separate bucket rather than throw them away.",
-      "Far from you geographically, until we've proven the close rate closer to home. You flagged this: a prospect in Alaska or Minnesota tends to want someone local."
+      "Nothing is geographically banned - you have a Santa Monica office and clients all over. But you said start East Coast and venture out, because a distant prospect tends to want someone local. So: Georgia first, then outward. Not a hard exclusion."
     ]
   },
   "dreamList": [
@@ -240,7 +240,7 @@
       {
         "id": "svc-tax",
         "name": "Tax Planning",
-        "line": "Would you rather hand the IRS $50,000, or hand us $20,000 and keep $30,000? Typical plan runs $8k-$10k, up to $50k-$60k on complex work."
+        "line": "Would you rather hand the IRS $50,000, or hand us $20,000 and keep $30,000? Plans START at $8k-$10k and go up to $50k-$60k."
       },
       {
         "id": "svc-vcfo",
@@ -268,7 +268,7 @@
       "Multi-state, spiky-income returns for pro athletes and one of the largest law firms in Texas.",
       "100+ five-star Google reviews (you corrected us on this - please confirm the number you want us to claim)."
     ],
-    "guidingQuestion": "What is the MECHANISM? 'Double your money or your money back' is a claim everyone in this market makes. What do you actually DO that lets you promise it safely - and that your competitors don't? That sentence is the campaign.",
+    "guidingQuestion": "What's the MECHANISM behind the guarantee? You said you can tell before accepting an engagement whether you'll hit 2x - that's the part a stranger won't believe on its own. HOW do you know? Name that, and the guarantee goes from a claim to a proof. It's the one sentence we can't write for you.",
     "frontEndOffer": "The call itself. Your offer is a no-brainer, so there's nothing left to give away first - and if someone won't take a 15-minute call for a zero-risk offer, they were never going to buy. We ask for the call directly.",
     "leadMagnets": [
       "DECIDED: no lead magnet at launch. The guarantee IS the offer, and it's stronger than any PDF we could send.",
@@ -351,8 +351,8 @@
       },
       {
         "id": "risk-cold-vs-referral",
-        "risk": "A cold lead is not a referral",
-        "prevention": "You close nine out of ten - on referrals, where trust is already there. A cold prospect arrives colder and asks harder questions. We'll send a one-pager before every meeting so your closer knows the revenue and the pain points before they dial, which is exactly what you asked for."
+        "risk": "A cold prospect arrives colder than a referral",
+        "prevention": "Your pipeline has always been referral, where trust already exists. A cold prospect asks harder questions earlier. That's our job to absorb, not yours: every booked meeting arrives with a one-pager giving your closer the revenue and the pain points before they dial - exactly the pre-qualification you asked for."
       }
     ],
     "greatMeeting": "The decision-maker on the call (you said 9/10 they show up when money is the topic), their revenue understood before it starts, and their pain points already known - so your closer knows what to hit. Pre-qualified, ready to close, not asking beginner questions.",
@@ -404,8 +404,8 @@
   "openQuestions": [
     {
       "id": "q-mechanism",
-      "q": "What is your MECHANISM? What do you actually do that lets you guarantee 2x safely, when your competitors can't?",
-      "why": "Biggest one on this page. A guarantee with no mechanism behind it reads as a claim anyone could make, and it gets ignored. The mechanism is what makes it believable - and it's the one thing we can't write for you.",
+      "q": "How do you know, before accepting an engagement, that you can hit 2x?",
+      "why": "You told us you can. That's the mechanism, and it's what makes the guarantee believable to someone who's never met you. Right now the email has to assert it; with your answer, it can prove it.",
       "priority": "blocking"
     },
     {
