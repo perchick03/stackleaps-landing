@@ -243,38 +243,39 @@
       "100+ five-star Google reviews (please confirm the number you want us to claim)."
     ],
     "guidingQuestion": "ANSWERED - it was in your own Tax Planning Overview. Your 5-phase process (Discovery -> Tax Exposure Analysis -> Strategy Design, where you QUANTIFY the potential impact -> Implementation -> Monitoring) is exactly how you know 2x is achievable before you accept an engagement. That's the mechanism, and it's what turns 'we'll save you money' into something a stranger can believe. It's now in the copy.",
-    "frontEndOffer": "The projected exposure number - not a call. 'We'll model what you're set to overpay, and what's still recoverable before Dec 31.' That's a THING, which is what the framework demands. The call is what the reply earns. No pricing, no calendar link, no attachment in email 1.",
+    "frontEndOffer": "The projected number, not a call. 'We'll model what you're set to overpay, and what's still recoverable before Dec 31.' That's a concrete thing they receive - which is what earns a reply. The call is what the reply gets you. No pricing, no calendar link, nothing attached to email 1.",
     "leadMagnets": [
-      "COPY RULES (GrowthFlare, from 1.5M emails): subject 2-4 words lowercase with exactly ONE {{token}}. Body 30-50 words. ONE question. Soft close ('worth a look?'). No calendar link in email 1. 'You/your' should outweigh 'I/we/our'. Email 1 carries the campaign.",
-      "NO pricing in email 1 - you said prospects get intimidated before they understand the value.",
-      "HARD WALL: FP&A + dashboards are CFO-ONLY. Tax copy never mentions them.",
-      "Your three PDFs are REPLY assets - sent after someone bites, never attached cold."
+      "Five emails, deliberately short. The ones that win are 30-50 words, one question, and a soft close - no calendar link, no pricing, no attachment. Shoot holes in them.",
+      "Email 3 is for personal injury firms only - it opens on their published verdict, which is a real, public, per-firm detail. We only use it where we genuinely have one.",
+      "Email 4 is the CFO angle. Dashboards and FP&A are never mentioned to a tax-planning prospect - you were clear on that, and it's a hard wall.",
+      "Email 5 leads with your 2x guarantee. You'd rather hold that for a prospect who's already 50/50, so this one is a TEST only: cold inboxes start from zero trust, and a guarantee is the strongest trust device there is. If it loses to your framing, we drop it.",
+      "Your three PDFs go out AFTER someone replies - never attached to a cold email. Attachments hurt deliverability, and the dashboards are your differentiator, not a giveaway."
     ],
     "emails": [
       {
         "id": "email-A-tax",
         "subject": "fyi {{first_name}}",
-        "body": "FRAMEWORK A (offer-first). Phase 1 default - highest ceiling, zero losers in GrowthFlare's 1.5M-email dataset.\n\n{{first_name}}, if we modelled what you're set to overpay the IRS this year, while there's still time to fix it (we pull the exposure, quantify what's recoverable, put it in writing - you just reply), worth a look?"
+        "body": "{{first_name}}, if we modelled what you're set to overpay the IRS this year, while there's still time to fix it (we pull the exposure, quantify what's recoverable, put it in writing - you just reply), worth a look?"
       },
       {
         "id": "email-B-loan",
         "subject": "fyi {{first_name}}",
-        "body": "FRAMEWORK B (pain hypothetical). Your 'interest-free loan' frame.\n\n{{first_name}}, what if you never lent the government another dollar for free?\n\nHappy to model what {{company}} is on track to overpay this year, and what's still legally recoverable before Dec 31. Want it?"
+        "body": "{{first_name}}, what if you never lent the government another dollar for free?\n\nHappy to model what {{company}} is on track to overpay this year, and what's still legally recoverable before Dec 31. Want it?"
       },
       {
         "id": "email-C-verdict",
         "subject": "fyi {{first_name}}",
-        "body": "FRAMEWORK C (observation). PI firms ONLY - we have a real per-firm signal: their published verdicts.\n\n{{first_name}}, saw the {{verdict}} result.\n\nA year like that lands a tax bill to match, and most of what could soften it expires Dec 31. We'd model what's recoverable - you just reply. Worth a look?"
+        "body": "{{first_name}}, saw the {{verdict}} result.\n\nA year like that lands a tax bill to match, and most of what could soften it expires Dec 31. We'd model what's recoverable - you just reply.\n\nWorth a look?"
       },
       {
         "id": "email-B-cfo",
         "subject": "fyi {{first_name}}",
-        "body": "CFO ANGLE ONLY - dashboards/FP&A are never mentioned to a tax prospect.\n\n{{first_name}}, does profit ever not match the cash in the bank?\n\nHappy to walk {{company}}'s numbers and show where margin is leaking - and what cash looks like 3-12 months out. Open to it?"
+        "body": "{{first_name}}, does profit ever not match the cash in the bank?\n\nHappy to walk {{company}}'s numbers and show where margin is leaking, and what cash looks like 3-12 months out. Open to it?"
       },
       {
-        "id": "email-A-guarantee-TEST",
+        "id": "email-A-guarantee",
         "subject": "fyi {{first_name}}",
-        "body": "TEST VARIANT - guarantee as the opener. You'd rather hold it for a 50/50 prospect; we want to see if it wins cold, where trust is zero. If it loses, we drop it.\n\n{{first_name}}, if a tax plan didn't save you at least 2x what it cost, you'd get every dollar back (we run the exposure analysis before you commit - you just reply). Worth a look?"
+        "body": "{{first_name}}, if a tax plan didn't save you at least 2x what it cost, you'd get every dollar back (we run the exposure analysis before you commit - you just reply).\n\nWorth a look?"
       }
     ]
   },
@@ -427,7 +428,7 @@
       "id": "q-emails",
       "priority": "important",
       "q": "The 5 sample emails below - shoot holes in them.",
-      "why": "They're built to the framework that wins in our data: 30-50 words, one question, no calendar link. Deliberately short. Tell us if anything overclaims."
+      "why": "Deliberately short - the ones that get replies are 30-50 words with a single question and no calendar link. Tell us if anything overclaims or doesn't sound like you. It's your name on them."
     }
   ]
 }
