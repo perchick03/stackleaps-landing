@@ -47,7 +47,7 @@
       "id": "icp-core",
       "label": "The core filter (what we launch with)",
       "fields": {
-        "companySize": "$1M-$10M revenue. Below $1M the engagement can't clear 25% of their bottom line - that's your math, and it's the floor. $20M+ is possible but you called it a harder sale. High-margin businesses only: they have to be able to hand over $3k-$5k/mo and not feel it.",
+        "companySize": "$1M-$10M gross revenue is the target. You'll consider $750,000+ if other standards are met, so that's our hard floor. Below $1M the engagement eats too much of the bottom line (your math: $1M x 20% margin = $200k profit, and $60k of that is already 25%+). $20M+ is possible but you called it a harder sale. High-margin businesses only.",
         "jobTitles": [
           "Owner",
           "Co-Owner",
@@ -59,7 +59,8 @@
           "United States. Georgia first (they already know your firm), then Southeast, then East Coast, then national. You also have a Santa Monica office, so the West Coast is open later."
         ],
         "signals": [
-          "None required - if they fit the model, they're a lead. We start broad and tighten around whoever replies."
+          "From your own Tax Planning PDF - ideal fit is 'growing income, MULTIPLE ENTITIES, material estimated taxes, or MAJOR UPCOMING TRANSACTIONS'. Multiple entities and a pending transaction are both things we can spot from public data - that's a real targeting signal.",
+          "From your CFO PDF - 'owner-led, growing, profitable, needs financial leadership WITHOUT hiring a full-time CFO'."
         ]
       }
     },
@@ -129,9 +130,9 @@
   "targeting": {
     "idealCustomers": [],
     "doNotTarget": [
-      "Restaurants - razor-thin margins, your call. Bookkeeping at most, never CFO.",
+      "Restaurants - for CFO or tax. They're a BOOKKEEPING campaign, separate, later. Your call.",
       "Anything thin-margin: retail, grocery, distribution/wholesale, general contracting, staffing, trucking. Same reason as restaurants - $5M of revenue at a 5% margin can't fund a $60k engagement.",
-      "Under $1M revenue - these are bookkeeping leads, not CFO leads. We'll hold them in a separate bucket rather than throw them away.",
+      "Under $750k - that's the hard floor you gave us. $750k-$1M only if the business is unusually profitable. Under that, they're bookkeeping leads and we park them for the later campaign.",
       "Nothing is geographically banned - you have a Santa Monica office and clients all over. But you said start East Coast and venture out, because a distant prospect tends to want someone local. So: Georgia first, then outward. Not a hard exclusion."
     ]
   },
@@ -214,7 +215,7 @@
       {
         "id": "svc-vcfo",
         "name": "Virtual CFO / FP&A",
-        "line": "Not two pieces of paper a month you can't read - financial dashboards, advanced analytics, and a written narrative that tells you what to actually do. Starts at $5,000/mo."
+        "line": "Monthly numbers you can run the business on: clean books, financial dashboards, advanced analytics and a written narrative. Target retainer $3,000-$5,000/mo. NOTE: FP&A + dashboards are CFO-ONLY - never promised to a tax-planning prospect."
       },
       {
         "id": "svc-accounting",
@@ -223,42 +224,48 @@
       }
     ],
     "guarantees": [
-      "If the tax plan doesn't save you at least 2x what you paid for it, you're fully refunded. You can tell before accepting an engagement whether that's achievable, which is why you can afford to offer it.",
-      "If we double your investment, you win. If we don't, you get financial insight AND your money back. Either way you're up."
+      "HELD AS A CLOSER, NOT THE OPENER (your call): if the tax plan doesn't save you 2x what you paid for it, you're fully refunded. You use this when a prospect is 50/50 - so we hold it for the reply and the call, not the first email.",
+      "We'd still like to TEST it as one cold variant. Cold email has zero trust and a guarantee is the strongest trust device there is. If it loses to your frame, we drop it. Your name, your call."
     ],
     "problemsSolved": [
-      "You're getting bland financial statements from a low-end bookkeeper - blank categories, nothing you can actually act on. You might as well be doing it yourself.",
-      "Your accountant reports what already happened. Nobody is telling you what to do next, or what it's worth.",
-      "You're overpaying the IRS because nobody planned - they just filed."
+      "TAX (your words): taxes only get managed when a return is due. By then the year has closed, the transactions have happened, and the strongest planning options are gone. Every year that repeats, the owner hands the government an interest-free loan.",
+      "CFO (your words): financials arrive late, reports are hard to understand, cash flow feels unpredictable, margins are unclear - and leadership is making major decisions without trusted financial guidance.",
+      "The question your prospects actually ask: 'Why does profit not match the cash in the bank?'"
     ],
     "proof": [
-      "A client doing $23M/year: we found $1.5M in savings in the first two months. That's not even the tax side. (NEED YOUR OK TO USE THIS - it's the strongest number you have.)",
-      "We build the same investor-ready reporting for a personal injury firm that's recovered $100M+ in settlements.",
+      "A client doing $23M/year: $1.5M found in the first two months, before we touched their taxes. (NEED YOUR OK TO USE THIS.)",
+      "The mechanism: we run a Tax Exposure Analysis and quantify the impact BEFORE accepting the engagement. That's why the 2x guarantee is safe to give.",
+      "Investor-ready reporting for a personal injury firm that's recovered $100M+ in settlements.",
       "Multi-state, spiky-income returns for pro athletes and one of the largest law firms in Texas.",
-      "100+ five-star Google reviews (you corrected us on this - please confirm the number you want us to claim)."
+      "100+ five-star Google reviews (please confirm the number you want us to claim)."
     ],
-    "guidingQuestion": "What's the MECHANISM behind the guarantee? You said you can tell before accepting an engagement whether you'll hit 2x - that's the part a stranger won't believe on its own. HOW do you know? Name that, and the guarantee goes from a claim to a proof. It's the one sentence we can't write for you.",
-    "frontEndOffer": "The call itself. Your offer is a no-brainer, so there's nothing left to give away first - and if someone won't take a 15-minute call for a zero-risk offer, they were never going to buy. We ask for the call directly.",
+    "guidingQuestion": "ANSWERED - it was in your own Tax Planning Overview. Your 5-phase process (Discovery -> Tax Exposure Analysis -> Strategy Design, where you QUANTIFY the potential impact -> Implementation -> Monitoring) is exactly how you know 2x is achievable before you accept an engagement. That's the mechanism, and it's what turns 'we'll save you money' into something a stranger can believe. It's now in the copy.",
+    "frontEndOffer": "Your own named CTAs, straight from your PDFs: a 'Tax Planning Review' and a 'Fractional CFO Discovery Review'. Far stronger than 'hop on a call' - it's a named thing with a defined scope. No pricing in the email, no lead magnet.",
     "leadMagnets": [
-      "DECIDED: no lead magnet at launch. The guarantee IS the offer, and it's stronger than any PDF we could send.",
-      "We deliberately will NOT send the dashboard report cold - that's your differentiator, and a prospect who receives it can hand it straight to their current accountant. We describe WHAT it is, never HOW it's built.",
-      "Holding in reserve if the offer underperforms: the dashboard marketing pages you offered to build (a link beats an attachment - attachments hurt deliverability), and your existing one-pager."
+      "NO lead magnet, NO pricing in email 1. You said prospects get intimidated by price before they understand the value - so the email's only job is to earn the Review.",
+      "HARD WALL: FP&A + dashboards are CFO-ONLY. Tax-planning copy never mentions them. (Note the reverse IS true - your CFO service includes tax planning integration.)",
+      "Your three PDFs (Tax Planning Overview, Fractional CFO Overview, Dashboards Overview) are REPLY assets, sent after someone bites - never attached to a cold email. Attachments wreck deliverability, and Dashboards is your differentiator, not a giveaway."
     ],
     "emails": [
       {
-        "id": "email-tax-short",
-        "subject": "{{company}} + the IRS",
-        "body": "{{first_name}} - if you owe the IRS $50k, would you rather pay them $50k, or pay us $20k and keep $30k?\n\nWe model the plan before we ever accept the engagement, which is why we can say this: if it doesn't find at least 2x its own fee, you're fully refunded.\n\nWorth 15 minutes to run your numbers?"
+        "id": "email-tax-loan",
+        "subject": "interest-free loan",
+        "body": "{{first_name}} - every year a business overpays the IRS, it's handing the government an interest-free loan.\n\nIt happens because accountants FILE. They don't PLAN. By the time the return is due, the year has closed, the transactions have already happened, and the strongest options are gone.\n\nMost of what's still open for this tax year has to be done before Dec 31, not discovered in April.\n\nWorth a 15-minute Tax Planning Review to see what you could legally keep?"
       },
       {
-        "id": "email-tax-long",
-        "subject": "before year-end",
-        "body": "{{first_name}} - most accountants file. They don't plan. So they show up in April and report what already happened, and every move that could have cut your bill expired months ago.\n\nWe do it the other way round: we model entity structure, comp split, retirement and depreciation BEFORE the deadlines, and we run that model before we take you on. That's why we can guarantee it - if the plan doesn't find 2x its own fee in savings, you don't pay for it.\n\nMost of what's left for this tax year has to be executed before Dec 31, not discovered in April.\n\nOpen to a quick call to run the numbers?"
+        "id": "email-tax-questions",
+        "subject": "projected liability",
+        "body": "{{first_name}} - three questions most owners can't answer until it's too late to act on them:\n\n- What's my projected tax liability this year?\n- Is my entity structure still the right one?\n- Which strategies can still be implemented before Dec 31?\n\nThat's what a Tax Planning Review answers. We model your exposure and quantify what's actually recoverable before anything is agreed.\n\nWorth 15 minutes?"
       },
       {
-        "id": "email-cfo",
-        "subject": "your monthly financials",
-        "body": "{{first_name}} - quick one. When your books land each month, do they actually tell you what to do next, or is it two pages of categories you have to interpret yourself?\n\nWe do the accounting, then we add the part almost nobody does: dashboards, analytics, and a written narrative on what the numbers mean. One client at $23M found $1.5M in savings in the first two months - and that was before we touched their taxes.\n\nWorth a look at what yours would show?"
+        "id": "email-cfo-profit-cash",
+        "subject": "profit vs cash",
+        "body": "CFO ANGLE ONLY - dashboards and FP&A are never mentioned to a tax-planning prospect.\n\n{{first_name}} - why doesn't profit match the cash in the bank?\n\nIt's the question we hear most from owner-led companies that have outgrown bookkeeping. Revenue is up, but the reports land late, margins are unclear, and big decisions get made without a financial read.\n\nWe run a Fractional CFO Discovery Review: reporting quality, cash-flow visibility, KPIs, and where margin is leaking. One client at $23M found $1.5M in the first two months.\n\nWorth a look at what yours would show?"
+      },
+      {
+        "id": "email-tax-guarantee-TEST",
+        "subject": "worth $20k to keep $30k?",
+        "body": "TEST VARIANT - the guarantee as the OPENER. You'd rather hold it for a 50/50 prospect; we want to see whether it wins cold, where trust is zero. If it loses to your frame, we drop it.\n\n{{first_name}} - if you owed the IRS $50,000, would you rather hand them $50,000, or hand us $20,000 and keep $30,000?\n\nWe run the exposure analysis and quantify the savings BEFORE we accept the engagement. That's why we can say: if the plan doesn't find at least 2x its own fee, you're fully refunded.\n\nWorth 15 minutes?"
       }
     ]
   },
@@ -373,9 +380,9 @@
   "openQuestions": [
     {
       "id": "q-mechanism",
-      "q": "How do you know, before accepting an engagement, that you can hit 2x?",
-      "why": "You told us you can. That's the mechanism, and it's what makes the guarantee believable to someone who's never met you. Right now the email has to assert it; with your answer, it can prove it.",
-      "priority": "blocking"
+      "q": "ANSWERED by your Tax Planning PDF - confirm we've got it right?",
+      "why": "Your 'Strategy Design' phase quantifies the impact before the engagement is accepted. We're now saying that in the copy: 'we quantify the savings before we take you on - that's why we can guarantee it.' Tell us if that overstates it.",
+      "priority": "important"
     },
     {
       "id": "q-ideal-clients",
@@ -403,8 +410,8 @@
     },
     {
       "id": "q-assets",
-      "q": "The dashboard marketing pages you offered to build, plus your existing one-pager.",
-      "why": "Backup if the offer alone underperforms. A link beats an attachment - attachments hurt deliverability.",
+      "q": "RECEIVED - all three PDFs. Any we can't quote from?",
+      "why": "We're using the 'interest-free loan' frame and the 'why doesn't profit match cash' line. Flag anything off-limits.",
       "priority": "important"
     },
     {
