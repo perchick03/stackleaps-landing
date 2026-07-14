@@ -840,13 +840,19 @@ function OnboardingContent({ data }: { data: OnboardingData }) {
       <div className="fixed bottom-0 inset-x-0 z-40 bg-[var(--color-surface-lowest)]/80 glass-effect shadow-[0_-12px_30px_rgba(14,29,43,0.06)]">
         <div className="max-w-5xl mx-auto px-5 sm:px-8 py-4 flex items-center justify-between gap-4">
           <div className="flex items-center gap-4">
+            {/* "Saved" used to read as "sent". It isn't: edits live in localStorage until
+                Submit is pressed. Say where they're saved, or the page silently loses them. */}
             <span className="flex items-center gap-2 text-sm text-[var(--color-on-surface-variant)]">
               <span
                 className={`w-1.5 h-1.5 rounded-full transition-colors ${
                   saved === "saving" ? "bg-[var(--color-secondary-container)]" : "bg-green-500"
                 }`}
               />
-              {saved === "saving" ? "Saving…" : saved === "saved" ? "Saved" : "Edits save automatically"}
+              {saved === "saving"
+                ? "Saving…"
+                : status === "success"
+                  ? "Sent to StackLeaps"
+                  : "Saved in this browser — press Submit to send"}
             </span>
             <button
               type="button"

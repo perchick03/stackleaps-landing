@@ -252,6 +252,10 @@ export default function DreamListCarousel({ leads, getVerdict, setVerdict }: Dre
   const decided = leads.filter((l) => getVerdict(l.id).fit !== null).length;
   const clamped = Math.min(index, leads.length - 1);
   const current = leads[clamped];
+  // Ratings live in localStorage until Submit is pressed. Say so, loudly, the moment
+  // they rate anything -- otherwise they rate all five, see "Saved", close the tab,
+  // and we never receive a thing.
+  const allDone = decided === leads.length;
 
   const cardProps = (lead: LeadCardData) => ({
     lead,
@@ -345,6 +349,52 @@ export default function DreamListCarousel({ leads, getVerdict, setVerdict }: Dre
               </svg>
             </button>
           </div>
+        </div>
+      )}
+
+      {decided > 0 && (
+        <div
+          className={`mt-6 flex items-start gap-3 rounded-xl border px-4 py-3 ${
+            allDone
+              ? "border-[var(--color-secondary)]/50 bg-[var(--color-secondary)]/10"
+              : "border-amber-400/50 bg-amber-50"
+          }`}
+        >
+          <svg
+            className={`w-5 h-5 shrink-0 mt-0.5 ${allDone ? "text-[var(--color-secondary)]" : "text-amber-600"}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d={
+                allDone
+                  ? "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+                  : "M12 9v2m0 4h.01M5 19h14a2 2 0 001.84-2.75L13.74 4a2 2 0 00-3.48 0L3.16 16.25A2 2 0 005 19z"
+              }
+            />
+          </svg>
+          <p className="text-sm text-[var(--color-on-surface)]">
+            {allDone ? (
+              <>
+                <span className="font-bold">All {leads.length} rated.</span> Your ratings are saved in{" "}
+                <span className="font-semibold">this browser only</span> — they don&apos;t reach us until you press{" "}
+                <span className="font-bold">Submit onboarding</span> at the bottom of the page.
+              </>
+            ) : (
+              <>
+                <span className="font-bold">
+                  {decided} of {leads.length} rated.
+                </span>{" "}
+                Ratings are saved in <span className="font-semibold">this browser only</span> — press{" "}
+                <span className="font-bold">Submit onboarding</span> at the bottom when you&apos;re done, or we
+                won&apos;t see them.
+              </>
+            )}
+          </p>
         </div>
       )}
     </div>
