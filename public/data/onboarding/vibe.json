@@ -44,51 +44,69 @@
   },
   "icps": [
     {
-      "id": "icp-core",
-      "label": "The core filter (what we launch with)",
+      "id": "icp-named",
+      "label": "The 8 industries you named",
       "fields": {
-        "companySize": "$1M-$10M gross revenue is the target. You'll consider $750,000+ if other standards are met, so that's our hard floor. Below $1M the engagement eats too much of the bottom line (your math: $1M x 20% margin = $200k profit, and $60k of that is already 25%+). $20M+ is possible but you called it a harder sale. High-margin businesses only.",
+        "companySize": "$1M-$10M gross revenue. You'll consider $750k+ if other standards are met - that's our hard floor. Decision maker only: owner, managing partner, practice owner.",
         "jobTitles": [
           "Owner",
-          "Co-Owner",
-          "Founder",
           "Managing Partner",
-          "President"
+          "Founding Partner",
+          "Practice Owner",
+          "President",
+          "CEO"
         ],
         "countries": [
-          "United States. Georgia first (they already know your firm), then Southeast, then East Coast, then national. You also have a Santa Monica office, so the West Coast is open later."
+          "US. Atlanta + Georgia first, then Southeast, then East Coast, then national."
         ],
         "signals": [
-          "From your own Tax Planning PDF - ideal fit is 'growing income, MULTIPLE ENTITIES, material estimated taxes, or MAJOR UPCOMING TRANSACTIONS'. Multiple entities and a pending transaction are both things we can spot from public data - that's a real targeting signal.",
-          "From your CFO PDF - 'owner-led, growing, profitable, needs financial leadership WITHOUT hiring a full-time CFO'."
+          "Physicians · Dentists · Healthcare-practice owners · Personal injury law firms · Real-estate investors + developers / construction · PEOs · Staffing firms · SaaS + tech"
         ]
       }
     },
     {
       "id": "icp-pi-law",
-      "label": "Candidate: Personal injury law firms",
+      "label": "PI law (your strongest - you already serve one)",
       "fields": {
-        "companySize": "$2M-$20M in settlements. Contingency-fee firms: they front case costs for years and get paid in huge unpredictable lumps. That's a cash-flow problem run by litigators.",
+        "companySize": "Contingency-fee plaintiff firms. NOT insurance-defence firms - they bill hourly, get paid by carriers, and have none of the lumpy cash flow or the big one-off tax hit that makes your offer land.",
         "jobTitles": [
           "Managing Partner",
           "Founding Partner",
           "Owner"
         ],
         "countries": [
-          "United States - Atlanta is a heavy PI market"
+          "Atlanta is a heavy PI market"
         ],
         "signals": [
-          "Recent large settlement (public)",
-          "TV / billboard advertisers",
-          "Multiple office locations"
+          "Big published verdict or settlement (a real, public, per-firm signal we can write copy around)",
+          "Multiple offices"
         ]
       }
     },
     {
-      "id": "icp-specialty-medical",
-      "label": "Candidate: Specialty + elective practices",
+      "id": "icp-realestate",
+      "label": "Real-estate investors + developers",
       "fields": {
-        "companySize": "$1M-$10M. NOT general dental - the median single-location practice sits at or under your floor. Specialty and cash-pay clear it easily: oral surgery, perio, ortho, plastics, med spa, dermatology, fertility, LASIK.",
+        "companySize": "$1M-$10M. Developers and investors, not thin-margin sub-contractors. Lumpy multi-million gains, 1031 exchanges, cost segregation, depreciation.",
+        "jobTitles": [
+          "Owner",
+          "Principal",
+          "Managing Partner",
+          "Developer"
+        ],
+        "countries": [
+          "Atlanta metro first"
+        ],
+        "signals": [
+          "MULTIPLE ENTITIES and MAJOR UPCOMING TRANSACTIONS - your own Tax Planning PDF names both as ideal fit, and both are visible in public records."
+        ]
+      }
+    },
+    {
+      "id": "icp-health",
+      "label": "Physicians · dentists · healthcare-practice owners",
+      "fields": {
+        "companySize": "$1M-$10M. Specialty and elective clear the floor easily; a single-location general practice often doesn't.",
         "jobTitles": [
           "Owner",
           "Practice Owner",
@@ -96,44 +114,28 @@
           "Medical Director"
         ],
         "countries": [
-          "United States"
+          "Atlanta metro first"
         ],
         "signals": [
           "Multiple locations",
           "Recently expanded",
-          "Heavy equipment purchases (depreciation)"
-        ]
-      }
-    },
-    {
-      "id": "icp-rollup",
-      "label": "Candidate: The 'PE is coming for you' cluster",
-      "fields": {
-        "companySize": "$2M-$10M. Specialty trades (HVAC, plumbing, electrical, roofing - NOT general contracting), independent insurance agencies, MSPs. All in active roll-up markets. Their exit multiple depends on financials that survive diligence, and most get marked down because the books are a mess.",
-        "jobTitles": [
-          "Owner",
-          "Founder",
-          "President",
-          "CEO"
-        ],
-        "countries": [
-          "United States - Southeast first"
-        ],
-        "signals": [
-          "Acquisitive market",
-          "Owner near retirement age",
-          "Recently approached by buyers"
+          "Heavy equipment (depreciation)"
         ]
       }
     }
   ],
   "targeting": {
-    "idealCustomers": [],
+    "idealCustomers": [
+      "PI LAW: bushlawgrp.com | tobininjurylaw.com | montlick.com",
+      "PHYSICIANS: primedocga.com (Buckhead) | elysiummd.com | guardianphysician.com",
+      "DENTAL: buckheaddentalassociates.com | atlantadentalspa.com | smilepartnersusa.com (Buckhead)",
+      "NOTE: you named Tobin Injury Law - we'd already picked it as our #1 card, found independently off their $100M verdict. Good sign we're reading the pattern right."
+    ],
     "doNotTarget": [
-      "Restaurants - for CFO or tax. They're a BOOKKEEPING campaign, separate, later. Your call.",
-      "Anything thin-margin: retail, grocery, distribution/wholesale, general contracting, staffing, trucking. Same reason as restaurants - $5M of revenue at a 5% margin can't fund a $60k engagement.",
-      "Under $750k - that's the hard floor you gave us. $750k-$1M only if the business is unusually profitable. Under that, they're bookkeeping leads and we park them for the later campaign.",
-      "Nothing is geographically banned - you have a Santa Monica office and clients all over. But you said start East Coast and venture out, because a distant prospect tends to want someone local. So: Georgia first, then outward. Not a hard exclusion."
+      "Restaurants - for CFO or tax. Bookkeeping only, separate campaign, later.",
+      "Under $750k revenue - your hard floor. These become bookkeeping leads and we park them.",
+      "Insurance-defence and hourly-billing law firms. They bill carriers on predictable retainers, so they have neither the lumpy cash flow nor the one-off tax hit your offer speaks to. Plaintiff-side PI only.",
+      "Anyone who isn't the decision maker. Your list came back full of paralegals and legal interns - we filter on seniority before we spend a cent enriching."
     ]
   },
   "dreamList": [
@@ -145,23 +147,24 @@
       "company_country": "Atlanta, GA",
       "company_website": "https://tobininjurylaw.com",
       "company_logo": "https://www.google.com/s2/favicons?domain=tobininjurylaw.com&sz=128",
-      "company_description": "Atlanta plaintiff-side personal injury firm. Has won a $100M verdict. 423 Google reviews - one of the most reviewed PI firms in the metro.",
+      "company_description": "Atlanta plaintiff PI firm. $100M verdict. 423 Google reviews.",
       "seniority_level": "owner",
       "functional_level": "leadership",
-      "whyFit": "The closest thing we found to the PI firm you already serve - the one that recovered $100M. Contingency income lands in huge lumps, so the tax bill is enormous and the cash flow is a mess. Your proven vertical."
+      "whyFit": "YOU NAMED THIS ONE. We'd already made it our #1 card - found independently off the $100M verdict, before your list arrived. Good sign we're reading the pattern right."
     },
     {
-      "id": "lead-kalos",
-      "full_name": "Dr Benjamin Stong",
-      "title": "Owner · Facial Plastic Surgeon",
-      "company": "Kalos Facial Plastic Surgery",
-      "company_country": "Atlanta, GA",
-      "company_website": "https://kalos-plasticsurgery.com",
-      "company_logo": "https://www.google.com/s2/favicons?domain=kalos-plasticsurgery.com&sz=128",
-      "company_description": "Facial plastic surgery practice. Owns his own surgery centre - a second, capital-heavy entity alongside the practice. 204 Google reviews.",
+      "id": "lead-jones-swanson",
+      "full_name": "Andrew W. Jones",
+      "title": "Founding Partner · Personal Injury",
+      "company": "Jones & Swanson, LLC",
+      "company_country": "Marietta, GA",
+      "company_website": "https://www.awjlaw.com/",
+      "company_logo": "https://www.google.com/s2/favicons?domain=awjlaw.com&sz=128",
+      "linkedin": "https://www.linkedin.com/in/andrewwjones/",
+      "company_description": "Marietta PI firm. $9.45M and $4M published verdicts. 12 staff on the retirement plan, $345,000 of employer contributions on their DOL filing.",
       "seniority_level": "owner",
       "functional_level": "leadership",
-      "whyFit": "Cash-pay elective surgery, so no insurance reimbursement squeeze and fat margins. He owns the surgery centre too: two entities, real depreciation, one owner with a high personal income and probably no structure behind it."
+      "whyFit": "A smaller PI firm than Tobin - deliberately. Tells us whether you want the big-verdict shops or the 12-person ones. Same vertical, very different size."
     },
     {
       "id": "lead-atlanta-ortho",
@@ -172,37 +175,37 @@
       "company_website": "https://atlantaortho.com",
       "company_logo": "https://www.google.com/s2/favicons?domain=atlantaortho.com&sz=128",
       "linkedin": "https://www.linkedin.com/in/tyler-rathburn-dmd-b0848a7a/",
-      "company_description": "Five doctors across five Atlanta locations (Sandy Springs, Howell Mill, Buckhead, Virginia Highland, College Park). 45+ years. Filed a Form 5500 with the DOL showing $398,593 of employer retirement contributions last year - public proof they're well past your $1M floor.",
+      "company_description": "Five doctors, five Atlanta locations. $398,593 of employer retirement contributions on their DOL filing - public proof they're past your floor.",
       "seniority_level": "owner",
       "functional_level": "leadership",
-      "whyFit": "Five locations. A multi-site owner is exactly who can't tell which site makes money from two pages of bookkeeping - that's the dashboard sale, not the tax sale."
+      "whyFit": "Dental, five locations. A multi-site owner can't tell which site makes money from two pages of bookkeeping - that's the CFO sale, not the tax sale."
     },
     {
-      "id": "lead-burnette",
-      "full_name": "John Burnette",
-      "title": "President",
-      "company": "Burnette Insurance Agency",
-      "company_country": "Suwanee, GA",
-      "company_website": "https://www.burnetteinsurance.com",
-      "company_logo": "https://www.google.com/s2/favicons?domain=burnetteinsurance.com&sz=128",
-      "linkedin": "https://www.linkedin.com/in/john-burnette-9ab0ab37/",
-      "company_description": "Third-generation family insurance agency, founded 1971. Personal, commercial, cyber E&O, group benefits. $327,042 of employer retirement contributions on their DOL filing.",
-      "seniority_level": "owner",
-      "functional_level": "leadership",
-      "whyFit": "Commission revenue, recurring and high-margin. Agencies are being rolled up hard right now, and an owner staring at an exit wants investor-ready reports - your phrase, and it lands hardest here."
-    },
-    {
-      "id": "lead-collier-vet",
-      "full_name": "Collier Animal Hospital (Ballal + Ewing)",
-      "title": "Owner-Veterinarians",
-      "company": "Collier Animal Hospital",
+      "id": "lead-hand-center",
+      "full_name": "Dr Gary M. Lourie",
+      "title": "Senior Partner · Hand Surgeon, MD",
+      "company": "The Hand & Upper Extremity Center of Georgia",
       "company_country": "Atlanta, GA",
-      "company_website": "https://collierah.com",
-      "company_logo": "https://www.google.com/s2/favicons?domain=collierah.com&sz=128",
-      "company_description": "Independent, owner-operated Atlanta veterinary hospital. 403 Google reviews.",
+      "company_website": "https://www.handcenterga.com",
+      "company_logo": "https://www.google.com/s2/favicons?domain=handcenterga.com&sz=128",
+      "linkedin": "https://www.linkedin.com/in/gary-lourie-187a45a",
+      "company_description": "Hand and upper-extremity surgery since 1973. Six fellowship-trained surgeons, three offices, 10,000+ patients a year. $340,940 of employer retirement contributions.",
+      "seniority_level": "leadership",
+      "functional_level": "leadership",
+      "whyFit": "Physician practice, three locations. But SIX partners - is a group this size a real buyer for you, or too many decision makers?"
+    },
+    {
+      "id": "lead-kalos",
+      "full_name": "Dr Benjamin Stong",
+      "title": "Owner · Facial Plastic Surgeon",
+      "company": "Kalos Facial Plastic Surgery",
+      "company_country": "Atlanta, GA",
+      "company_website": "https://kalos-plasticsurgery.com",
+      "company_logo": "https://www.google.com/s2/favicons?domain=kalos-plasticsurgery.com&sz=128",
+      "company_description": "Facial plastic surgery. Owns his own surgery centre - a second, capital-heavy entity alongside the practice. 204 Google reviews.",
       "seniority_level": "owner",
       "functional_level": "leadership",
-      "whyFit": "Independent vets are the #1 target of private-equity roll-ups. Their exit multiple depends on books that survive diligence, and most owners get marked down because theirs don't."
+      "whyFit": "Healthcare-practice owner, cash-pay, one decision maker. He owns the surgery centre too: MULTIPLE ENTITIES - which your own Tax Planning PDF names as ideal fit."
     }
   ],
   "offer": {
@@ -240,32 +243,38 @@
       "100+ five-star Google reviews (please confirm the number you want us to claim)."
     ],
     "guidingQuestion": "ANSWERED - it was in your own Tax Planning Overview. Your 5-phase process (Discovery -> Tax Exposure Analysis -> Strategy Design, where you QUANTIFY the potential impact -> Implementation -> Monitoring) is exactly how you know 2x is achievable before you accept an engagement. That's the mechanism, and it's what turns 'we'll save you money' into something a stranger can believe. It's now in the copy.",
-    "frontEndOffer": "Your own named CTAs, straight from your PDFs: a 'Tax Planning Review' and a 'Fractional CFO Discovery Review'. Far stronger than 'hop on a call' - it's a named thing with a defined scope. No pricing in the email, no lead magnet.",
+    "frontEndOffer": "The projected exposure number - not a call. 'We'll model what you're set to overpay, and what's still recoverable before Dec 31.' That's a THING, which is what the framework demands. The call is what the reply earns. No pricing, no calendar link, no attachment in email 1.",
     "leadMagnets": [
-      "NO lead magnet, NO pricing in email 1. You said prospects get intimidated by price before they understand the value - so the email's only job is to earn the Review.",
-      "HARD WALL: FP&A + dashboards are CFO-ONLY. Tax-planning copy never mentions them. (Note the reverse IS true - your CFO service includes tax planning integration.)",
-      "Your three PDFs (Tax Planning Overview, Fractional CFO Overview, Dashboards Overview) are REPLY assets, sent after someone bites - never attached to a cold email. Attachments wreck deliverability, and Dashboards is your differentiator, not a giveaway."
+      "COPY RULES (GrowthFlare, from 1.5M emails): subject 2-4 words lowercase with exactly ONE {{token}}. Body 30-50 words. ONE question. Soft close ('worth a look?'). No calendar link in email 1. 'You/your' should outweigh 'I/we/our'. Email 1 carries the campaign.",
+      "NO pricing in email 1 - you said prospects get intimidated before they understand the value.",
+      "HARD WALL: FP&A + dashboards are CFO-ONLY. Tax copy never mentions them.",
+      "Your three PDFs are REPLY assets - sent after someone bites, never attached cold."
     ],
     "emails": [
       {
-        "id": "email-tax-loan",
-        "subject": "interest-free loan",
-        "body": "{{first_name}} - every year a business overpays the IRS, it's handing the government an interest-free loan.\n\nIt happens because accountants FILE. They don't PLAN. By the time the return is due, the year has closed, the transactions have already happened, and the strongest options are gone.\n\nMost of what's still open for this tax year has to be done before Dec 31, not discovered in April.\n\nWorth a 15-minute Tax Planning Review to see what you could legally keep?"
+        "id": "email-A-tax",
+        "subject": "fyi {{first_name}}",
+        "body": "FRAMEWORK A (offer-first). Phase 1 default - highest ceiling, zero losers in GrowthFlare's 1.5M-email dataset.\n\n{{first_name}}, if we modelled what you're set to overpay the IRS this year, while there's still time to fix it (we pull the exposure, quantify what's recoverable, put it in writing - you just reply), worth a look?"
       },
       {
-        "id": "email-tax-questions",
-        "subject": "projected liability",
-        "body": "{{first_name}} - three questions most owners can't answer until it's too late to act on them:\n\n- What's my projected tax liability this year?\n- Is my entity structure still the right one?\n- Which strategies can still be implemented before Dec 31?\n\nThat's what a Tax Planning Review answers. We model your exposure and quantify what's actually recoverable before anything is agreed.\n\nWorth 15 minutes?"
+        "id": "email-B-loan",
+        "subject": "fyi {{first_name}}",
+        "body": "FRAMEWORK B (pain hypothetical). Your 'interest-free loan' frame.\n\n{{first_name}}, what if you never lent the government another dollar for free?\n\nHappy to model what {{company}} is on track to overpay this year, and what's still legally recoverable before Dec 31. Want it?"
       },
       {
-        "id": "email-cfo-profit-cash",
-        "subject": "profit vs cash",
-        "body": "CFO ANGLE ONLY - dashboards and FP&A are never mentioned to a tax-planning prospect.\n\n{{first_name}} - why doesn't profit match the cash in the bank?\n\nIt's the question we hear most from owner-led companies that have outgrown bookkeeping. Revenue is up, but the reports land late, margins are unclear, and big decisions get made without a financial read.\n\nWe run a Fractional CFO Discovery Review: reporting quality, cash-flow visibility, KPIs, and where margin is leaking. One client at $23M found $1.5M in the first two months.\n\nWorth a look at what yours would show?"
+        "id": "email-C-verdict",
+        "subject": "fyi {{first_name}}",
+        "body": "FRAMEWORK C (observation). PI firms ONLY - we have a real per-firm signal: their published verdicts.\n\n{{first_name}}, saw the {{verdict}} result.\n\nA year like that lands a tax bill to match, and most of what could soften it expires Dec 31. We'd model what's recoverable - you just reply. Worth a look?"
       },
       {
-        "id": "email-tax-guarantee-TEST",
-        "subject": "worth $20k to keep $30k?",
-        "body": "TEST VARIANT - the guarantee as the OPENER. You'd rather hold it for a 50/50 prospect; we want to see whether it wins cold, where trust is zero. If it loses to your frame, we drop it.\n\n{{first_name}} - if you owed the IRS $50,000, would you rather hand them $50,000, or hand us $20,000 and keep $30,000?\n\nWe run the exposure analysis and quantify the savings BEFORE we accept the engagement. That's why we can say: if the plan doesn't find at least 2x its own fee, you're fully refunded.\n\nWorth 15 minutes?"
+        "id": "email-B-cfo",
+        "subject": "fyi {{first_name}}",
+        "body": "CFO ANGLE ONLY - dashboards/FP&A are never mentioned to a tax prospect.\n\n{{first_name}}, does profit ever not match the cash in the bank?\n\nHappy to walk {{company}}'s numbers and show where margin is leaking - and what cash looks like 3-12 months out. Open to it?"
+      },
+      {
+        "id": "email-A-guarantee-TEST",
+        "subject": "fyi {{first_name}}",
+        "body": "TEST VARIANT - guarantee as the opener. You'd rather hold it for a 50/50 prospect; we want to see if it wins cold, where trust is zero. If it loses, we drop it.\n\n{{first_name}}, if a tax plan didn't save you at least 2x what it cost, you'd get every dollar back (we run the exposure analysis before you commit - you just reply). Worth a look?"
       }
     ]
   },
@@ -379,58 +388,46 @@
   },
   "openQuestions": [
     {
-      "id": "q-mechanism",
-      "q": "ANSWERED by your Tax Planning PDF - confirm we've got it right?",
-      "why": "Your 'Strategy Design' phase quantifies the impact before the engagement is accepted. We're now saying that in the copy: 'we quantify the savings before we take you on - that's why we can guarantee it.' Tell us if that overstates it.",
-      "priority": "important"
-    },
-    {
-      "id": "q-ideal-clients",
-      "q": "Your 5-10 ideal clients - just websites or company names.",
-      "why": "You told us to pick the industry. These examples ARE the spec: we reverse-engineer the pattern from your best clients and the whole list sharpens. Nothing else replaces this.",
-      "priority": "blocking"
-    },
-    {
-      "id": "q-anti-patterns",
-      "q": "Who do you NOT want to hear from, beyond restaurants?",
-      "why": "Anti-patterns cut a bad list faster than any filter we can invent.",
-      "priority": "blocking"
-    },
-    {
       "id": "q-landing-page",
-      "q": "Which page should our sending domains point to?",
-      "why": "They're warming now and forward to vibefinancials.com. Heads up: the Outsourced CFO Services page is still showing placeholder text ('Lorem ipsum'). A prospect who gets curious will click. Either we point somewhere else, or that page gets finished before Jul 27.",
-      "priority": "blocking"
+      "priority": "blocking",
+      "q": "The landing page you proposed - what goes on it, and who builds it?",
+      "why": "You said let's build one together and redirect back to your site. That solves the Lorem-ipsum problem, but it's a new build 9 days before we go live on the 27th. We need scope + owner this week."
     },
     {
       "id": "q-proof-permission",
-      "q": "Can we use the $23M client / $1.5M-in-two-months number in cold emails, even anonymised?",
-      "why": "It's the strongest proof you have and it makes the CFO angle concrete. We won't use it without your explicit yes.",
-      "priority": "blocking"
+      "priority": "blocking",
+      "q": "The $23M client / $1.5M in two months - can we use it in the EMAIL, or only on the landing page?",
+      "why": "You pointed it at the landing page and said your proof is in the Google reviews. We read that as: not cleared for cold email. Confirm - it's the strongest number you have."
     },
     {
-      "id": "q-assets",
-      "q": "RECEIVED - all three PDFs. Any we can't quote from?",
-      "why": "We're using the 'interest-free loan' frame and the 'why doesn't profit match cash' line. Flag anything off-limits.",
-      "priority": "important"
+      "id": "q-new-verticals",
+      "priority": "blocking",
+      "q": "Real-estate investors/developers, PEOs, staffing, SaaS - can you name ONE example client in any of them?",
+      "why": "You listed 8 industries but your 9 examples only cover PI law, physicians and dental. We have no sample for the other five, so we're guessing at what good looks like there."
     },
     {
-      "id": "q-comms",
-      "q": "An email address under vibefinancials.com for us, and access to the Teams channel.",
-      "why": "So every reply is visible to your team from day one, and a prospect question that only you can answer doesn't sit for a day.",
-      "priority": "important"
+      "id": "q-defence-firms",
+      "priority": "important",
+      "q": "Plaintiff PI only, or do insurance-defence firms work too?",
+      "why": "Defence firms bill hourly and get paid by carriers - no lumpy cash flow, no big one-off tax hit. We think your offer doesn't land there. Confirm and we'll filter them out."
     },
     {
       "id": "q-calendar",
-      "q": "The booking link meetings should land on, and who's taking them.",
-      "why": "You said accountants and closers, not one person. We need the calendar wired before launch.",
-      "priority": "important"
+      "priority": "important",
+      "q": "The booking link, and who takes the calls.",
+      "why": "You said this evening. We need it wired before launch."
     },
     {
-      "id": "q-reviews",
-      "q": "The Google reviews link - you said 100+, our crawl found 55.",
-      "why": "We want to claim a number you can point at if a prospect checks.",
-      "priority": "important"
+      "id": "q-comms",
+      "priority": "important",
+      "q": "Our email address under vibefinancials.com + the Teams channel.",
+      "why": "Your support team is on it. Once it lands, every reply is visible to your team from day one."
+    },
+    {
+      "id": "q-emails",
+      "priority": "important",
+      "q": "The 5 sample emails below - shoot holes in them.",
+      "why": "They're built to the framework that wins in our data: 30-50 words, one question, no calendar link. Deliberately short. Tell us if anything overclaims."
     }
   ]
 }
