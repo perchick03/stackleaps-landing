@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function Origin() {
@@ -9,10 +6,7 @@ export default function Origin() {
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Left - photo */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <div
             className="relative"
           >
             <div className="absolute -top-6 -left-6 w-[105%] h-[105%] bg-[var(--color-secondary-fixed)]/40 rounded-[2rem] -z-10" />
@@ -25,28 +19,21 @@ export default function Origin() {
                 className="w-full h-auto object-cover"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* Right - story */}
           <div>
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <h2
               className="text-3xl sm:text-4xl md:text-[2.75rem] font-extrabold text-[var(--color-primary)] leading-tight"
             >
-              I Didn&apos;t Build This as an Agency. I Built It for My Own Company.
-            </motion.h2>
+              We Run This System on Our Own Company First.
+            </h2>
 
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <div
               className="mt-8 space-y-5 text-[var(--color-on-surface-variant)] text-lg leading-relaxed"
             >
               <p>
-                I co-founded a tour company,{" "}
+                I co-founded{" "}
                 <a
                   href="https://balkanwanders.com/balkan-destination-management-company"
                   target="_blank"
@@ -55,25 +42,28 @@ export default function Origin() {
                 >
                   Balkan Wanders
                 </a>
-                . My partner runs ground operations - I joined as the technical
-                side. When we struggled to find new clients, I built an
-                outreach system to fix it.
+                , a Balkan destination management company. My partner runs
+                ground operations; I built the outreach engine that fills our
+                calendar - the same engine we now run for clients.
               </p>
               <p>
-                It worked. <strong className="text-[var(--color-primary)] font-semibold">7 quality introductions in 10 days.</strong> We had to pause
-                the campaign because we couldn&apos;t handle the volume.
+                The first campaign booked <strong className="text-[var(--color-primary)] font-semibold">7 quality introductions in 10 days.</strong> We
+                paused it - the pipeline was running ahead of what ground
+                operations could absorb.
               </p>
               <p>
-                Other founders started asking how we did it. That&apos;s how
-                StackLeaps started - the same system, opened up to{" "}
+                Founders in other markets asked for the same engine. We run it
+                for{" "}
                 <strong className="text-[var(--color-primary)] font-semibold relative inline">
-                  one client per niche.
+                  one client per niche
                   <svg className="absolute -bottom-1 left-0 w-full h-[6px]" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
                     <path d="M2 5.5C30 2 60 6 100 3.5C140 1 170 5.5 198 3" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </strong>
+                {" "}- so your buyers, your campaign data and your angle stay
+                yours.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

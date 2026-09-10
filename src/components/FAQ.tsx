@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     q: "What if I'm not happy with the results?",
-    a: "Your first 3 introductions are your test drive. If the quality isn't there, keep the ICP report and walk away. No contract.",
+    a: "The pilot is there for exactly that. Your first three calls are free, so you judge the quality before you commit to anything. If it isn't there, you walk - no contract, and nothing owed for those calls.",
   },
   {
     q: "Will you work with my competitors?",
@@ -22,7 +22,7 @@ const faqs = [
   },
   {
     q: "Are there any hidden fees or contracts?",
-    a: "$750/month covers your campaign infrastructure and management. $150 per meeting on top of that. No long-term contract - you can stop anytime after the pilot.",
+    a: "No hidden fees, and no long-term contract - you can stop anytime after the pilot. What it costs depends on your offer, your market and the volume you need, so we go through the numbers together on the call.",
   },
 ];
 
@@ -35,14 +35,11 @@ export default function FAQ() {
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-16 lg:gap-24">
           {/* Left - heading */}
           <div className="lg:sticky lg:top-32 self-start">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <h2
               className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[var(--color-primary)] leading-tight"
             >
               Questions We Get Asked
-            </motion.h2>
+            </h2>
           </div>
 
           {/* Right - accordion */}
@@ -50,12 +47,8 @@ export default function FAQ() {
             {faqs.map((faq, i) => {
               const isOpen = openIndex === i;
               return (
-                <motion.div
+                <div
                   key={i}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06 }}
                   className="border-b border-[var(--color-outline-variant)]/15"
                 >
                   <button
@@ -90,7 +83,7 @@ export default function FAQ() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.div>
+                </div>
               );
             })}
           </div>

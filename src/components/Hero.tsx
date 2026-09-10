@@ -16,7 +16,7 @@ export default function Hero() {
               transition={{ duration: 0.6, ease: "easeOut" }}
               className="text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.75rem] font-extrabold text-[var(--color-primary)] leading-[1.08] tracking-tight"
             >
-              We book the calls. You close the sales.
+              We book your calls. You close the sales.
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 16 }}
@@ -24,8 +24,24 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="text-lg md:text-xl text-[var(--color-on-surface-variant)] font-light max-w-lg leading-relaxed"
             >
-              We connect you with decision-makers and buyers who want to
-              work with you.
+              Pipeline that books meetings,{" "}
+              <em className="relative inline-block italic text-[var(--color-primary)] font-normal">
+                run entirely for you
+                <svg
+                  className="absolute -bottom-1.5 left-0 w-full h-[8px]"
+                  viewBox="0 0 240 10"
+                  fill="none"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 7C20 3 45 8 80 4C115 0 150 7 180 3C200 1 225 6 237 4"
+                    stroke="var(--color-secondary)"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                  />
+                </svg>
+              </em>
             </motion.p>
           </div>
 
@@ -34,30 +50,36 @@ export default function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            className="space-y-3"
           >
             <a
               href="#book"
               className="inline-block bg-[var(--color-secondary)] text-white px-10 py-4 rounded-md font-bold text-lg shadow-ambient hover:opacity-90 transition-opacity"
             >
-              Book a Free Strategy Call
+              Book a call
             </a>
-            <p className="text-sm text-[var(--color-on-surface-variant)]/70 font-medium pl-1">
-              Free 30-min call
-            </p>
           </motion.div>
 
-          {/* Proof */}
-          <motion.div
+          {/* Pilot - jumps to the pilot section */}
+          <motion.a
+            href="#offer"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="pt-6 border-t border-[var(--color-outline-variant)]/20"
+            className="group block max-w-lg rounded-xl bg-[var(--color-secondary-fixed)]/45 px-6 py-5 transition-colors hover:bg-[var(--color-secondary-fixed)]/70"
           >
-            <span className="text-sm font-semibold text-[var(--color-primary)]">
-              7 quality introductions in 10 days - built for our own company
+            <span className="block text-lg md:text-xl font-extrabold text-[var(--color-primary)]">
+              Run a pilot before you buy
             </span>
-          </motion.div>
+            <span className="mt-2 block text-[15px] leading-relaxed text-[var(--color-on-surface-variant)]">
+              First we get you 3 calls - then you decide if you want it.
+            </span>
+            <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-secondary)]">
+              See how the pilot works
+              <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+          </motion.a>
         </div>
 
         {/* Right - Founder photo */}
@@ -92,10 +114,12 @@ export default function Hero() {
 }
 
 /* ─── Floating Calendar Card ─── */
+// ponytail: no day-of-month anywhere - a hardcoded date goes stale and a live one
+// can't be prerendered without a hydration mismatch. Day names never expire.
+const DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+const BOOKED_DAY = 3; // Thursday
+
 function FloatingCard() {
-  const days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  const dates = [12, 13, 14, 15, 16];
-  const bookedDay = 3; // Thursday
   const reduce = useReducedMotion();
 
   return (
@@ -113,7 +137,7 @@ function FloatingCard() {
         {/* Header */}
         <div className="px-5 pt-4 pb-3 flex items-center justify-between">
           <span className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider">
-            May 2026
+            This week
           </span>
           <div className="flex items-center gap-1.5">
             <div className="w-2 h-2 rounded-full bg-[var(--color-secondary)]" />
@@ -125,26 +149,22 @@ function FloatingCard() {
 
         {/* Days row */}
         <div className="px-4 pb-3 grid grid-cols-5 gap-1">
-          {days.map((day, i) => (
-            <div key={day} className="flex flex-col items-center gap-1">
-              <span className="text-[10px] font-medium text-[var(--color-on-surface-variant)]/60">
-                {day}
-              </span>
-              <div
-                className={`w-9 h-9 rounded-lg flex items-center justify-center text-xs font-semibold transition-colors ${
-                  i === bookedDay
-                    ? "bg-[var(--color-secondary)] text-white"
-                    : "text-[var(--color-on-surface-variant)]"
-                }`}
-              >
-                {i === bookedDay ? (
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
-                ) : (
-                  dates[i]
-                )}
-              </div>
+          {DAYS.map((day, i) => (
+            <div
+              key={day}
+              className={`h-9 rounded-lg flex items-center justify-center text-[11px] font-semibold transition-colors ${
+                i === BOOKED_DAY
+                  ? "bg-[var(--color-secondary)] text-white"
+                  : "text-[var(--color-on-surface-variant)]/70"
+              }`}
+            >
+              {i === BOOKED_DAY ? (
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+              ) : (
+                day
+              )}
             </div>
           ))}
         </div>
@@ -157,7 +177,7 @@ function FloatingCard() {
               Qualified Prospect
             </p>
             <p className="text-[10px] text-[var(--color-on-surface-variant)]">
-              Thu 15 · 10:00 AM · Intro call
+              Thursday · 10:00 AM · Intro call
             </p>
           </div>
         </div>

@@ -88,14 +88,11 @@ export default function Funnel() {
     <section className="py-20 md:py-32 bg-[var(--color-primary)] overflow-hidden">
       <div className="max-w-[1400px] mx-auto px-6 md:px-10">
         <div className="text-center mb-12 md:mb-20">
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+          <h2
             className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white leading-tight"
           >
             Our Funnel: From Your Offer to a Qualified Meeting
-          </motion.h2>
+          </h2>
         </div>
 
         <div ref={ref} />
@@ -266,12 +263,7 @@ export default function Funnel() {
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16 md:mt-24"
-        >
+        <div className="text-center mt-16 md:mt-24">
           <p className="text-white/80 text-lg md:text-xl mb-6">
             30 minutes to get started. One onboarding call - then we handle everything.
           </p>
@@ -279,9 +271,9 @@ export default function Funnel() {
             href="#book"
             className="inline-block bg-[var(--color-secondary)] text-white px-10 py-4 rounded-md font-bold text-lg hover:opacity-90 transition-opacity"
           >
-            Book a Free Strategy Call
+            Book a call
           </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

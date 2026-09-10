@@ -20,21 +20,21 @@ No test framework is configured yet.
 - **Next.js 16** with App Router, TypeScript, Tailwind CSS 4
 - **Static site** — no server components that fetch data, no API routes
 - `src/app/page.tsx` — main landing page (all sections composed here)
-- `src/app/layout.tsx` — root layout, fonts (Geist), global metadata
+- `src/app/layout.tsx` — root layout, fonts (Spectral + Hanken Grotesk), global metadata
 - `src/app/globals.css` — Tailwind imports + CSS custom properties
 - Path alias: `@/*` maps to `./src/*`
 
-### Page structure (8 sections, single page)
+### Page structure (single page)
 
-Hero → Problem → Solution → How It Works → Who It's For → Pricing → FAQ → Final CTA
+Header → Hero → Problem → Funnel → Origin → Offer → FAQ → Final CTA
 
-Each section is a component in `src/components/`. No navigation menu (intentional — reduces conversion leaks per landing page research).
+Each section is a component in `src/components/`. Only a logo + "Contact Us" in the header — no navigation menu (intentional, reduces conversion leaks per landing page research).
 
-**IMPORTANT: This is a fresh redesign (v2). All components are empty shells. Do NOT reference, preserve, or recreate any prior styling. Build from the DESIGN.md and messaging doc provided.**
+**No prices anywhere on the site.** Pricing triggers objections before a conversation happens; it is discussed on the sales call only. If asked, deflect: it depends on the offer, the market and the volume. The `Offer` section sells what's included and the walk-away guarantee, never a number.
 
 ### Key integrations
 
-- **Calendly** — embedded booking widget (hero + final CTA sections). Use `@calendly/react` or inline embed script.
+- **Calendly** — embedded booking widget (Final CTA section only). Use `@calendly/react` or inline embed script.
 - **Framer Motion** — scroll-based animations, section entrance effects. Use `useScroll` + `useTransform` for image sequences.
 - **Vercel Analytics** — add `@vercel/analytics` package, one-line setup in layout.
 - **next/image** — mandatory for all images (automatic WebP, responsive sizing).
