@@ -17,9 +17,9 @@ import { useRef, type ReactNode } from "react";
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 
-// Load sequence (seconds): outreach goes out, one prospect replies, the call books.
-// Plays once, then the scene rests.
-const T = { rows: 0.55, replied: 1.3, reply: 1.45, booked: 2.2 };
+// Load sequence (seconds): outreach goes out, one prospect replies (typed live),
+// we answer with the booking link, the call books. Plays once, then the scene rests.
+const T = { rows: 0.45, replied: 1.1, reply: 1.2, type: 1.5, answer: 2.4, booked: 3.2 };
 
 // Each step hangs off the scene's "on" variant, so the sequence waits until the
 // scene is on screen (on phones it sits below the copy).
@@ -27,6 +27,16 @@ const step = (off: TargetAndTransition, on: TargetAndTransition, delay: number, 
   off,
   on: { ...on, transition: { duration, delay, ease: EASE } },
 });
+
+// Typewriter. Every character is laid out from the start (no reflow) and switched
+// on in turn, cps characters per second.
+function Typed({ text, at, cps }: { text: string; at: number; cps: number }) {
+  return [...text].map((ch, i) => (
+    <motion.span key={i} variants={step({ opacity: 0 }, { opacity: 1 }, at + i / cps, 0.01)}>
+      {ch}
+    </motion.span>
+  ));
+}
 
 export default function Hero() {
   const reduce = useReducedMotion();
@@ -133,7 +143,7 @@ export default function Hero() {
             </motion.a>
           </div>
 
-          {/* Right - the pipeline as three planes: outreach (far), the reply (focal),
+          {/* Right - the pipeline as three planes: outreach (far), the reply thread (focal),
               the booked call (near). Far planes lag the scroll, so the scene converges
               on the calendar as it leaves. */}
           <motion.div
@@ -149,8 +159,8 @@ export default function Hero() {
             <div
               ref={scene}
               role="img"
-              aria-label="Outreach emails go out on your behalf, a prospect replies, and an intro call lands on Thursday in your calendar."
-              className="@container relative h-[460px] w-full max-w-[540px] mb-20 sm:h-[500px] lg:mb-0"
+              aria-label="Outreach emails go out on your behalf, a prospect replies, we answer with your booking link, and an intro call lands on Thursday in your calendar."
+              className="@container relative h-[550px] w-full max-w-[540px] mb-20 sm:h-[500px] lg:mb-0 lg:h-[600px] xl:h-[500px]"
             >
               {/* Apricot window, lit from the top left - clips the far plane */}
               <div className="absolute inset-0 overflow-hidden rounded-[2.5rem] bg-[var(--color-secondary-fixed)] bg-[radial-gradient(110%_80%_at_10%_0%,rgba(255,255,255,0.6),transparent_62%)]">
@@ -160,8 +170,9 @@ export default function Hero() {
               </div>
 
               {/* top = ledger top + its 216px height - 16px of overlap */}
-              <Plane depth={depth} shift={24} lag={8} className="absolute -right-[3%] top-[224px] w-[86%] sm:top-[236px] sm:w-[76%]">
+              <Plane depth={depth} shift={24} lag={8} className="absolute -right-[3%] top-[224px] flex w-[86%] flex-col items-end gap-2.5 sm:top-[236px] sm:w-[76%]">
                 <Reply />
+                <Answer />
               </Plane>
 
               <Plane depth={depth} shift={38} lag={0} className="absolute -bottom-10 -left-3 sm:-bottom-8 md:-left-10 lg:-left-6 xl:-left-16">
@@ -272,7 +283,10 @@ function SentLedger() {
   );
 }
 
-/* ─── Focal: the reply ─── */
+/* ─── Focal: the reply thread ─── */
+const QUOTE = ["\u201CGood timing.", "Does Thursday at 10 work?\u201D"];
+const QUOTE_CPS = 60;
+
 function Reply() {
   return (
     <motion.div
@@ -283,7 +297,7 @@ function Reply() {
         0.7,
       )}
       style={{ transformOrigin: "50% 0%" }}
-      className="rounded-2xl bg-white px-5 py-4 shadow-ambient sm:px-6 sm:py-5"
+      className="w-full rounded-2xl bg-white px-5 py-4 shadow-ambient sm:px-6 sm:py-5"
     >
       <div className="flex items-baseline justify-between gap-3 text-[12px] text-[var(--color-on-surface-variant)]">
         <span>
@@ -293,8 +307,42 @@ function Reply() {
       </div>
       {/* cqw: the quote scales with the scene on phones so it always holds two lines */}
       <p className="mt-2.5 font-serif text-[5.6cqw] leading-snug text-[var(--color-primary)] sm:text-[1.5rem]">
-        <span className="block indent-[-0.42em]">&ldquo;Good timing.</span>
-        <span className="block">Does Thursday at 10 work?&rdquo;</span>
+        <span className="block indent-[-0.42em]">
+          <Typed text={QUOTE[0]} at={T.type} cps={QUOTE_CPS} />
+        </span>
+        <span className="block">
+          <Typed text={QUOTE[1]} at={T.type + QUOTE[0].length / QUOTE_CPS + 0.1} cps={QUOTE_CPS} />
+        </span>
+      </p>
+    </motion.div>
+  );
+}
+
+// Our answer, sent for the client. The link is the real one (#book); it stays out
+// of the tab order because the scene is one role="img" and the CTA already covers it.
+const ANSWER = "Great! Here is my ";
+const ANSWER_CPS = 70;
+
+function Answer() {
+  return (
+    <motion.div
+      variants={step({ opacity: 0, y: 12, scale: 0.96 }, { opacity: 1, y: 0, scale: 1 }, T.answer, 0.45)}
+      style={{ transformOrigin: "100% 100%" }}
+      className="max-w-full rounded-2xl rounded-br-md bg-[var(--color-primary)] px-5 py-3.5 text-white shadow-ambient"
+    >
+      <div className="flex items-baseline justify-between gap-6 text-[11px] text-white/70">
+        <span>Replied for you</span>
+        <span className="tabular-nums">9:16 AM</span>
+      </div>
+      <p className="mt-1 whitespace-nowrap font-serif text-[4.9cqw] leading-snug sm:text-[1.15rem]">
+        <Typed text={ANSWER} at={T.answer + 0.2} cps={ANSWER_CPS} />
+        <a
+          href="#book"
+          tabIndex={-1}
+          className="text-[var(--color-secondary-fixed)] underline decoration-[var(--color-secondary-container)] underline-offset-4 hover:text-white"
+        >
+          <Typed text="booking link" at={T.answer + 0.2 + ANSWER.length / ANSWER_CPS} cps={ANSWER_CPS} />
+        </a>
       </p>
     </motion.div>
   );
@@ -308,14 +356,19 @@ const BOOKED_DAY = 3; // Thursday
 
 function Calendar() {
   return (
-    <div className="w-64 overflow-hidden rounded-2xl bg-white shadow-[0_28px_60px_rgba(14,29,43,0.12)]">
+    // Kicks in once the booking link is out: the card arrives, then Thursday fills.
+    <motion.div
+      variants={step({ opacity: 0, y: 24, scale: 0.94 }, { opacity: 1, y: 0, scale: 1 }, T.booked, 0.55)}
+      style={{ transformOrigin: "0% 100%" }}
+      className="w-64 overflow-hidden rounded-2xl bg-white shadow-[0_28px_60px_rgba(14,29,43,0.12)]"
+    >
       {/* Header */}
       <div className="px-5 pt-4 pb-3 flex items-center justify-between">
         <span className="text-xs font-bold text-[var(--color-primary)] uppercase tracking-wider">
           This week
         </span>
         <motion.div
-          variants={step({ opacity: 0 }, { opacity: 1 }, T.booked + 0.2, 0.4)}
+          variants={step({ opacity: 0 }, { opacity: 1 }, T.booked + 0.6, 0.4)}
           className="flex items-center gap-1.5"
         >
           <div className="w-2 h-2 rounded-full bg-[var(--color-secondary)]" />
@@ -335,12 +388,12 @@ function Calendar() {
             {day}
             {i === BOOKED_DAY && (
               <motion.span
-                variants={step({ opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1 }, T.booked, 0.45)}
+                variants={step({ opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1 }, T.booked + 0.35, 0.45)}
                 className="absolute inset-0 rounded-lg bg-[var(--color-secondary)] text-white flex items-center justify-center"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={3}>
                   <motion.path
-                    variants={step({ pathLength: 0 }, { pathLength: 1 }, T.booked + 0.15, 0.35)}
+                    variants={step({ pathLength: 0 }, { pathLength: 1 }, T.booked + 0.5, 0.35)}
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     d="M5 13l4 4L19 7"
@@ -352,30 +405,22 @@ function Calendar() {
         ))}
       </div>
 
-      {/* Meeting strip: empty until the reply lands */}
-      <div className="relative mx-4 mb-4">
-        <motion.p
-          variants={step({ opacity: 1 }, { opacity: 0 }, T.booked, 0.2)}
-          className="absolute inset-0 flex items-center px-3 text-[11px] text-[var(--color-on-surface-variant)]"
-        >
-          Nothing booked yet
-        </motion.p>
-        <motion.div
-          variants={step(
-            { opacity: 0, clipPath: "inset(0 100% 0 0 round 8px)" },
-            { opacity: 1, clipPath: "inset(0 0% 0 0 round 8px)" },
-            T.booked + 0.1,
-            0.55,
-          )}
-          className="bg-[var(--color-secondary)]/8 rounded-lg px-3 py-2.5 flex items-center gap-2.5"
-        >
-          <div className="w-1 h-8 rounded-full bg-[var(--color-secondary)]" />
-          <div>
-            <p className="text-[11px] font-bold text-[var(--color-primary)]">Intro call with the COO</p>
-            <p className="text-[10px] text-[var(--color-on-surface-variant)]">Thursday · 10:00 AM</p>
-          </div>
-        </motion.div>
-      </div>
-    </div>
+      {/* Meeting strip */}
+      <motion.div
+        variants={step(
+          { opacity: 0, clipPath: "inset(0 100% 0 0 round 8px)" },
+          { opacity: 1, clipPath: "inset(0 0% 0 0 round 8px)" },
+          T.booked + 0.45,
+          0.55,
+        )}
+        className="mx-4 mb-4 bg-[var(--color-secondary)]/8 rounded-lg px-3 py-2.5 flex items-center gap-2.5"
+      >
+        <div className="w-1 h-8 rounded-full bg-[var(--color-secondary)]" />
+        <div>
+          <p className="text-[11px] font-bold text-[var(--color-primary)]">Intro call with the COO</p>
+          <p className="text-[10px] text-[var(--color-on-surface-variant)]">Thursday · 10:00 AM</p>
+        </div>
+      </motion.div>
+    </motion.div>
   );
 }
