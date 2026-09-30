@@ -46,9 +46,10 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Editorial headings — Spectral serif carries the voice */
+/* Headings. Trying the old Plus Jakarta Sans titles again (pre-28866d8); swap this
+   line back to var(--font-serif) for the Spectral serif voice. */
 h1, h2, h3 {
-  font-family: var(--font-serif);
+  font-family: var(--font-plus-jakarta);
   text-wrap: balance;
 }
 

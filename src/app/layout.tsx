@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Spectral, Hanken_Grotesk } from "next/font/google";
+import { Spectral, Hanken_Grotesk, Plus_Jakarta_Sans } from "next/font/google";
 import { headers } from "next/headers";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
@@ -13,6 +13,12 @@ const spectral = Spectral({
 
 const hanken = Hanken_Grotesk({
   variable: "--font-hanken",
+  subsets: ["latin"],
+});
+
+// Title font from before 28866d8 (Jun 28), back for a side-by-side look.
+const plusJakarta = Plus_Jakarta_Sans({
+  variable: "--font-plus-jakarta",
   subsets: ["latin"],
 });
 
@@ -38,7 +44,7 @@ export default async function RootLayout({
   const country = (await headers()).get("x-vercel-ip-country");
   const skipAnalytics = country === "BG";
   return (
-    <html lang="en" className={`${spectral.variable} ${hanken.variable} antialiased`}>
+    <html lang="en" className={`${spectral.variable} ${hanken.variable} ${plusJakarta.variable} antialiased`}>
       <body>
         {children}
         {!skipAnalytics && <Analytics />}
