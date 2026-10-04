@@ -10,7 +10,7 @@ import FinalCTA from "@/components/FinalCTA";
 export default function Home() {
   return (
     <main className="paper-grain">
-      <Header />
+      <Header overlay />
       <Hero />
       <Problem />
       <Funnel />

@@ -30,6 +30,10 @@
   --color-outline: #73777e;
   --color-outline-variant: #c3c7ce;
 
+  /* Dark hero: the ink ground and the paper that sits on it */
+  --color-ink: #0f2335;
+  --color-paper: #f7f1e8;
+
   /* Inverse for dark sections */
   --color-inverse-surface: #243241;
   --color-inverse-on-surface: #e9f1ff;
