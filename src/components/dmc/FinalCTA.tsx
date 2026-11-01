@@ -39,7 +39,7 @@ export default function FinalCTA() {
           className="mt-12 bg-white rounded-2xl p-2 shadow-ambient max-w-2xl mx-auto"
         >
           <iframe
-            src="https://calendly.com/stackleaps/30min?hide_gdpr_banner=1"
+            src="https://calendly.com/stackleaps/intro-call?hide_gdpr_banner=1"
             className="w-full rounded-xl"
             style={{ minHeight: 900, border: "none" }}
             title="Book a Strategy Call"
