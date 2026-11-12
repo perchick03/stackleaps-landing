@@ -33,7 +33,7 @@ export default function Origin() {
               className="mt-8 space-y-5 text-[var(--color-on-surface-variant)] text-lg leading-relaxed"
             >
               <p>
-                I co-founded{" "}
+                We co-founded{" "}
                 <a
                   href="https://balkanwanders.com/balkan-destination-management-company"
                   target="_blank"
@@ -42,26 +42,24 @@ export default function Origin() {
                 >
                   Balkan Wanders
                 </a>
-                , a Balkan destination management company. My partner runs
-                ground operations; I built the outreach engine that fills our
-                calendar - the same engine we now run for clients.
+                , a Balkan destination management company, and built the
+                outreach engine that fills its calendar - the same engine we
+                now run for clients.
               </p>
               <p>
-                The first campaign booked <strong className="text-[var(--color-primary)] font-semibold">7 quality introductions in 10 days.</strong> We
-                paused it - the pipeline was running ahead of what ground
-                operations could absorb.
+                When we launched, the first campaign booked <strong className="text-[var(--color-primary)] font-semibold">7 calls in the first 10 days.</strong> So
+                we started offering the same pipeline as a service, and it has
+                booked our clients dozens of calls.
               </p>
               <p>
-                Founders in other markets asked for the same engine. We run it
-                for{" "}
+                We take on only{" "}
                 <strong className="text-[var(--color-primary)] font-semibold relative inline">
-                  one client per niche
+                  3 clients at a time
                   <svg className="absolute -bottom-1 left-0 w-full h-[6px]" viewBox="0 0 200 8" fill="none" preserveAspectRatio="none">
                     <path d="M2 5.5C30 2 60 6 100 3.5C140 1 170 5.5 198 3" stroke="var(--color-secondary)" strokeWidth="2" strokeLinecap="round" />
                   </svg>
                 </strong>
-                {" "}- so your buyers, your campaign data and your angle stay
-                yours.
+                {" "}- so every campaign gets our full attention.
               </p>
             </div>
           </div>

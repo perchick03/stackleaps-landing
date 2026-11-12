@@ -36,10 +36,10 @@ export default function FinalCTA() {
           className="mt-8 space-y-2 text-sm"
         >
           <p className="text-white/70 font-semibold">
-            Start with a pilot - your first three calls are free
+            Start with a free 14-day test campaign
           </p>
           <p className="text-white/50">
-            One client per niche - no conflicts
+            Only 3 clients at a time
           </p>
         </div>
       </div>

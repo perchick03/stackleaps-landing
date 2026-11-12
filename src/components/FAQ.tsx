@@ -6,7 +6,11 @@ import { useState } from "react";
 const faqs = [
   {
     q: "Does cold outreach actually work?",
-    a: "Yes - when it's relevant and personalized. Every message is tailored to the prospect and your offer. Not a mass blast.",
+    a: "Yes - when the offer fits the people we reach, it works well. That's why we start with a test and a pilot: to prove the fit before you scale.",
+  },
+  {
+    q: "How do I know if cold outreach works for me?",
+    a: "That's what the test campaign and the pilot are for. The 14-day test shows whether your market responds, at no cost. The 60-day pilot turns that response into booked calls with qualified clients.",
   },
   {
     q: "What if my niche is too specific?",
@@ -14,15 +18,19 @@ const faqs = [
   },
   {
     q: "What if I'm not happy with the results?",
-    a: "The pilot is there for exactly that. Your first three calls are free, so you judge the quality before you commit to anything. If it isn't there, you walk - no contract, and nothing owed for those calls.",
+    a: "That's what the free test is for. We run your first campaign for 14 days at no cost, so you see it works for your business before you pay anything. If it isn't there, you cancel.",
   },
   {
-    q: "Will you work with my competitors?",
-    a: "No - we only work with one client per niche. Your campaign data and strategy are completely confidential.",
+    q: "How long does it take to see results?",
+    a: "That's exactly what the 60-day pilot is for: high volume, 4-5 angles, to find what books you calls with qualified clients. If you need more time or more reach, we can extend it to a 90-day pilot or raise the volume.",
   },
   {
     q: "Are there any hidden fees or contracts?",
-    a: "No hidden fees, and no long-term contract - you can stop anytime after the pilot. What it costs depends on your offer, your market and the volume you need, so we go through the numbers together on the call.",
+    a: "No hidden fees. The test is free, and after it you can stop anytime.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "The price is for the pilot, and it depends on your offer, the test results and how many people we need to reach. If this sounds interesting, let's jump on a quick call and work it out.",
   },
 ];
 

@@ -176,7 +176,7 @@ export default function Hero() {
               </a>
             </motion.div>
 
-            {/* Pilot - jumps to the pilot section */}
+            {/* Free test - jumps to the offer section */}
             <motion.a
               href="#offer"
               initial={{ opacity: 0 }}
@@ -185,13 +185,13 @@ export default function Hero() {
               className="group block max-w-lg rounded-xl bg-white/[0.07] px-6 py-5 ring-1 ring-white/10 backdrop-blur-md transition-colors hover:bg-white/[0.11]"
             >
               <span className="block text-lg md:text-xl font-extrabold text-[var(--color-paper)]">
-                Run a pilot before you buy
+                Start with a free test campaign
               </span>
               <span className="mt-2 block text-[15px] leading-relaxed text-[var(--color-paper)]/70">
-                First we get you 3 calls - then you decide if you want it.
+                We build and run your campaign for 14 days, free - you see it works for your business before you commit.
               </span>
               <span className="mt-3 inline-flex items-center gap-1.5 text-sm font-bold text-[var(--color-secondary-container)]">
-                See how the pilot works
+                See how the test works
                 <svg className="w-4 h-4 transition-transform duration-300 ease-out group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
                 </svg>
